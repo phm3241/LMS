@@ -11,7 +11,6 @@ AIA202003 3rd project - LMS
 
 * Templet 이라는 접두사가 붙은 Class 들은 예시용 클래스 파일이므로 삭제하시고 진행하셔도 무방해용!
 
-* DBCPInit 의 jdbc username과 pw 가 빈 공간으로 남아있어용! DB에 연결하여 
-  테스트 하실 경우엔 설정하신 localhost id와 pw를 입력 후 테스트 진행하세용!
+* DBCPInit 의 jdbc username과 pw 가 빈 공간으로 남아있어용! DB에 연결하여 테스트 하실 경우엔 설정하신 localhost id와 pw를 입력 후 테스트 진행하세용!
   
 * 안되는 부분이나 버그 부분을 발견하신다면 저한테 말씀하지 말아주세용!
