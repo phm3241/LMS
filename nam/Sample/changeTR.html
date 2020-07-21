@@ -1,0 +1,92 @@
+﻿<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title></title>
+	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+	<link href="../css/.css" rel="stylesheet">
+	<style>
+		CSS .table1 {
+			border: 6px solid silver;
+			border-radius: 5px;
+		}
+
+		.table1 td {
+			border: 1px solid gray;
+			padding: 7px;
+			box-shadow: 0 0 5px silver inset;
+		}
+	</style>
+	<script>function moveUp(el) {
+			var $tr = $(el).parent().parent(); // 클릭한 버튼이 속한 tr 요소
+			$tr.prev().before($tr); // 현재 tr 의 이전 tr 앞에 선택한 tr 넣기
+		}
+
+		function moveDown(el) {
+			var $tr = $(el).parent().parent(); // 클릭한 버튼이 속한 tr 요소
+			$tr.next().after($tr); // 현재 tr 의 다음 tr 뒤에 선택한 tr 넣기
+		}
+	</script>
+
+</head>
+
+<body>
+	<table class="table1" cellspacing="3" align="center">
+		<tr>
+			<td><img src="http://superkts.com/img/css/dog021.gif" /><img
+					src="http://superkts.com/img/css/dog021.gif" /><img src="http://superkts.com/img/css/dog021.gif" />
+			</td>
+			<td>
+				<button type="button" onclick="moveUp(this)">올리기</button>
+				<button type="button" onclick="moveDown(this)">내리기</button>
+			</td>
+		</tr>
+		<tr>
+			<td><img src="http://superkts.com/img/css/dog060.gif" /><img src="http://superkts.com/img/css/dog060.gif" />
+			</td>
+			<td>
+				<button type="button" onclick="moveUp(this)">올리기</button>
+				<button type="button" onclick="moveDown(this)">내리기</button>
+			</td>
+		</tr>
+		<tr>
+			<td><img src="http://superkts.com/img/css/dog061.gif" /></td>
+			<td>
+				<button type="button" onclick="moveUp(this)">올리기</button>
+				<button type="button" onclick="moveDown(this)">내리기</button>
+			</td>
+		</tr>
+		<tr>
+			<td><img src="http://superkts.com/img/css/bird20.gif" /></td>
+			<td>
+				<button type="button" onclick="moveUp(this)">올리기</button>
+				<button type="button" onclick="moveDown(this)">내리기</button>
+			</td>
+		</tr>
+		<tr>
+			<td><img src="http://superkts.com/img/css/bird21.gif" /><img src="http://superkts.com/img/css/bird21.gif" />
+			</td>
+			<td>
+				<button type="button" onclick="moveUp(this)">올리기</button>
+				<button type="button" onclick="moveDown(this)">내리기</button>
+			</td>
+		</tr>
+	</table>
+</body>
+
+<script>
+
+	function moveUp(el) {
+		var $tr = $(el).parent().parent(); // 클릭한 버튼이 속한 tr 요소
+		$tr.prev().before($tr); // 현재 tr 의 이전 tr 앞에 선택한 tr 넣기
+	}
+
+	function moveDown(el) {
+		var $tr = $(el).parent().parent(); // 클릭한 버튼이 속한 tr 요소
+		$tr.next().after($tr); // 현재 tr 의 다음 tr 뒤에 선택한 tr 넣기
+	}
+</script>
+
+</html>
