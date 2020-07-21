@@ -34,7 +34,7 @@ public class StudentDao {
 		PreparedStatement pstmt = null;
 		
 		// 수정사항 : 전화번호/이메일 
-		String sql = "update student set tel=?, email=? where sidx=?";
+		String sql = "update student set tel=?, email=? where sIdx=?;";
 		
 		try {
 			pstmt = conn.prepareStatement(sql);

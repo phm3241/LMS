@@ -9,7 +9,7 @@ package lms.model;
 
 public class Student {
 
-	private int sidx;
+	private int sIdx;
 	private String pw;
 	private String name;
 	private String tel;
@@ -18,9 +18,9 @@ public class Student {
 	private int grade;
 	
 
-	public Student(int sidx, String pw, String name, String tel, String email, String major, int grade) {
+	public Student(int sIdx, String pw, String name, String tel, String email, String major, int grade) {
 
-		this.sidx = sidx;
+		this.sIdx = sIdx;
 		this.pw = pw;
 		this.name = name;
 		this.tel = tel;
@@ -34,11 +34,11 @@ public class Student {
 	}
 
 	public int getSidx() {
-		return sidx;
+		return sIdx;
 	}
 
-	public void setSidx(int sidx) {
-		this.sidx = sidx;
+	public void setSidx(int sIdx) {
+		this.sIdx = sIdx;
 	}
 
 	public String getPw() {
@@ -91,7 +91,7 @@ public class Student {
 
 	@Override
 	public String toString() {
-		return "Student [sidx=" + sidx + ", pw=" + pw + ", name=" + name + ", tel=" + tel + ", email=" + email
+		return "Student [sIdx=" + sIdx + ", pw=" + pw + ", name=" + name + ", tel=" + tel + ", email=" + email
 				+ ", major=" + major + ", grade=" + grade + "]";
 	}
 	
