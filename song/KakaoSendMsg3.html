@@ -46,25 +46,23 @@
 		}
 		// 로그인이 되어있으면 메세지 전송으로 넘어감
 		else{
-			Kakao.Auth.login({
-				//scope: 'PROFILE,TALK_MESSAGE',
-				//scope: 'talk_message',
-				success: function(authObj) {
-					alert('login success: ' + JSON.stringify(authObj)),
-					Kakao.API.request({
-						url: '/v2/api/talk/memo/send',
-						data: {
-							template_id: 32861,
-							//templateArgs: {"title": "Kakao msg forwarded from the web","description": "AIA semi-final project"}
-						},
-						success: function(authObj) {
-							alert('msg success: ' + JSON.stringify(authObj))},
-						fail: function(err) {
-							alert('msg error: ' + JSON.stringify(err))},
-					})
+			Kakao.API.request({
+				url: '/v2/user/me',
+				success: function(res){
+					alert('logged in user info: ' + JSON.stringify(res))
+				}
+			}),
+			
+			Kakao.API.request({
+				url: '/v2/api/talk/memo/send',
+				data: {
+					template_id: 32861,
+					//templateArgs: {"title": "Kakao msg forwarded from the web","description": "AIA semi-final project"}
 				},
+				success: function(res) {
+					alert('logged in msg success: ' + JSON.stringify(res))},
 				fail: function(err) {
-		        	alert('failed to login: ' + JSON.stringify(err))},
+					alert('logged in msg error: ' + JSON.stringify(err))},
 			})
 		}
 	};
