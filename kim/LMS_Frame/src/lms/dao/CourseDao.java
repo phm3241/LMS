@@ -31,7 +31,7 @@ public class CourseDao {
 		int result = 0;
 		
 		PreparedStatement pstmt = null;
-		String sql = "INSERT INTO `project`.`class` (`cIdx`,`name`,`teacher`,`content`, `day`,`startTime`,`endTime`,`totalPer`,`applyPer`,`tIdx`)\r\n" + 
+		String sql = "INSERT INTO `project`.`course` (`cIdx`,`name`,`teacher`,`content`, `day`,`startTime`,`endTime`,`totalPer`,`applyPer`,`tIdx`)\r\n" + 
 				"VALUES (?,?,?,?,?,?,?,?,?,?)";
 		
 		// 마지막값 tIdx는 교수번호를 Model에서 가져와야..
@@ -39,16 +39,16 @@ public class CourseDao {
 		try {
 			
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, course.getcIdx());
-			pstmt.setString(2, course.getName());
-			pstmt.setString(3, course.getTeacher());
-			pstmt.setString(4, course.getContent());
-			pstmt.setString(5, course.getDay());
-			pstmt.setTimestamp(6, course.getStartTime());
-			pstmt.setTimestamp(7, course.getEndTime());
-			pstmt.setInt(8, course.getTotalPer());
-			pstmt.setInt(9, course.getApplyPer());
-			pstmt.setInt(10, course.gettIdx());
+//			pstmt.setInt(1, course.getcIdx());
+			pstmt.setString(1, course.getName());
+			pstmt.setString(2, course.getTeacher());
+			pstmt.setString(3, course.getContent());
+			pstmt.setString(4, course.getDay());
+			pstmt.setTimestamp(5, course.getStartTime());
+			pstmt.setTimestamp(6, course.getEndTime());
+			pstmt.setInt(7, course.getTotalPer());
+			pstmt.setInt(8, course.getApplyPer());
+//			pstmt.setInt(10, course.gettIdx());
 			
 		} finally {
 			if(pstmt != null) {
@@ -98,7 +98,7 @@ public class CourseDao {
 	// 개설 강의 수정 : update ?
 	// 수강신청한 강의 리스트 조회 : myCourse 조회 = select  ? 
 	// 개설된 전체 강의 리스트 출력 : ArrayList ?
-	// 수강신청한 강의 취소 : myCourse 조회 => delete ? 
+	// 수강신청한 강의 취소 : myCourse 조회 => delete
 	
 	
 }
