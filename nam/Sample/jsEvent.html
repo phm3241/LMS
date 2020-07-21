@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>event4</title>
+    <script type="text/javascript"> 
+
+        function whenClick(e) { 
+                alert('클릭3'); 
+        }
+
+        window.onload = function () { 
+            var button1 = document.getElementById('button1'); 
+            var button2 = document.getElementById('button2'); 
+            var counter1 = document.getElementById('counter1'); 
+            var counter2 = document.getElementById('counter2'); 
+            
+            button1.onclick = function () { 
+                counter1.innerHTML = Number(counter1.innerHTML) + 1; 
+            }; 
+                
+            button2.onclick = function () { 
+                counter2.innerHTML = Number(counter2.innerHTML) + 1; 
+                // button2 를 클릭하면 button1 클릭한 이벤트도 발생 
+                button1.onclick(); 
+            }; 
+
+
+            document.getElementById('header1').onclick = function() { 
+                this.style.color = 'red'; 
+            }
+
+
+            var header = document.getElementById('header2'); 
+            
+            // header 객체에 onclick 이벤트 속성을 연결 
+            
+            header.onclick = function() { 
+                alert('클릭'); // 이벤트를 제거, 한번만 실행이 됨 
+                header.onclick = null; 
+            }
+
+
+
+
+
+             
+        }; 
+    </script>
+    
+</head>
+
+<body>
+    <h1 onclick="alert('클릭1')">Click1</h1>
+    <h1 onclick="var alpha='클릭2'; alert(alpha);">Click2</h1>
+    <h1 onclick="whenClick(event)">Click3</h1><!-- event 객체 전달 -->
+
+    <button id="button1">ButtonA</button> <button id="button2">ButtonB</button>
+    <h1>Button 1 - <span id="counter1">0</span></h1>
+    <h1>Button 2 - <span id="counter2">0</span></h1>
+
+    <h1 id="header1">Click</h1>
+
+    <h1 id="header2">Click</h1>
+</body>
+
+</html>
+
+
+
+<body> 
+</body>
