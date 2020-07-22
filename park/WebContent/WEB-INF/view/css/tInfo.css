@@ -1,0 +1,81 @@
+
+*{
+    margin: 0;
+    padding: 0;
+}
+
+#container {
+    margin: 10px auto;
+    border: 1px solid #999999;
+    
+    width: 360px;
+    height: 600px;
+    border: 1px solid red;
+}
+
+/* 작업중*/
+#header {
+    border: 1px solid blue;
+    width: 360px;
+    height: 110px;
+    background-color: aqua;
+}
+
+
+#contents {
+    border: 1px solid #999999;
+    width: 360px;
+    height: 490px;
+    overflow: scroll;
+    
+}
+
+.tInfo h4 {
+    display: inline;
+    margin-left: 10%;
+}
+.tInfo input {
+    width: 180px;
+    height: 30px;
+
+    margin-top: 10px;
+    
+}
+
+
+
+
+
+
+/* 481 */
+@media ( min-width: 700px ) {
+    #container {
+        width: 800px;
+    
+    }
+
+    #header {
+        width: 800px;
+        height: 110px;
+    }
+
+    #contents {
+        width: 800px;
+    }
+    #footer {
+        clear: both;
+    }
+}
+
+
+
+
+.btnStyle {            
+    border-radius: 10px;
+    font-size:14px;
+    color: white;
+    font-weight : 900;
+    background-color: rgba(0, 0, 255, 0.7);
+    border-color:  rgba(0, 0, 255, 1);            
+}
+
