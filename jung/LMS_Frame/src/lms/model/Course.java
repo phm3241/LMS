@@ -1,7 +1,6 @@
 package lms.model;
 
-import java.sql.Date;
-import java.sql.Timestamp;
+import java.sql.Time;
 
 
 //자신이 사용할 Dao/Model/Service resurve 파일 번호를 항상 공유해주세용!
@@ -12,14 +11,14 @@ public class Course {
 	private String teacher;
 	private String content;
 	private String day;
-	private Timestamp startTime;
-	private Timestamp endTime;
+	private Time startTime;
+	private Time endTime;
 	private int totalPer;
 	private int applyPer;
 	private int tIdx;
 	
 	
-	public Course(int cIdx, String name, String teacher, String content, String day, Timestamp startTime, Timestamp endTime,
+	public Course(int cIdx, String name, String teacher, String content, String day, Time startTime, Time endTime,
 			int totalPer, int applyPer, int tIdx) {
 		this.cIdx = cIdx;
 		this.name = name;
@@ -77,19 +76,19 @@ public class Course {
 		this.day = day;
 	}
 
-	public Timestamp getStartTime() {
+	public Time getStartTime() {
 		return startTime;
 	}
 
-	public void setStartTime(Timestamp startTime) {
+	public void setStartTime(Time startTime) {
 		this.startTime = startTime;
 	}
 
-	public Timestamp getEndTime() {
+	public Time getEndTime() {
 		return endTime;
 	}
 
-	public void setEndTime(Timestamp endTime) {
+	public void setEndTime(Time endTime) {
 		this.endTime = endTime;
 	}
 

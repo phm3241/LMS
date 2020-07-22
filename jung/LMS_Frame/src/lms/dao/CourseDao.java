@@ -32,8 +32,8 @@ public class CourseDao {
 		int result = 0;
 
 		PreparedStatement pstmt = null;
-		String sql = "INSERT INTO project.class (`name`,`teacher`,`content`, `day`,`startTime`,`endTime`,`totalPer`,`applyPer`)\r\n"
-				+ "VALUES (?,?,?,?,?,?,?,?)";
+		String sql = "INSERT INTO project.class (`name`,`teacher`,`content`, `day`,`startTime`,`endTime`,`totalPer`,`applyPer`,`tIdx`)\r\n"
+				+ "VALUES (?,?,?,?,?,?,?,?,?)";
 
 		// 마지막값 tIdx는 교수번호를 Model에서 가져와야..
 
@@ -45,11 +45,11 @@ public class CourseDao {
 			pstmt.setString(2, course.getTeacher());
 			pstmt.setString(3, course.getContent());
 			pstmt.setString(4, course.getDay());
-			pstmt.setTimestamp(5, course.getStartTime());
-			pstmt.setTimestamp(6, course.getEndTime());
+			pstmt.setTime(5, course.getStartTime());
+			pstmt.setTime(6, course.getEndTime());
 			pstmt.setInt(7, course.getTotalPer());
 			pstmt.setInt(8, course.getApplyPer());
-//			pstmt.setInt(10, course.gettIdx()); 교수번호는 비식별이기 때문에 안받아도됨.
+			pstmt.setInt(10, course.gettIdx()); 
 
 		} finally {
 			if (pstmt != null) {
@@ -93,12 +93,11 @@ public class CourseDao {
 	}
 
 	// 개설 강의 삭제 : delete
-
 	public int deleteCourse(Connection conn, Course course) throws SQLException {
 
 		int result = 0;
 		PreparedStatement pstmt = null;
-		String sql = "delete from course where cIdx=?";
+		String sql = "delete from project.course where cIdx=?";
 
 		try {
 			pstmt = conn.prepareStatement(sql);
@@ -132,8 +131,8 @@ public class CourseDao {
 			pstmt.setString(2, course.getTeacher());
 			pstmt.setString(3, course.getContent());
 			pstmt.setString(4, course.getDay());
-			pstmt.setTimestamp(5, course.getStartTime());
-			pstmt.setTimestamp(6, course.getEndTime());
+			pstmt.setTime(5, course.getStartTime());
+			pstmt.setTime(6, course.getEndTime());
 			pstmt.setInt(7, course.getTotalPer());
 			pstmt.setInt(8, course.getApplyPer());
 
@@ -189,7 +188,6 @@ public class CourseDao {
 		int result = 0;
 
 		PreparedStatement pstmt = null;
-		ResultSet rs;
 
 		try {
 			// 학번으로 내가 등록한 강의 리스트 출력
@@ -199,7 +197,7 @@ public class CourseDao {
 			pstmt.setInt(1, student.getsIdx());
 			pstmt.setInt(2, course.getcIdx());
 
-			rs = pstmt.executeQuery();
+			result = pstmt.executeUpdate();
 
 		} finally {
 			if (pstmt != null) {
@@ -233,8 +231,8 @@ public class CourseDao {
 					course.setTeacher(rs.getString("teacher"));
 					course.setContent(rs.getString("content"));
 					course.setDay(rs.getString("day"));
-					course.setStartTime(rs.getTimestamp("startTime"));
-					course.setEndTime(rs.getTimestamp("endTime"));
+					course.setStartTime(rs.getTime("startTime"));
+					course.setEndTime(rs.getTime("endTime"));
 					course.setTotalPer(rs.getInt("totalPer"));
 					course.setApplyPer(rs.getInt("applyPer"));
 					course.settIdx(rs.getInt("tIdx"));
