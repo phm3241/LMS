@@ -2,8 +2,10 @@ package lms.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import lms.model.Course;
 import lms.model.Student;
 import lms.model.Teacher;
 import lms.model.TempletModel;
@@ -59,6 +61,38 @@ public class TeacherDao {
 		return result;
 
 	}
+	
+	// 교수 내정보 보기
+	
+	public int selectTeacher(Connection conn, Teacher teacher) throws SQLException {
+
+		int result = 0;
+
+		PreparedStatement pstmt = null;
+		ResultSet rs;
+
+		try {
+			String sql = "SELECT * FROM project.teacher where tIdx=?";
+
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, teacher.gettIdx());
+
+			rs = pstmt.executeQuery();
+
+			if (rs.next()) {
+				result = rs.getInt(1);
+			}
+
+		} finally {
+			if (pstmt != null) {
+				pstmt.close();
+			}
+		}
+
+		return result;
+
+	}
+	
 	
 	// 교수 내정보 수정
 	public int editTeacher(Connection conn, Teacher teacher) throws SQLException {

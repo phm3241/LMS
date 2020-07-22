@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import lms.model.Course;
 import lms.model.Student;
 import lms.model.TempletModel;
 
@@ -66,6 +67,38 @@ public class StudentDao {
 
 	}
 
+	// 학생 내정보 보기
+	public int selectStudent(Connection conn, Student student) throws SQLException {
+
+		int result = 0;
+
+		PreparedStatement pstmt = null;
+		ResultSet rs;
+
+		try {
+			// 학번으로 내 정보 확인
+			String sql = "SELECT * FROM project.student where sIdx=?";
+
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, student.getsIdx());
+
+			rs = pstmt.executeQuery();
+
+			if (rs.next()) {
+				result = rs.getInt(1);
+			}
+
+		} finally {
+			if (pstmt != null) {
+				pstmt.close();
+			}
+		}
+
+		return result;
+
+	}
+	
+	
 	// 학생 내정보 수정
 	public int editStudent(Connection conn, Student student) throws SQLException {
 
