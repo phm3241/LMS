@@ -32,8 +32,8 @@ public class CourseDao {
 		int result = 0;
 
 		PreparedStatement pstmt = null;
-		String sql = "INSERT INTO project.class (`name`,`teacher`,`content`, `day`,`startTime`,`endTime`,`totalPer`,`applyPer`)\r\n"
-				+ "VALUES (?,?,?,?,?,?,?,?)";
+		String sql = "INSERT INTO project.class (`name`,`teacher`,`content`, `day`,`startTime`,`endTime`,`totalPer`,`applyPer`,`tIdx`)\r\n"
+				+ "VALUES (?,?,?,?,?,?,?,?,?)";
 
 		// 마지막값 tIdx는 교수번호를 Model에서 가져와야..
 
@@ -49,7 +49,7 @@ public class CourseDao {
 			pstmt.setTimestamp(6, course.getEndTime());
 			pstmt.setInt(7, course.getTotalPer());
 			pstmt.setInt(8, course.getApplyPer());
-//			pstmt.setInt(10, course.gettIdx()); 교수번호는 비식별이기 때문에 안받아도됨.
+			pstmt.setInt(10, course.gettIdx()); 
 
 		} finally {
 			if (pstmt != null) {
