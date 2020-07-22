@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LMS</title>
+    <link href="lms.css" rel="stylesheet">
+    <style>     
+
+
+        th {
+            text-align: center;
+            font-weight : 900;
+
+        }
+
+        input {
+
+            border: 2px solid;
+            height : 20px;
+            width : 150px;
+            border-color: rgb(188, 188, 188);
+
+        }
+
+        button {
+            
+            
+            width: 80px;
+            height: 30px;
+            text-align: center;
+            font-size :14px;
+
+
+        }
+
+        .btnSearch {
+
+            margin-left: 5px;
+            margin-right: -2px;
+            width: 50px;
+            height: 26px;
+            text-align: center;
+            font-size :14px;
+
+        }
+
+        .tdRight {
+            text-align : right;
+        }
+
+
+        
+        .btnStyle {            
+            border-radius: 10px;
+            font-size:14px;
+            color: white;
+            font-weight : 900;
+            /* background-color: rgba(0, 0, 255, 0.7);
+            border-color:  rgba(0, 0, 255, 1);             */
+        }
+
+        .btnStyle:hover {
+            color: black;
+            background-color: white;
+            border-color:  gray; 
+        }
+
+        #idClass td {
+            font-size : 14px;
+            border-bottom: 1px solid rgb(204, 204, 204);
+        }
+
+        .bgColorGray {
+            background-color: rgb(204, 204, 204);
+        }
+
+
+        .bgColorHeader {
+            background-color: rgb(67, 241, 204);
+        }
+        
+
+
+
+    </style>
+    <script></script>
+</head>
+
+<body>
+
+<div id="container">
+        <div id="header" class="bgColorHeader">
+     		<h1>header</h1>
+        </div>
+	    
+        <div id="contentsAll">
+        
+        <table width=100% border=0>
+            <tr><td colspan="2" class="tdRight">
+                교과목검색<button id="reg" class="btnSearch">F</button><input type="text" id="search">
+            </td></tr>
+            <tr><td><h2>수업목록</h2> 
+                <td class="tdRight"><button id="reg" class="">등록</button></td></tr>
+        </table>
+        
+        <table id="idClass" width=100% border=0 cellspacing="0">
+            <tr class="bgColorGray"><th>강의번호</th><th>강의명</th><th>요일</th>
+                <th>시작시간</th><th>종료시간</th><th>정원</th>
+                <th>신청현황</th><th>삭제</th></tr>
+            <tr class="tableUnerLine"><td class="tableUnerLine">더미데이타</td><td  class="tableUnerLine">더미데이타</td><td>더미데이타</td>
+                <td>더미데이타</td><td>더미데이타</td><td>더미데이타</td>
+                <td>더미데이타</td><td>삭제</td></tr>
+            <tr><td>더미데이타</td><td>더미데이타</td><td>더미데이타</td>
+                <td>더미데이타</td><td>더미데이타</td><td>더미데이타</td>
+                <td>더미데이타</td><td>삭제</td></tr>
+            <tr><td>더미데이타</td><td>더미데이타</td><td>더미데이타</td>
+                <td>더미데이타</td><td>더미데이타</td><td>더미데이타</td>
+                <td>더미데이타</td><td>삭제</td></tr>        
+            <tr><td>더미데이타</td><td>더미데이타</td><td>더미데이타</td>
+                <td></td>더미데이타</td><td>더미데이타</td><td>더미데이타</td>
+                <td>더미데이타</td><td>삭제</td></tr>
+            <tr><td>더미데이타</td><td>더미데이타</td><td>더미데이타</td>
+                <td>더미데이타</td><td>더미데이타</td><td>더미데이타</td>
+                <td>더미데이타</td><td>삭제</td></tr>
+            <tr><td>더미데이타</td><td>더미데이타</td><td>더미데이타</td>
+                <td>더미데이타</td><td>더미데이타</td><td>더미데이타</td>
+                <td>더미데이타</td><td>삭제</td></tr>
+                
+                                
+            
+
+            
+            
+
+
+
+        </table>
+        
+
+
+
+        </div>        
+             
+
+        <div id="footer">
+		<h1>footer</h1>
+        </div>
+    </div>
+
+
+
+
+</body>
+
+</html>
