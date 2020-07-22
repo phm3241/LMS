@@ -38,14 +38,14 @@ public class StudentDao {
 
 		// 처리하고 싶은 sql 쿼리문과 조건을 설정합니다.
 		// 이런 테이블이 있다는 가정하에 작성한 spl문
-		String sql = "INSERT INTO student (sIdx, pw, name, tel, email, major, grade) "
-				+ "	VALUES(?, ?, ?, ?, ?, ?, ?);";
+		String sql = "INSERT INTO project.student (sIdx, pw, name, tel, email, major, grade) "
+				+ "	VALUES(?, ?, ?, ?, ?, ?, ?)";
 
 		try {
 
 			// sql문을 실행합니다.
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, student.getSidx());
+			pstmt.setInt(1, student.getsIdx());
 			pstmt.setString(2, student.getPw());
 			pstmt.setString(3, student.getName());
 			pstmt.setString(4, student.getTel());
@@ -74,13 +74,13 @@ public class StudentDao {
 		PreparedStatement pstmt = null;
 
 		// 수정사항 : 전화번호/이메일
-		String sql = "update student set tel=?, email=? where sidx=?";
+		String sql = "update project.student set tel=?, email=? where sIdx=?";
 
 		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, student.getTel());
 			pstmt.setString(2, student.getEmail());
-			pstmt.setInt(3, student.getSidx());
+			pstmt.setInt(3, student.getsIdx());
 
 			result = pstmt.executeUpdate();
 
