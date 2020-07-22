@@ -171,7 +171,7 @@ public class CourseDao {
 			String sql = "SELECT * FROM project.myCourse where sIdx=?";
 
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, student.getSidx());
+			pstmt.setInt(1, student.getsIdx());
 
 			rs = pstmt.executeQuery();
 
@@ -205,7 +205,7 @@ public class CourseDao {
 			String sql = "DELETE FROM project.myCourse where sIdx=? cIdx=?";
 
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, student.getSidx());
+			pstmt.setInt(1, student.getsIdx());
 			pstmt.setInt(2, course.getcIdx());
 
 			rs = pstmt.executeQuery();

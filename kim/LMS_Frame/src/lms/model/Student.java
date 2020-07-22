@@ -33,11 +33,11 @@ public class Student {
 		
 	}
 
-	public int getSidx() {
+	public int getsIdx() {
 		return sIdx;
 	}
 
-	public void setSidx(int sIdx) {
+	public void setsIdx(int sIdx) {
 		this.sIdx = sIdx;
 	}
 
