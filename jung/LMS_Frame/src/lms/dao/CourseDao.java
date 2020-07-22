@@ -45,8 +45,8 @@ public class CourseDao {
 			pstmt.setString(2, course.getTeacher());
 			pstmt.setString(3, course.getContent());
 			pstmt.setString(4, course.getDay());
-			pstmt.setTimestamp(5, course.getStartTime());
-			pstmt.setTimestamp(6, course.getEndTime());
+			pstmt.setTime(5, course.getStartTime());
+			pstmt.setTime(6, course.getEndTime());
 			pstmt.setInt(7, course.getTotalPer());
 			pstmt.setInt(8, course.getApplyPer());
 			pstmt.setInt(10, course.gettIdx()); 
@@ -132,8 +132,8 @@ public class CourseDao {
 			pstmt.setString(2, course.getTeacher());
 			pstmt.setString(3, course.getContent());
 			pstmt.setString(4, course.getDay());
-			pstmt.setTimestamp(5, course.getStartTime());
-			pstmt.setTimestamp(6, course.getEndTime());
+			pstmt.setTime(5, course.getStartTime());
+			pstmt.setTime(6, course.getEndTime());
 			pstmt.setInt(7, course.getTotalPer());
 			pstmt.setInt(8, course.getApplyPer());
 
@@ -232,8 +232,8 @@ public class CourseDao {
 					course.setTeacher(rs.getString("teacher"));
 					course.setContent(rs.getString("content"));
 					course.setDay(rs.getString("day"));
-					course.setStartTime(rs.getTimestamp("startTime"));
-					course.setEndTime(rs.getTimestamp("endTime"));
+					course.setStartTime(rs.getTime("startTime"));
+					course.setEndTime(rs.getTime("endTime"));
 					course.setTotalPer(rs.getInt("totalPer"));
 					course.setApplyPer(rs.getInt("applyPer"));
 					course.settIdx(rs.getInt("tIdx"));

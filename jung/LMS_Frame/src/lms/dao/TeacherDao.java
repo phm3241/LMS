@@ -4,6 +4,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
 import lms.model.Course;
 import lms.model.Student;
@@ -50,7 +53,6 @@ public class TeacherDao {
 			pstmt.setString(7, teacher.getJob());
 
 			result = pstmt.executeUpdate();
-			
 
 		} finally {
 			if (pstmt != null) {
@@ -61,9 +63,8 @@ public class TeacherDao {
 		return result;
 
 	}
-	
+
 	// 교수 내정보 보기
-	
 	public int selectTeacher(Connection conn, Teacher teacher) throws SQLException {
 
 		int result = 0;
@@ -92,8 +93,7 @@ public class TeacherDao {
 		return result;
 
 	}
-	
-	
+
 	// 교수 내정보 수정
 	public int editTeacher(Connection conn, Teacher teacher) throws SQLException {
 
@@ -124,6 +124,45 @@ public class TeacherDao {
 
 		return result;
 
+	}
+
+	// 학생 정보 전체 리스트 : ArrayList
+	public List<Teacher> teacherList(Connection conn) throws SQLException {
+
+		Statement stmt = null;
+		ResultSet rs;
+
+		List<Teacher> teacherList = new ArrayList<Teacher>();
+
+		String sql = "SELECT * FROM project.teacher";
+
+		try {
+
+			stmt = conn.createStatement();
+			rs = stmt.executeQuery(sql);
+
+			while (rs.next()) {
+				Teacher teacher = new Teacher();
+				teacher.settIdx(rs.getInt("tIdx"));
+				teacher.setPw(rs.getString("pw"));
+				teacher.setName(rs.getString("name"));
+				teacher.setTel(rs.getString("tel"));
+				teacher.setEmail(rs.getString("email"));
+				teacher.setMajor(rs.getString("major"));
+				teacher.setJob(rs.getString("job"));
+
+				teacherList.add(teacher);
+			}
+
+		} finally {
+
+			if (stmt != null) {
+				stmt.close();
+			}
+
+		}
+
+		return teacherList;
 	}
 
 }

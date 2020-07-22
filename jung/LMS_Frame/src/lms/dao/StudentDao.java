@@ -4,6 +4,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
 import lms.model.Course;
 import lms.model.Student;
@@ -55,7 +58,6 @@ public class StudentDao {
 			pstmt.setInt(7, student.getGrade());
 
 			result = pstmt.executeUpdate();
-			
 
 		} finally {
 			if (pstmt != null) {
@@ -97,8 +99,7 @@ public class StudentDao {
 		return result;
 
 	}
-	
-	
+
 	// 학생 내정보 수정
 	public int editStudent(Connection conn, Student student) throws SQLException {
 
@@ -125,6 +126,45 @@ public class StudentDao {
 
 		return result;
 
+	}
+
+	// 학생 정보 전체 리스트 : ArrayList
+	public List<Student> studentList(Connection conn) throws SQLException {
+
+		Statement stmt = null;
+		ResultSet rs;
+
+		List<Student> studentList = new ArrayList<Student>();
+
+		String sql = "SELECT * FROM project.student";
+
+		try {
+
+			stmt = conn.createStatement();
+			rs = stmt.executeQuery(sql);
+
+			while (rs.next()) {
+				Student student = new Student();
+				student.setsIdx(rs.getInt("sIdx"));
+				student.setPw(rs.getString("pw"));
+				student.setName(rs.getString("name"));
+				student.setTel(rs.getString("tel"));
+				student.setEmail(rs.getString("email"));
+				student.setMajor(rs.getString("major"));
+				student.setGrade(rs.getInt("grade"));
+				
+				studentList.add(student);
+			}
+
+		} finally {
+
+			if (stmt != null) {
+				stmt.close();
+			}
+
+		}
+
+		return studentList;
 	}
 
 }
