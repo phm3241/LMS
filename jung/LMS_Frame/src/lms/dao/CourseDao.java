@@ -93,12 +93,11 @@ public class CourseDao {
 	}
 
 	// 개설 강의 삭제 : delete
-
 	public int deleteCourse(Connection conn, Course course) throws SQLException {
 
 		int result = 0;
 		PreparedStatement pstmt = null;
-		String sql = "delete from course where cIdx=?";
+		String sql = "delete from project.course where cIdx=?";
 
 		try {
 			pstmt = conn.prepareStatement(sql);

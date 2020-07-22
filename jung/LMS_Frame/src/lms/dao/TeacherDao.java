@@ -27,7 +27,7 @@ public class TeacherDao {
 		return dao;
 	}
 
-	// 교수 정보 입력
+	// 교수 정보 입력 : insert
 	public int insertTeacher(Connection conn, Teacher teacher) throws SQLException {
 
 		int result = 0;
@@ -64,7 +64,7 @@ public class TeacherDao {
 
 	}
 
-	// 교수 내정보 보기
+	// 교수 내정보 보기 : select
 	public int selectTeacher(Connection conn, Teacher teacher) throws SQLException {
 
 		int result = 0;
@@ -94,7 +94,7 @@ public class TeacherDao {
 
 	}
 
-	// 교수 내정보 수정
+	// 교수 내정보 수정 : update
 	public int editTeacher(Connection conn, Teacher teacher) throws SQLException {
 
 		int result = 0;
@@ -126,9 +126,31 @@ public class TeacherDao {
 
 	}
 
-	// 학생 정보 전체 리스트 : ArrayList
-	public List<Teacher> teacherList(Connection conn) throws SQLException {
+	// 교수 내정보 삭제 : delete
+	public int deleteCourse(Connection conn, Teacher teacher) throws SQLException {
 
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = "delete from project.teacher where tIdx=?";
+
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, teacher.gettIdx());
+
+			result = pstmt.executeUpdate();
+
+		} finally {
+			if (pstmt != null) {
+				pstmt.close();
+			}
+		}
+
+		return result;
+	}
+
+	// 학생 정보 전체 리스트 : ArrayList
+public List<Teacher> teacherList(Connection conn) throws SQLException {
+	
 		Statement stmt = null;
 		ResultSet rs;
 
@@ -163,6 +185,37 @@ public class TeacherDao {
 		}
 
 		return teacherList;
+	}
+
+	// 교수 이름으로 조회
+	public int selectTeacherByName(Connection conn, Teacher teacher) throws SQLException {
+
+		int result = 0;
+
+		PreparedStatement pstmt = null;
+		ResultSet rs;
+
+		try {
+
+			String sql = "SELECT * FROM project.teacher where name=?";
+
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, teacher.getName());
+
+			rs = pstmt.executeQuery();
+
+			if (rs.next()) {
+				result = rs.getInt(1);
+			}
+
+		} finally {
+			if (pstmt != null) {
+				pstmt.close();
+			}
+		}
+
+		return result;
+
 	}
 
 }

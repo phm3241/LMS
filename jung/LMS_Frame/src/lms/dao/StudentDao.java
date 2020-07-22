@@ -10,6 +10,7 @@ import java.util.List;
 
 import lms.model.Course;
 import lms.model.Student;
+import lms.model.Teacher;
 import lms.model.TempletModel;
 
 public class StudentDao {
@@ -32,7 +33,7 @@ public class StudentDao {
 	// update 쿼리문이 성공적으로 싱행되면
 	// int값을 반환해 result 값에 저장하여 반환
 
-	// 학생 정보 등록
+	// 학생 정보 등록 : insert
 	public int insertStudent(Connection conn, Student student) throws SQLException {
 
 		int result = 0;
@@ -69,7 +70,7 @@ public class StudentDao {
 
 	}
 
-	// 학생 내정보 보기
+	// 학생 내정보 보기 : select
 	public int selectStudent(Connection conn, Student student) throws SQLException {
 
 		int result = 0;
@@ -100,7 +101,7 @@ public class StudentDao {
 
 	}
 
-	// 학생 내정보 수정
+	// 학생 내정보 수정 : update
 	public int editStudent(Connection conn, Student student) throws SQLException {
 
 		int result = 0;
@@ -128,6 +129,28 @@ public class StudentDao {
 
 	}
 
+	// 학생 내정보 삭제 : delete
+	public int deleteCourse(Connection conn, Student student) throws SQLException {
+
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = "delete from project.student where sIdx=?";
+
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, student.getsIdx());
+
+			result = pstmt.executeUpdate();
+
+		} finally {
+			if (pstmt != null) {
+				pstmt.close();
+			}
+		}
+
+		return result;
+	}
+
 	// 학생 정보 전체 리스트 : ArrayList
 	public List<Student> studentList(Connection conn) throws SQLException {
 
@@ -152,7 +175,7 @@ public class StudentDao {
 				student.setEmail(rs.getString("email"));
 				student.setMajor(rs.getString("major"));
 				student.setGrade(rs.getInt("grade"));
-				
+
 				studentList.add(student);
 			}
 
@@ -167,4 +190,34 @@ public class StudentDao {
 		return studentList;
 	}
 
+	// 학생 이름으로 조회
+	public int selectStudentByName(Connection conn, Student student) throws SQLException {
+
+		int result = 0;
+
+		PreparedStatement pstmt = null;
+		ResultSet rs;
+
+		try {
+
+			String sql = "SELECT * FROM project.student where name=?";
+
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, student.getName());
+
+			rs = pstmt.executeQuery();
+
+			if (rs.next()) {
+				result = rs.getInt(1);
+			}
+
+		} finally {
+			if (pstmt != null) {
+				pstmt.close();
+			}
+		}
+
+		return result;
+
+	}
 }
