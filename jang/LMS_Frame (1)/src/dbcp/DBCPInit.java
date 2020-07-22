@@ -79,7 +79,7 @@ public class DBCPInit extends HttpServlet {
 			
 			// 커넥션 풀을 생성, 생성자는 PoolableConnectionFactory/GenericObjectPoolConfig 객체 사용
 			GenericObjectPool<PoolableConnection> connectionPool = 
-					new GenericObjectPool<>(poolableConnFactory, poolConfig);
+					new GenericObjectPool<PoolableConnection>(poolableConnFactory, poolConfig);
 			
 			// PoolableConnecionFactory 에도 커넥션 풀을 연결해줍니다.
 			poolableConnFactory.setPool(connectionPool);
