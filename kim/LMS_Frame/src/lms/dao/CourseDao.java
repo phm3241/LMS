@@ -4,6 +4,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
 import lms.model.Course;
 
@@ -31,8 +34,10 @@ public class CourseDao {
 		int result = 0;
 		
 		PreparedStatement pstmt = null;
-		String sql = "INSERT INTO `project`.`course` (`cIdx`,`name`,`teacher`,`content`, `day`,`startTime`,`endTime`,`totalPer`,`applyPer`,`tIdx`)\r\n" + 
-				"VALUES (?,?,?,?,?,?,?,?,?,?)";
+		
+		String sql = "INSERT INTO `project`.`course` "
+				+ "(`name`,`teacher`,`content`,`day`,`startTime`,`endTime`,`totalPer`,`applyPer`) "
+				+ "VALUES (?,?,?,?,?,?,?,?);";
 		
 		// 마지막값 tIdx는 교수번호를 Model에서 가져와야..
 		
@@ -97,8 +102,54 @@ public class CourseDao {
 	// 개설 강의 삭제 : delete ?
 	// 개설 강의 수정 : update ?
 	// 수강신청한 강의 리스트 조회 : myCourse 조회 = select  ? 
-	// 개설된 전체 강의 리스트 출력 : ArrayList ?
-	// 수강신청한 강의 취소 : myCourse 조회 => delete
+	// 수강신청한 강의 취소 : myCourse 조회 => delete ? 
+	
+	
+	
+	// 개설된 강의 정보전체 리스트 : ArrayList ?
+	public List<Course> courseList (Connection conn ) throws SQLException {
+		
+		Statement stmt = null;
+		ResultSet rs;
+		
+		List<Course> courseList = new ArrayList<Course>();
+		
+		String sql = "SELECT * FROM project.course;";
+		
+		try {
+			
+			stmt = conn.createStatement();
+			rs = stmt.executeQuery(sql);
+			
+			while (rs.next()) {
+				Course course = new Course();
+				course.setcIdx(rs.getInt("cIdx"));
+				course.setName(rs.getString("name"));
+				course.setTeacher(rs.getString("teacher"));
+				course.setContent(rs.getString("content"));
+				course.setDay(rs.getString("day"));
+				course.setStartTime(rs.getTimestamp("startTime"));
+				course.setEndTime(rs.getTimestamp("endTime"));
+				course.setTotalPer(rs.getInt("totalPer"));
+				course.setApplyPer(rs.getInt("applyPer"));
+				course.settIdx(rs.getInt("tIdx"));
+				
+				courseList.add(course);
+			}
+			
+		} finally {
+			
+			if (stmt != null) {
+				stmt.close();
+			}
+			
+		}
+		
+		
+		
+		return courseList;
+	}
+	
 	
 	
 }
