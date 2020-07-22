@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <link rel="stylesheet" href="../css/tInfo.css">
+	<script></script>
+    <style></style>
+</head>
+
+<body>
+
+
+	<div id="container">
+		<div id="header">
+
+		</div>
+		<div id="contents">
+			<form id="tInfo" action="tInfoEdit.do" method="post">
+				<div class="tInfo">
+					<h4>교번</h4>
+					<input type="text" class="text tIdx" name="tIdx" value="컴퓨터학과"><br>
+					<h4>비밀번호</h4>
+					<input type="password" class="text pw" name="pw" placeholder="비밀번호를 입력해주세요."><br>
+					<h4>비밀번호 확인</h4>
+					<input type="password" class="text pwCheck" name="pwCheck" placeholder="비밀번호를 입력해주세요."><br>
+					<h4>이름</h4>
+					<input type="text" class="text name" name="name" value="홍길동"><br>
+					<h4>연락처</h4>
+					<input type="text" class="text tel" name="tel" value="010-1234-1234"><br>
+					<h4>이메일</h4>
+					<input type="text" class="text email" name="email" value="com@naver.com"><br>
+					<h4>전공</h4>
+					<input type="text" class="text major" name="major" value="컴퓨터공학과"><br>
+					<h4>직급</h4>
+					<input type="text" class="text job" name="job" value="정교수"><br>
+				</div>
+				
+				<input type="reset" class="editX" value="취소">
+				<input type="submit" class="editOk" value="수정">
+			
+			</form>	
+		
+		</div>
+	</div>
+
+</body>
+
+</html>
