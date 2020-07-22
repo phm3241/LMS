@@ -31,7 +31,7 @@ public class TeacherDao {
 
 		// 처리하고 싶은 sql 쿼리문과 조건을 설정합니다.
 		// 이런 테이블이 있다는 가정하에 작성한 spl문
-		String sql = "UPDATE teacher set tel = ?, email = ? where tIdx = ?";
+		String sql = "UPDATE project.teacher set tel = ?, email = ? where tIdx = ?";
 
 		try {
 
