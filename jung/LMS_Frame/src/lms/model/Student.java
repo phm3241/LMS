@@ -1,26 +1,26 @@
 package lms.model;
 
-
 //자신이 사용할 Dao/Model/Service resurve 파일 번호를 항상 공유해주세용!
-
 
 // 학생 DTO (Model) 담당 : 김승연
 // 				    작업 일시 : 2020. 07. 21
 
 public class Student {
 
-	private int sidx;
+	private int sIdx;
 	private String pw;
 	private String name;
 	private String tel;
 	private String email;
 	private String major;
 	private int grade;
-	
 
-	public Student(int sidx, String pw, String name, String tel, String email, String major, int grade) {
+	public Student() {
 
-		this.sidx = sidx;
+	}
+
+	public Student(int sIdx, String pw, String name, String tel, String email, String major, int grade) {
+		this.sIdx = sIdx;
 		this.pw = pw;
 		this.name = name;
 		this.tel = tel;
@@ -28,17 +28,14 @@ public class Student {
 		this.major = major;
 		this.grade = grade;
 	}
-	
-	public Student() {
-		
+
+
+	public int getsIdx() {
+		return sIdx;
 	}
 
-	public int getSidx() {
-		return sidx;
-	}
-
-	public void setSidx(int sidx) {
-		this.sidx = sidx;
+	public void setsIdx(int sIdx) {
+		this.sIdx = sIdx;
 	}
 
 	public String getPw() {
@@ -91,10 +88,10 @@ public class Student {
 
 	@Override
 	public String toString() {
-		return "Student [sidx=" + sidx + ", pw=" + pw + ", name=" + name + ", tel=" + tel + ", email=" + email
+		return "Student [sIdx=" + sIdx + ", pw=" + pw + ", name=" + name + ", tel=" + tel + ", email=" + email
 				+ ", major=" + major + ", grade=" + grade + "]";
 	}
-	
+
 	
 	
 }
