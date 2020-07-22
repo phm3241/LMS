@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import lms.model.Course;
+import lms.model.Student;
 
 
 
@@ -36,8 +37,8 @@ public class CourseDao {
 		PreparedStatement pstmt = null;
 		
 		String sql = "INSERT INTO `project`.`course` "
-				+ "(`name`,`teacher`,`content`,`day`,`startTime`,`endTime`,`totalPer`,`applyPer`) "
-				+ "VALUES (?,?,?,?,?,?,?,?);";
+				+ "(`name`,`teacher`,`content`,`day`,`startTime`,`endTime`,`totalPer`,`applyPer`, 'tIdx') "
+				+ "VALUES (?,?,?,?,?,?,?,?,?);";
 		
 		// 마지막값 tIdx는 교수번호를 Model에서 가져와야..
 		
@@ -53,7 +54,7 @@ public class CourseDao {
 			pstmt.setTimestamp(6, course.getEndTime());
 			pstmt.setInt(7, course.getTotalPer());
 			pstmt.setInt(8, course.getApplyPer());
-//			pstmt.setInt(10, course.gettIdx());
+			pstmt.setInt(9, course.gettIdx()); // 외래키인 교수번호는 hidden으로 감춰져있는 값을 받아옴 (비식별값)
 			
 		} finally {
 			if(pstmt != null) {
@@ -100,9 +101,124 @@ public class CourseDao {
 	
 	
 	// 개설 강의 삭제 : delete ?
+	
+	public int deleteCourse(Connection conn, Course course) throws SQLException {
+
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = "delete from course where cIdx=?";
+
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, course.getcIdx());
+
+			result = pstmt.executeUpdate();
+
+		} finally {
+			if (pstmt != null) {
+				pstmt.close();
+			}
+		}
+
+		return result;
+	}
+	
 	// 개설 강의 수정 : update ?
+	
+	public int editCourse(Connection conn, Course course) throws SQLException {
+
+		int result = 0;
+
+		PreparedStatement pstmt = null;
+
+		String sql = "update course set name=?, teacher=? , content=?, day=?, startTime=?, endTime=?, totalPer=?, applyPer=?"
+				+ "where cIdx=?";
+
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, course.getName());
+			pstmt.setString(2, course.getTeacher());
+			pstmt.setString(3, course.getContent());
+			pstmt.setString(4, course.getDay());
+			pstmt.setTimestamp(5, course.getStartTime());
+			pstmt.setTimestamp(6, course.getEndTime());
+			pstmt.setInt(7, course.getTotalPer());
+			pstmt.setInt(8, course.getApplyPer());
+
+			result = pstmt.executeUpdate();
+
+		} finally {
+			if (pstmt != null) {
+				pstmt.close();
+			}
+		}
+
+		return result;
+
+	}
+	
 	// 수강신청한 강의 리스트 조회 : myCourse 조회 = select  ? 
+	
+	public int selectMyCourse(Connection conn, Course course, Student student) throws SQLException {
+
+		int result = 0;
+
+		PreparedStatement pstmt = null;
+		ResultSet rs;
+
+		try {
+			// 학번으로 내가 등록한 강의 리스트 출력
+			String sql = "SELECT * FROM project.myCourse where sIdx=?";
+
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, student.getSidx());
+
+			rs = pstmt.executeQuery();
+
+			if (rs.next()) {
+				result = rs.getInt(1);
+			}
+
+		} finally {
+			if (pstmt != null) {
+				pstmt.close();
+			}
+		}
+
+		return result;
+
+	}
+	
 	// 수강신청한 강의 취소 : myCourse 조회 => delete ? 
+	
+	public int deleteMyCourse(Connection conn, Course course, Student student) throws SQLException {
+
+		int result = 0;
+
+		PreparedStatement pstmt = null;
+		
+		// delete에선 결과값을 가져올 필요가 없으니 rs가 필요 없지 않을까용?
+		ResultSet rs;
+
+		try {
+			// 학번으로 내가 등록한 강의 리스트 출력
+			String sql = "DELETE FROM project.myCourse where sIdx=? cIdx=?";
+
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, student.getSidx());
+			pstmt.setInt(2, course.getcIdx());
+
+			rs = pstmt.executeQuery();
+
+		} finally {
+			if (pstmt != null) {
+				pstmt.close();
+			}
+		}
+
+		return result;
+
+	}
 	
 	
 	
