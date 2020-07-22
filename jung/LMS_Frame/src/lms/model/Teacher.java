@@ -10,6 +10,7 @@ public class Teacher {
 	private String email;
 	private String major;
 	private String job;
+
 	
 	public Teacher() {}
 

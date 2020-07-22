@@ -189,7 +189,6 @@ public class CourseDao {
 		int result = 0;
 
 		PreparedStatement pstmt = null;
-		ResultSet rs;
 
 		try {
 			// 학번으로 내가 등록한 강의 리스트 출력
@@ -199,7 +198,7 @@ public class CourseDao {
 			pstmt.setInt(1, student.getsIdx());
 			pstmt.setInt(2, course.getcIdx());
 
-			rs = pstmt.executeQuery();
+			result = pstmt.executeUpdate();
 
 		} finally {
 			if (pstmt != null) {
