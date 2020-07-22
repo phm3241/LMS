@@ -29,6 +29,7 @@ public class Student {
 		this.grade = grade;
 	}
 
+
 	public int getsIdx() {
 		return sIdx;
 	}

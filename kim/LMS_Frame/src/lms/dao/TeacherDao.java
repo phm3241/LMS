@@ -5,7 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 import lms.model.Teacher;
-import lms.model.TempletModel;
+
 
 public class TeacherDao {
 

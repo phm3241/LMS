@@ -40,7 +40,7 @@ public class StudentDao {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, student.getTel());
 			pstmt.setString(2, student.getEmail());
-			pstmt.setInt(3, student.getSidx());
+			pstmt.setInt(3, student.getsIdx());
 			
 			result = pstmt.executeUpdate();
 			
