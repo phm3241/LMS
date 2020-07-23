@@ -220,4 +220,41 @@ public class StudentDao {
 		return result;
 
 	}
+
+	// sIdx와 pw를 통해 학생 정보 select : 로그인에 사용하세용?
+	public Student selectBysIdPw(Connection conn, int sIdx, String pw) throws SQLException {
+
+		PreparedStatement pstmt = null;
+
+		ResultSet rs;
+
+		Student student = null;
+
+		try {
+
+			String sql = "select * from project.student where sIdx=? and pw=?;";
+
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, sIdx);
+			pstmt.setString(2, pw);
+
+			rs = pstmt.executeQuery();
+
+			if (rs.next()) {
+				student = new Student();
+
+				student.setsIdx(rs.getInt("sIdx"));
+				student.setPw(rs.getString("pw"));
+			}
+
+		} finally {
+			if (pstmt != null) {
+				pstmt.close();
+			}
+
+		}
+
+		return student;
+	}
+
 }

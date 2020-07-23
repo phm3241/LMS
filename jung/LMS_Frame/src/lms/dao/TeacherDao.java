@@ -218,4 +218,40 @@ public class TeacherDao {
 
 	}
 
+	// tIdx와 pw를 통해 교사 정보 select : 로그인에 사용하세용?
+	public Teacher selectBytIdPw(Connection conn, int tIdx, String pw) throws SQLException {
+
+		PreparedStatement pstmt = null;
+
+		ResultSet rs;
+
+		Teacher teacher = null;
+
+		try {
+
+			String sql = "select * from project.teacher where tIdx=? and pw=?;";
+
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, tIdx);
+			pstmt.setString(2, pw);
+
+			rs = pstmt.executeQuery();
+
+			if (rs.next()) {
+				teacher = new Teacher();
+
+				teacher.settIdx(rs.getInt("tIdx"));
+				teacher.setPw(rs.getString("pw"));
+			}
+
+		} finally {
+			if (pstmt != null) {
+				pstmt.close();
+			}
+
+		}
+
+		return teacher;
+	}
+
 }
