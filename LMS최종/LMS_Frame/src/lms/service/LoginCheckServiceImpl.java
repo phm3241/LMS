@@ -24,8 +24,8 @@ public class LoginCheckServiceImpl implements Service {
 		Connection conn = null;
 		
 		String type = request.getParameter("loginType");
-		int id = Integer.parseInt(request.getParameter("id"));
-		String pw = request.getParameter("pw");
+		int id = Integer.parseInt(request.getParameter("id").trim());
+		String pw = request.getParameter("pw").trim();
 		
 		
 		

@@ -48,8 +48,8 @@ public class LoginFilter implements Filter {
 		
 		if(session != null) {
 			if(session.getAttribute("info") == null) {
-				int idx = Integer.parseInt(request.getParameter("id"));
-				String pw = request.getParameter("pw");
+				int idx = Integer.parseInt(request.getParameter("id").trim());
+				String pw = request.getParameter("pw").trim();
 				String type = request.getParameter("loginType");
 				
 				try {
