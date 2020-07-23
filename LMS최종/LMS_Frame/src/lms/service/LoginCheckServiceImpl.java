@@ -33,13 +33,13 @@ public class LoginCheckServiceImpl implements Service {
 			conn = ConnectionProvider.getConnection();
 			if(type.equals("sLogin")) {
 				sDao = StudentDao.getInstance();
-				resultCnt = sDao.selectBysIdPw(conn, id, pw);
+				resultCnt = sDao.checkLoginStudent(conn, id, pw);
 			} else if(type.equals("tLogin")) {
 				tDao = TeacherDao.getInstance();
-				resultCnt = tDao.selectBysIdPw(conn, id, pw);
+				resultCnt = tDao.checkLoginTeacher(conn, id, pw);
 			} else {
 				aDao = AdminDao.getInstance();
-				resultCnt = aDao.selectBysIdPw(conn, id, pw);
+				resultCnt = aDao.checkLoginAdmin(conn, id, pw);
 			}
 		}catch(SQLException e) {
 			e.printStackTrace();
