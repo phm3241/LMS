@@ -18,7 +18,12 @@ public class Student {
 	public Student() {
 
 	}
-
+	
+	public Student(int sIdx, String pw) {
+		this.sIdx = sIdx;
+		this.pw = pw;
+	}
+	
 	public Student(int sIdx, String pw, String name, String tel, String email, String major, int grade) {
 		this.sIdx = sIdx;
 		this.pw = pw;
