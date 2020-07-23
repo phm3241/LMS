@@ -70,15 +70,11 @@ public class LoginFilter implements Filter {
 						teacher = tDao.selectBytIdPw(conn, idx, pw);
 						
 						session.setAttribute("info", teacher);
-						// 박혜미 추가부분 200724
-						login = true;
 					} else {
 						aDao = AdminDao.getInstance();
 						admin = aDao.selectByIdPw(conn, idx, pw);
 						
 						session.setAttribute("info", admin);
-						// 박혜미 추가부분 200724
-						login = true;
 					}
 					session.setAttribute("loginType", type);
 				} catch (SQLException e) {

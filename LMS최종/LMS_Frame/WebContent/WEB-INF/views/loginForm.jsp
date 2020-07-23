@@ -163,11 +163,11 @@
 						</tr>
 						<tr>
 							<td class="alignRight" width=25%><img class="loginImg" height="35px" src="./images/loginId.png"></td>
-							<td class="alignLeft"><input type="text" class="input" name="id" id="id" placeholder="학번 또는 교번을 입력해주세요" required></td>
+							<td class="alignLeft"><input type="text" class="input" name="id" placeholder="학번 또는 교번을 입력해주세요" required></td>
 						</tr>
 						<tr>
 							<td class="alignRight"><img class="loginImg" height="35px" src="./images/loginId.png"></td>
-							<td class="alignLeft"><input type="password" name="pw"  id="pw" class="input" ></td>
+							<td class="alignLeft"><input type="password" name="pw"  class="input" ></td>
 							
 						</tr>
 						<tr>
@@ -202,29 +202,31 @@
 				return false;
 			}
 			
-			var loginOK = true;  // 결과값 미리 변수로 설정해주어야한다..
+			var flag = true;  // 결과값 미리 변수로 설정해주어야한다.
 			var params = jQuery("#loginForm").serialize();
 			// 비동기 통신으로 아이디-비번 체크
 			$.ajax({
 				url : 'loginCheck.do', //상대경로
 				data : params, 	
-				async : false,
+				//async : false,
 				success : function(data) {
 					
-					if (data == 'N') {
+					if (data == 1) {
+						// $('#loginCheck').prop('checked', true);
+						flag= true;
+						//return true;
+
+					} else {
+						
 						$('#loginCheck').text("아이디와 비밀번호가 일치하지 않습니다. 확인 후 다시 입력해주세요");
 						$('#loginCheck').addClass('checkN');
 						// $('#loginCheck').prop('checked', false);
 						$('#pw').focus();
-						loginOK = false;
-
-					} else {
-						// $('#loginCheck').prop('checked', true);
-						loginOK = true;
-					}
+						flag= false;
+						//return false;
+					};
+					return flag;
 				}
-				
-				return loginOK;
 			}); //ajax end
 			
 			
