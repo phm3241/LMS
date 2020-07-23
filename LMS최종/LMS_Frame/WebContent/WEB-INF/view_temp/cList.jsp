@@ -1,3 +1,6 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html lang="ko">
 
@@ -250,12 +253,12 @@
             <table class="titleTable" width=100% border=0 cellspacing=0>
                 <tr><td rowspan=2 class="alignRight" width=15% valign="bottom"><img class="userImg" width=50 src="./images/userImg.png"></td>
                     <td  class="alignLeft"> 2008123456114</td></tr>
-                <tr><td class="alignLeft"> 관리자</td></tr>
+                <tr><td class="alignLeft"> ê´ë¦¬ì</td></tr>
             </table> 
             <table class="titleTable" width=100% border=0 cellspacing=0>
-                <tr><td><a href="cList.html">[강의]</a></td>
-                    <td><a href="tList.html">강사</a></td>
-                    <td><a href="sList.html">학생</a></td></tr>                
+                <tr><td><a href="cList.html">[ê°ì]</a></td>
+                    <td><a href="tList.html">ê°ì¬</a></td>
+                    <td><a href="sList.html">íì</a></td></tr>                
             </table>
         </div>
 	    
@@ -264,41 +267,41 @@
         
         <table width=100% border=0>
             <tr><td colspan="2" class="tdRight">
-                교과목검색<button id="search" class="btnSearch">F</button><input type="text" id="search">
+                êµê³¼ëª©ê²ì<button id="search" class="btnSearch">F</button><input type="text" id="search">
             </td></tr>
-            <tr><td class="alignLeft bold">강의 목록</td>
+            <tr><td class="alignLeft bold">ê°ì ëª©ë¡</td>
                 <td class="tdRight">
-                    <button id="viewInsertCourse" class="" onClick="viewInsertCourse()">등록</button></td></tr>
+                    <button id="viewInsertCourse" class="" onClick="viewInsertCourse()">ë±ë¡</button></td></tr>
         </table>
         
         <table id="idClass" width=100% border=0 cellspacing="0">
-            <tr class="bgColorGray"><th>코드</th><th>교과목명</th><th>교수명</th>
-                <th>학년</th><th>이수<br>구분</th><th>수업<br>시간</th>
-                <th>정원</th><th>강의<br>정보</th><th>수정</th><th>삭제</th></tr>
+            <tr class="bgColorGray"><th>ì½ë</th><th>êµê³¼ëª©ëª</th><th>êµìëª</th>
+                <th>íë</th><th>ì´ì<br>êµ¬ë¶</th><th>ìì<br>ìê°</th>
+                <th>ì ì</th><th>ê°ì<br>ì ë³´</th><th>ìì </th><th>ì­ì </th></tr>
             <tr class="">
-                <td class="">A01</td><td>컴퓨터역사</td><td>정신우</td>
-                <td>1</td><td>교양</td><td>수(3,4)</td><td>25</td>
-                <td><button id="viewInfoCourse" class="" onClick="viewInfoCourse()">강의정보</button></td>
-                <td><button id="viewModifyCourse" class="" onClick="viewModifyCourse()">수정</button></td>
-                <td><button id="viewDelCourse" class="" onClick="viewDelCourse()">삭제</button></td>
+                <td class="">A01</td><td>ì»´í¨í°ì­ì¬</td><td>ì ì ì°</td>
+                <td>1</td><td>êµì</td><td>ì(3,4)</td><td>25</td>
+                <td><button id="viewInfoCourse" class="" onClick="viewInfoCourse()">ê°ìì ë³´</button></td>
+                <td><button id="viewModifyCourse" class="" onClick="viewModifyCourse()">ìì </button></td>
+                <td><button id="viewDelCourse" class="" onClick="viewDelCourse()">ì­ì </button></td>
             <tr class="">
-                <td>A01</td><td>컴퓨터역사</td><td>정신우</td>
-                <td>1</td><td>교양</td><td>수(3,4)</td><td>25</td>
-                <td><button id="viewInfoCourse" class="" onClick="viewInfoCourse()">강의정보</button></td>
-                <td><button id="viewModifyCourse" class="" onClick="viewModifyCourse()">수정</button></td>
-                <td><button id="viewDelCourse" class="" onClick="viewDelCourse()">삭제</button></td>
+                <td>A01</td><td>ì»´í¨í°ì­ì¬</td><td>ì ì ì°</td>
+                <td>1</td><td>êµì</td><td>ì(3,4)</td><td>25</td>
+                <td><button id="viewInfoCourse" class="" onClick="viewInfoCourse()">ê°ìì ë³´</button></td>
+                <td><button id="viewModifyCourse" class="" onClick="viewModifyCourse()">ìì </button></td>
+                <td><button id="viewDelCourse" class="" onClick="viewDelCourse()">ì­ì </button></td>
             <tr class="">
-                <td>A01</td><td>컴퓨터역사</td><td>정신우</td>
-                <td>1</td><td>교양</td><td>수(3,4)</td><td>25</td>
-                <td><button id="viewInfoCourse" class="" onClick="viewInfoCourse()">강의정보</button></td>
-                <td><button id="viewModifyCourse" class="" onClick="viewModifyCourse()">수정</button></td>
-                <td><button id="viewDelCourse" class="" onClick="viewDelCourse()">삭제</button></td>
+                <td>A01</td><td>ì»´í¨í°ì­ì¬</td><td>ì ì ì°</td>
+                <td>1</td><td>êµì</td><td>ì(3,4)</td><td>25</td>
+                <td><button id="viewInfoCourse" class="" onClick="viewInfoCourse()">ê°ìì ë³´</button></td>
+                <td><button id="viewModifyCourse" class="" onClick="viewModifyCourse()">ìì </button></td>
+                <td><button id="viewDelCourse" class="" onClick="viewDelCourse()">ì­ì </button></td>
             <tr class="">
-                <td>A01</td><td>컴퓨터역사</td><td>정신우</td>
-                <td>1</td><td>교양</td><td>수(3,4)</td><td>25</td>
-                <td><button id="viewInfoCourse" class="" onClick="viewInfoCourse()">강의정보</button></td>
-                <td><button id="viewModifyCourse" class="" onClick="viewModifyCourse()">수정</button></td>
-                <td><button id="viewDelCourse" class="" onClick="viewDelCourse()">삭제</button></td>
+                <td>A01</td><td>ì»´í¨í°ì­ì¬</td><td>ì ì ì°</td>
+                <td>1</td><td>êµì</td><td>ì(3,4)</td><td>25</td>
+                <td><button id="viewInfoCourse" class="" onClick="viewInfoCourse()">ê°ìì ë³´</button></td>
+                <td><button id="viewModifyCourse" class="" onClick="viewModifyCourse()">ìì </button></td>
+                <td><button id="viewDelCourse" class="" onClick="viewDelCourse()">ì­ì </button></td>
         
                 
                                 
@@ -325,31 +328,31 @@
         
         <form>
 
-            강의등록
+            ê°ìë±ë¡
             <table width=100% border=0>
-                <tr><td>교과목명</td>
+                <tr><td>êµê³¼ëª©ëª</td>
                     <td><input type="text" id="search"></td></tr>
-                <tr><td>교수명</td>
+                <tr><td>êµìëª</td>
                     <td><input type="text" id="search"></td></tr>                
-                <tr><td>과목내용</td>
+                <tr><td>ê³¼ëª©ë´ì©</td>
                     <td><input type="text" id="search"></td></tr>
-                <tr><td>대상학년</td>
+                <tr><td>ëìíë</td>
                     <td><input type="text" id="search"></td></tr>
-                <tr><td>이수구분</td>
+                <tr><td>ì´ìêµ¬ë¶</td>
                     <td><input type="text" id="search"></td></tr>
-                <tr><td>학점</td>
+                <tr><td>íì </td>
                     <td><input type="text" id="search"></td></tr>
-                <tr><td>수업시간</td>
+                <tr><td>ìììê°</td>
                     <td><input type="text" id="search"></td></tr>
-                <tr><td>정원</td>
+                <tr><td>ì ì</td>
                     <td><input type="text" id="search"></td></tr>
-                <tr><td>교재</td>
+                <tr><td>êµì¬</td>
                     <td><input type="text" id="search"></td></tr>
-                <tr><td>강의실</td>
+                <tr><td>ê°ìì¤</td>
                     <td><input type="text" id="search"></td></tr>
                 <tr><td colspan="2">
-                    <button class="" onClick="closeInsertCourse()">취소</button>
-                    <button type="submit" id="insertCourse" class="" onClick="doInsertCourse(this.form)">등록</button>
+                    <button class="" onClick="closeInsertCourse()">ì·¨ì</button>
+                    <button type="submit" id="insertCourse" class="" onClick="doInsertCourse(this.form)">ë±ë¡</button>
                     </td></tr>
             </table>
         </form>
@@ -361,30 +364,30 @@
         
         <form>
 
-            강의정보
+            ê°ìì ë³´
             <table width=100% border=0>
-                <tr><td>교과목명</td>
+                <tr><td>êµê³¼ëª©ëª</td>
                     <td></td></tr>
-                <tr><td>교수명</td>
+                <tr><td>êµìëª</td>
                     <td></td></tr>
-                <tr><td>과목내용</td>
+                <tr><td>ê³¼ëª©ë´ì©</td>
                     <td></td></tr>
-                <tr><td>대상학년</td>
+                <tr><td>ëìíë</td>
                     <td></td></tr>
-                <tr><td>이수구분</td>
+                <tr><td>ì´ìêµ¬ë¶</td>
                     <td></td></tr>
-                <tr><td>학점</td>
+                <tr><td>íì </td>
                     <td></td></tr>
-                <tr><td>수업시간</td>
+                <tr><td>ìììê°</td>
                     <td></td></tr>
-                <tr><td>정원</td>
+                <tr><td>ì ì</td>
                     <td></td></tr>
-                <tr><td>교재</td>
+                <tr><td>êµì¬</td>
                     <td></td></tr>
-                <tr><td>강의실</td>
+                <tr><td>ê°ìì¤</td>
                     <td></td></tr>
                 <tr><td colspan="2">
-                    <button class="" onClick="closeInfoCourse()">닫기</button>                    
+                    <button class="" onClick="closeInfoCourse()">ë«ê¸°</button>                    
                 </td></tr>
             </table>
         </form>
@@ -396,31 +399,31 @@
         
         <form>
 
-            강의수정
+            ê°ììì 
             <table width=100% border=0>
-                <tr><td>교과목명</td>
+                <tr><td>êµê³¼ëª©ëª</td>
                     <td><input type="text" id="search"></td></tr>
-                <tr><td>교수명</td>
+                <tr><td>êµìëª</td>
                     <td><input type="text" id="search"></td></tr>                
-                <tr><td>과목내용</td>
+                <tr><td>ê³¼ëª©ë´ì©</td>
                     <td><input type="text" id="search"></td></tr>
-                <tr><td>대상학년</td>
+                <tr><td>ëìíë</td>
                     <td><input type="text" id="search"></td></tr>
-                <tr><td>이수구분</td>
+                <tr><td>ì´ìêµ¬ë¶</td>
                     <td><input type="text" id="search"></td></tr>
-                <tr><td>학점</td>
+                <tr><td>íì </td>
                     <td><input type="text" id="search"></td></tr>
-                <tr><td>수업시간</td>
+                <tr><td>ìììê°</td>
                     <td><input type="text" id="search"></td></tr>
-                <tr><td>정원</td>
+                <tr><td>ì ì</td>
                     <td><input type="text" id="search"></td></tr>
-                <tr><td>교재</td>
+                <tr><td>êµì¬</td>
                     <td><input type="text" id="search"></td></tr>
-                <tr><td>강의실</td>
+                <tr><td>ê°ìì¤</td>
                     <td><input type="text" id="search"></td></tr>
                 <tr><td colspan="2">
-                    <button class="" onClick="closeInsertCourse()">취소</button>
-                    <button type="submit" id="modifyCourse" class="" onClick="doModifyCourse(this.form)">수정</button>
+                    <button class="" onClick="closeInsertCourse()">ì·¨ì</button>
+                    <button type="submit" id="modifyCourse" class="" onClick="doModifyCourse(this.form)">ìì </button>
                     </td></tr>
             </table>
         </form>
@@ -432,31 +435,31 @@
         
         <form>
 
-            강의삭제
+            ê°ìì­ì 
             <table width=100% border=0>
-                <tr><td>교과목명</td>
+                <tr><td>êµê³¼ëª©ëª</td>
                     <td></td></tr>
-                <tr><td>교수명</td>
+                <tr><td>êµìëª</td>
                     <td></td></tr>
-                <tr><td>과목내용</td>
+                <tr><td>ê³¼ëª©ë´ì©</td>
                     <td></td></tr>
-                <tr><td>대상학년</td>
+                <tr><td>ëìíë</td>
                     <td></td></tr>
-                <tr><td>이수구분</td>
+                <tr><td>ì´ìêµ¬ë¶</td>
                     <td></td></tr>
-                <tr><td>학점</td>
+                <tr><td>íì </td>
                     <td></td></tr>
-                <tr><td>수업시간</td>
+                <tr><td>ìììê°</td>
                     <td></td></tr>
-                <tr><td>정원</td>
+                <tr><td>ì ì</td>
                     <td></td></tr>
-                <tr><td>교재</td>
+                <tr><td>êµì¬</td>
                     <td></td></tr>
-                <tr><td>강의실</td>
+                <tr><td>ê°ìì¤</td>
                     <td></td></tr>
                 <tr><td colspan="2">
-                    <button class="" onClick="closeInsertCourse()">취소</button>
-                    <button type="submit" id="insertCourse" class="" onClick="doInsertCourse(this.form)">등록</button>
+                    <button class="" onClick="closeInsertCourse()">ì·¨ì</button>
+                    <button type="submit" id="insertCourse" class="" onClick="doInsertCourse(this.form)">ë±ë¡</button>
                     </td></tr>
             </table>
         </form>
