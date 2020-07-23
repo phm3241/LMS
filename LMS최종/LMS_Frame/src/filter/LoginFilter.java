@@ -106,6 +106,7 @@ public class LoginFilter implements Filter {
 			// redirect=client: context 경로 필요
 			HttpServletResponse httpResponse = (HttpServletResponse) response;
 			String location = httpRequest.getContextPath()+"/views/loginForm.jsp";
+			System.out.println(location);
 			httpResponse.sendRedirect(location);
 		}
 	}
@@ -113,7 +114,7 @@ public class LoginFilter implements Filter {
 	// 초기화
 	@Override
 	public void init(FilterConfig arg0) throws ServletException {
-
+		
 	}
 	
 	// 웹컨테이너에서 소멸
