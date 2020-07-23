@@ -26,7 +26,6 @@ public class CourseDao {
 	}
 
 	// 강의 등록 : insert
-
 	public int insertCourse(Connection conn, Course course) throws SQLException {
 
 		int result = 0;
@@ -60,38 +59,48 @@ public class CourseDao {
 		return result;
 	}
 
-	// 개설강의 이름으로 조회 : select
-
-	public int selectCourseByName(Connection conn, Course course) throws SQLException {
-
-		int result = 0;
-
-		PreparedStatement pstmt = null;
+	// 개설강의 이름으로 조회 : select (복수일 경우를 대비하여 list)
+	public List<Course> selectCourseByNameList (Connection conn) throws SQLException {
+		
+		Statement stmt = null;
 		ResultSet rs;
-
+		
+		List<Course> selectCourseByNameList = new ArrayList<Course>();
+		
+		String sql = "SELECT * FROM project.course where name=?";
+		
 		try {
-
-			String sql = "SELECT * FROM project.course where name=?";
-
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, course.getName());
-
-			rs = pstmt.executeQuery();
-
-			if (rs.next()) {
-				result = rs.getInt(1);
+			
+			stmt = conn.createStatement();
+			rs = stmt.executeQuery(sql);
+			
+			while (rs.next()) {
+				Course course = new Course();
+				course.setcIdx(rs.getInt("cIdx"));
+				course.setName(rs.getString("name"));
+				course.setTeacher(rs.getString("teacher"));
+				course.setContent(rs.getString("content"));
+				course.setDay(rs.getString("day"));
+				course.setStartTime(rs.getTime("startTime"));
+				course.setEndTime(rs.getTime("endTime"));
+				course.setTotalPer(rs.getInt("totalPer"));
+				course.setApplyPer(rs.getInt("applyPer"));
+				course.settIdx(rs.getInt("tIdx"));
+				
+				selectCourseByNameList.add(course);
 			}
-
+			
 		} finally {
-			if (pstmt != null) {
-				pstmt.close();
+			
+			if (stmt != null) {
+				stmt.close();
 			}
+			
 		}
-
-		return result;
-
+		
+		return selectCourseByNameList;
 	}
-
+	
 	// 개설 강의 삭제 : delete
 	public int deleteCourse(Connection conn, Course course) throws SQLException {
 
@@ -115,7 +124,6 @@ public class CourseDao {
 	}
 
 	// 개설 강의 수정 : update
-
 	public int editCourse(Connection conn, Course course) throws SQLException {
 
 		int result = 0;
@@ -149,7 +157,6 @@ public class CourseDao {
 	}
 
 	// 수강신청한 강의 리스트 조회 : myCourse 조회 = select ?
-
 	public int selectMyCourse(Connection conn, Course course, Student student) throws SQLException {
 
 		int result = 0;
@@ -180,9 +187,7 @@ public class CourseDao {
 
 	}
 
-
 	// 수강신청한 강의 취소 : myCourse 조회 => delete ?
-
 	public int deleteMyCourse(Connection conn, Course course, Student student) throws SQLException {
 
 		int result = 0;
@@ -210,7 +215,7 @@ public class CourseDao {
 	}
 	
 	// 개설된 강의 정보전체 리스트 : ArrayList ?
-		public List<Course> courseList (Connection conn ) throws SQLException {
+	public List<Course> courseList (Connection conn ) throws SQLException {
 			
 			Statement stmt = null;
 			ResultSet rs;

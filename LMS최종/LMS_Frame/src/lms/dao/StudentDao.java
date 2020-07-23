@@ -191,7 +191,7 @@ public class StudentDao {
 	}
 
 	// 학생 이름으로 조회
-	public int selectStudentByName(Connection conn, Student student) throws SQLException {
+	public int selectStudentByIdx(Connection conn, Student student) throws SQLException {
 
 		int result = 0;
 
@@ -200,10 +200,10 @@ public class StudentDao {
 
 		try {
 
-			String sql = "SELECT * FROM project.student where name=?";
+			String sql = "SELECT * FROM project.student where sIdx=?";
 
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, student.getName());
+			pstmt.setInt(1, student.getsIdx());
 
 			rs = pstmt.executeQuery();
 
@@ -220,4 +220,41 @@ public class StudentDao {
 		return result;
 
 	}
+
+	// sIdx와 pw를 통해 학생 정보 select : 로그인에 사용하세용?
+	public Student selectBysIdPw(Connection conn, int sIdx, String pw) throws SQLException {
+
+		PreparedStatement pstmt = null;
+
+		ResultSet rs;
+
+		Student student = null;
+
+		try {
+
+			String sql = "select * from project.student where sIdx=? and pw=?;";
+
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, sIdx);
+			pstmt.setString(2, pw);
+
+			rs = pstmt.executeQuery();
+
+			if (rs.next()) {
+				student = new Student();
+
+				student.setsIdx(rs.getInt("sIdx"));
+				student.setPw(rs.getString("pw"));
+			}
+
+		} finally {
+			if (pstmt != null) {
+				pstmt.close();
+			}
+
+		}
+
+		return student;
+	}
+
 }
