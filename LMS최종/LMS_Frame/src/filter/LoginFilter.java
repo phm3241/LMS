@@ -23,7 +23,7 @@ import lms.model.Admin;
 import lms.model.Student;
 import lms.model.Teacher;
 
-@WebFilter("*.jsp")
+
 public class LoginFilter implements Filter {
 	
 	StudentDao sDao;
