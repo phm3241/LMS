@@ -61,6 +61,11 @@ public class LoginFilter implements Filter {
 						student = sDao.selectBysIdPw(conn, idx, pw);
 						
 						session.setAttribute("info", student);
+						
+						// 박혜미 추가부분 200724
+						login = true;
+						
+						
 					} else if(type.equals("tLogin")) {
 						tDao = TeacherDao.getInstance();
 						teacher = tDao.selectBytIdPw(conn, idx, pw);
@@ -85,7 +90,7 @@ public class LoginFilter implements Filter {
 					}
 				}
 			}
-			else if(session.getAttribute("login") != null) {
+			else if(session.getAttribute("info") != null) {
 				login = true;
 				
 			}

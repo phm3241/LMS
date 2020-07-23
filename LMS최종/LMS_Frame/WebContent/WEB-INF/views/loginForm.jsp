@@ -189,7 +189,7 @@
 
 </html>
 
-<!-- <script>
+<script>
 	
 	$(document).ready(function() {
 
@@ -238,7 +238,7 @@
 	}); //ready end
 
 	
-</script> -->
+</script> 
 
 
 

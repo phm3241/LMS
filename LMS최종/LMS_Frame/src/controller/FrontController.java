@@ -58,6 +58,11 @@ public class FrontController extends HttpServlet {
 				Service service = (Service) serviceClass.newInstance();
 				
 				commands.put(command, service);
+				
+				// 박혜미 추가 200724 : 프로퍼티 등록 확인용 출력
+				System.out.println(command + "=" + service );
+				
+				
 			} catch (ClassNotFoundException e) {
 				
 			} catch (InstantiationException e) {
@@ -81,6 +86,11 @@ public class FrontController extends HttpServlet {
     	if (command.indexOf(request.getContextPath()) == 0) {
     		type = command.substring(request.getContextPath().length());
     	}
+    	
+    	
+    	// 박혜미 추가 200724 : 요청경로파악용 출력
+    	System.out.println("요청 파악 : " + type);
+    	
     	
     	
     	Service service = commands.get(type);
