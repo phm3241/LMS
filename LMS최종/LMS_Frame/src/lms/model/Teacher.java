@@ -15,7 +15,11 @@ public class Teacher {
 	
 	public Teacher() {}
 
-
+	public Teacher(int tIdx, String pw) {
+		this.tIdx = tIdx;
+		this.pw = pw;
+	}
+	
 	public Teacher(int tIdx, String pw, String name, String tel, String email, String major, String job) {
 		this.tIdx = tIdx;
 		this.pw = pw;
