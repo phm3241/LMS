@@ -60,7 +60,7 @@ public class CourseDao {
 	}
 
 	// 개설강의 이름으로 조회 : select (복수일 경우를 대비하여 list)
-	public List<Course> selectCourseByNameList (Connection conn) throws SQLException {
+	public List<Course> selectCourseByNameList (Connection conn, String name) throws SQLException {
 		
 		Statement stmt = null;
 		ResultSet rs;
