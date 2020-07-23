@@ -10,6 +10,7 @@ public class CaddFormServiceImpl implements Service {
 	
 	@Override
 	public String getViewPage(HttpServletRequest request, HttpServletResponse response) {
+		
 		return "/WEB-INF/views/teacher/cAddForm.jsp";
 	}
 

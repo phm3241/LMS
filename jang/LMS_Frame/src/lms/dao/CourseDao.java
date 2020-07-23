@@ -161,6 +161,7 @@ public class CourseDao {
 
 		int result = 0;
 
+		
 		PreparedStatement pstmt = null;
 		ResultSet rs;
 
@@ -257,6 +258,6 @@ public class CourseDao {
 			
 			return courseList;
 		}
-	
+
 	
 }
