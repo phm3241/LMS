@@ -34,7 +34,7 @@ public class LoginCheckServiceImpl implements Service {
 			if(type.equals("sLogin")) {
 				sDao = StudentDao.getInstance();
 				resultCnt = sDao.checkLoginStudent(conn, id, pw);
-				System.out.println(resultCnt);
+				System.out.println("학생 로그인체크 결과: "+resultCnt);
 				
 			} else if(type.equals("tLogin")) {
 				tDao = TeacherDao.getInstance();
