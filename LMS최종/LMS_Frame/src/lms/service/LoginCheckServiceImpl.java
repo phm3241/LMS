@@ -21,12 +21,17 @@ public class LoginCheckServiceImpl implements Service {
 	@Override
 	public String getViewPage(HttpServletRequest request, HttpServletResponse response) {
 		int resultCnt = 0;
+		String result="N";
 		Connection conn = null;
 		
 		String type = request.getParameter("loginType");
 		int id = Integer.parseInt(request.getParameter("id").trim());
 		String pw = request.getParameter("pw").trim();
 		
+		System.out.println("--loginCheckService 처리확인용--");
+		System.out.println("loginType :"+ type);
+		System.out.println("id :"+ id);
+		System.out.println("pw :"+ pw);
 		
 		
 		try {
@@ -34,16 +39,20 @@ public class LoginCheckServiceImpl implements Service {
 			if(type.equals("sLogin")) {
 				sDao = StudentDao.getInstance();
 				resultCnt = sDao.checkLoginStudent(conn, id, pw);
+				if(resultCnt>0) {
+					result="Y";
+				};
 				System.out.println("학생 로그인체크 결과: "+resultCnt);
+				System.out.println("학생 로그인체크 결과: "+result);
 				
 			} else if(type.equals("tLogin")) {
 				tDao = TeacherDao.getInstance();
 				resultCnt = tDao.checkLoginTeacher(conn, id, pw);
-				System.out.println(resultCnt);
+				System.out.println("교수 로그인체크 결과: "+resultCnt);
 			} else {
 				aDao = AdminDao.getInstance();
 				resultCnt = aDao.checkLoginAdmin(conn, id, pw);
-				System.out.println(resultCnt);
+				System.out.println("관리자 로그인체크 결과: "+resultCnt);
 			}
 		}catch(SQLException e) {
 			e.printStackTrace();
@@ -58,6 +67,7 @@ public class LoginCheckServiceImpl implements Service {
 		}
 		
 		request.setAttribute("result", resultCnt);
+		request.setAttribute("resultYN", result);
 		return "/WEB-INF/views/loginCheck.jsp";
 	}
 

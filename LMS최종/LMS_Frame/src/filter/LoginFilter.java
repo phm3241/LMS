@@ -70,11 +70,15 @@ public class LoginFilter implements Filter {
 						teacher = tDao.selectBytIdPw(conn, idx, pw);
 						
 						session.setAttribute("info", teacher);
+						// 박혜미 추가부분 200724
+						login = true;
 					} else {
 						aDao = AdminDao.getInstance();
 						admin = aDao.selectByIdPw(conn, idx, pw);
 						
 						session.setAttribute("info", admin);
+						// 박혜미 추가부분 200724
+						login = true;
 					}
 					session.setAttribute("loginType", type);
 				} catch (SQLException e) {
@@ -109,7 +113,8 @@ public class LoginFilter implements Filter {
 			// 3. response를 이용하여 응답의 필터링 작업 수행
 			// redirect=client: context 경로 필요
 			HttpServletResponse httpResponse = (HttpServletResponse) response;
-			String location = httpRequest.getContextPath()+"/views/loginForm.jsp";
+			// String location = httpRequest.getContextPath()+"/views/loginForm.jsp";
+			String location = httpRequest.getContextPath()+"/index.do";
 			System.out.println("filter location : " + location);
 			httpResponse.sendRedirect(location);
 		}
