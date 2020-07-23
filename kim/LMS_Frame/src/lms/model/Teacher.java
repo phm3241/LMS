@@ -6,6 +6,7 @@ public class Teacher {
 
 	private int tIdx;
 	private String pw;
+	private String name;
 	private String tel;
 	private String email;
 	private String major;
@@ -13,9 +14,10 @@ public class Teacher {
 	
 	public Teacher() {}
 
-	public Teacher(int tIdx, String pw, String tel, String email, String major, String job) {
+	public Teacher(int tIdx, String pw, String name, String tel, String email, String major, String job) {
 		this.tIdx = tIdx;
 		this.pw = pw;
+		this.name = name;
 		this.tel = tel;
 		this.email = email;
 		this.major = major;
@@ -36,6 +38,14 @@ public class Teacher {
 
 	public void setPw(String pw) {
 		this.pw = pw;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	public String getTel() {
@@ -72,9 +82,11 @@ public class Teacher {
 
 	@Override
 	public String toString() {
-		return "Teacher [tIdx=" + tIdx + ", pw=" + pw + ", tel=" + tel + ", email=" + email + ", major=" + major
-				+ ", job=" + job + "]";
+		return "Teacher [tIdx=" + tIdx + ", pw=" + pw + ", name=" + name + ", tel=" + tel + ", email=" + email
+				+ ", major=" + major + ", job=" + job + "]";
 	}
+
+
 
 	
 	
