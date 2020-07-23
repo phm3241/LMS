@@ -57,4 +57,31 @@ public class AdminDao {
 		return admin;	
 	}
 	
+	public int checkLoginAdmin (Connection conn, String id, String pw) throws SQLException {
+		
+		int checkLogin = 0;
+		
+		PreparedStatement pstmt = null;
+		
+		
+		try {
+			
+			String sql = "select * from project.admin where id=? and pw=?;";
+			
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, id);
+			pstmt.setString(2, pw);
+			
+			checkLogin = pstmt.executeUpdate();
+			
+		} finally {
+			if(pstmt != null) {
+				pstmt.close();
+			}
+			
+		}
+		
+		return checkLogin;	
+	}
+	
 }
