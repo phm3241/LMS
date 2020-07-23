@@ -1,4 +1,8 @@
-<!DOCTYPE html>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+
+    
+    <!DOCTYPE html>
 <html lang="ko">
 
 <head>
@@ -142,9 +146,9 @@
                 <tr><td class="alignLeft"> 컴퓨터학과 주강사</td></tr>
             </table> 
             <table class="titleTable" width=100% border=0 cellspacing=0>
-                <tr><td><a href="cAddForm.html">[강의등록]</a></td>
+                <tr><td><a href="cAddForm.html">강의등록</a></td>
                     <td><a href="tMyPage.html">나의 강의실</a></td>
-                    <td><a href="tInfo.html">내정보</a></td></tr>                
+                    <td><a href="tInfo.html">[내정보]</a></td></tr>                
             </table> 
         </div>
 	    
@@ -154,29 +158,26 @@
 
       
                 <table width=100% border=0>
-                    <tr><td width=50% class="alignRight">교과목명</td>
-                        <td width=45% class="alignLeft"><input type="text" id="search"></td></tr>
-                    <tr><td class="alignRight">교수명</td>
-                        <td class="alignLeft"><input type="text" id="search"></td></tr>                
-                    <tr><td class="alignRight">과목내용</td>
-                        <td class="alignLeft"><input type="text" id="search"></td></tr>
-                    <tr><td class="alignRight">대상학년</td>
-                        <td class="alignLeft"><input type="text" id="search"></td></tr>
-                    <tr><td class="alignRight">이수구분</td>
-                        <td class="alignLeft"><input type="text" id="search"></td></tr>
-                    <tr><td class="alignRight">학점</td>
-                        <td class="alignLeft"><input type="text" id="search"></td></tr>
-                    <tr><td class="alignRight">수업시간</td>
-                        <td class="alignLeft"><input type="text" id="search"></td></tr>
-                    <tr><td class="alignRight">정원</td>
-                        <td class="alignLeft"><input type="text" id="search"></td></tr>
-                    <tr><td class="alignRight">교재</td>
-                        <td class="alignLeft"><input type="text" id="search"></td></tr>
-                    <tr><td class="alignRight">강의실</td>
-                        <td class="alignLeft"><input type="text" id="search"></td></tr>
+                    <tr><td width=50% class="alignRight">학과</td>
+                        <td width=45% class="alignLeft">컴퓨터학과</td></tr>
+                    <tr><td class="alignRight">교번</td>
+                        <td class="alignLeft">20083320</td></tr>
+                    <tr><td class="alignRight">직급</td>
+                        <td class="alignLeft">주강사</td></tr>
+                    <tr><td class="alignRight">이름</td>
+                        <td class="alignLeft">박혜미</td></tr>
+                    <tr><td class="alignRight">비밀번호</td>
+                        <td class="alignLeft"><input type="password" id="pw1"></td></tr>
+                    <tr><td class="alignRight">비밀번호 확인</td>
+                        <td class="alignLeft"><input type="password" id="pw2"></td></tr>
+                    <tr><td class="alignRight">핸드폰</td>
+                        <td class="alignLeft">010-1234-1234</td></tr>
+                    <tr><td class="alignRight">이메일</td>
+                        <td class="alignLeft">1234@naver.com</td></tr>
+                    
                     <tr><td colspan="2">
-                        <button class="" onClick="closeInsert()">취소</button>
-                        <button type="submit" id="insert" class="" onClick="doInsert(this.form)">등록</button>
+                        
+                        <button type="submit" id="modify" class="" onClick="doModify(this.form)">수정</button>
                         </td></tr>
                 </table>
             </form>
@@ -191,7 +192,7 @@
 </body>
 
 <script>
-    function doInsert(form) {     
+    function doModify(form) {     
 
 
 
@@ -211,3 +212,4 @@
 
 </html>
 
+    
