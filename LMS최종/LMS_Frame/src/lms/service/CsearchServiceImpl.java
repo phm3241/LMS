@@ -22,8 +22,7 @@ public class CsearchServiceImpl implements Service {
 	
 	@Override
 	public String getViewPage(HttpServletRequest request, HttpServletResponse response) {
-		int resultCnt = 0;
-		String type = cookieBox.getValue("type");
+		// String type = cookieBox.getValue("type");
 		Connection conn = null;
 		List<Course> courseList = null;
 		String cName = request.getParameter("cname");
@@ -31,7 +30,7 @@ public class CsearchServiceImpl implements Service {
 		try {
 			conn = ConnectionProvider.getConnection();
 			cDao = CourseDao.getInstance();			
-			courseList = cDao.selectCourseByName(conn, cName);
+			courseList = cDao.selectCourseByNameList(conn, cName);
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
