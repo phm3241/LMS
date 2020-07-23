@@ -9,7 +9,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>LMS</title>
-<link href="../css/lms.css" rel="stylesheet">
+<link href="./css/lms.css" rel="stylesheet">
 <style>
 th {
 	text-align: center;
@@ -214,149 +214,29 @@ a {
 <body>
 
 	<div id="container">
+		<div id="header" class="bgColorHeader">
 
-		<%@ include file="/WEB-INF/views/include/header.jsp"%>
-		<!-- <div id="header" class="bgColorHeader">
-            
-            <table class="titleTable" width=100% border=0 cellspacing=0>
-                <tr><td rowspan=2 class="alignRight" width=15% valign="bottom"><img class="userImg" width=50 src="./images/userImg.png"></td>
-                    <td  class="alignLeft"> 2008123456114</td></tr>
-                <tr><td class="alignLeft"> 관리자</td></tr>
-            </table> 
-            <table class="titleTable" width=100% border=0 cellspacing=0>
-                <tr><td><a href="cList.html">강의</a></td>
-                    <td><a href="tList.html">강사</a></td>
-                    <td><a href="sList.html">[학생]</a></td></tr>                
-            </table> 
-        </div>
-	     -->
-
-
-
-
+			<table class="titleTable" width=100% border=0 cellspacing=0>
+				<tr>
+					<td rowspan=2 class="alignRight" width=15% valign="bottom"><img
+						class="userImg" width=50 src="./images/userImg.png"></td>
+					<td class="alignLeft">2008123456114</td>
+				</tr>
+				<tr>
+					<td class="alignLeft">컴퓨터공학과 2학년</td>
+				</tr>
+			</table>
+			<table class="titleTable" width=100% border=0 cellspacing=0>
+				<tr>
+					<td><a href="sClassAddForm.html">수강신청</a></td>
+					<td><a href="sMyPage.html">[나의 강의실]</a></td>
+					<td><a href="sInfo.html">내정보</a></td>
+				</tr>
+			</table>
+		</div>
 
 		<div id="contentsAll">
 
-			[2020.1학기]
-			<table width=100% border=0>
-				<tr>
-					<td class="alignLeft bold">개설강좌 조회</td>
-					<td class="tdRight">교과목검색
-						<button id="search" class="btnSearch">F</button> 
-						<input type="text" id="search">
-					</td>
-				</tr>
-			</table>
-
-			<table id="idClass" width=100% border=0 cellspacing="0">
-				<tr class="bgColorGray">
-					<th>강의<br>번호
-					</th>
-					<th>강의명</th>
-					<th>교수명</th>
-					<th>학년</th>
-					<th>이수<br>구분
-					</th>
-					<th>수업<br>시간
-					</th>
-					<th>정원</th>
-					<th>강의<br>정보
-					</th>
-					<th>신청</th>
-				</tr>
-
-
-				<!-- 수업 목록 출력 -->
-				<%-- <c:if test="${not empty CourseListView.Course}">
-
-					<table id="idClass" width=100% border=0 cellspacing="0">
-						<tr class="bgColorGray">
-							<th>강의<br>번호</th>
-							<th>강의명</th>
-							<th>교수명</th>
-							<th>요일</th>
-							<th>시작<br>시간</th>
-							<th>종료<br>시간</th>
-							<th>신청<br>현황</th>
-							<th>정원</th>
-							<th>강의<br>정보</th>
-							<th>신청</th>
-						</tr>
-
-						<c:forEach items="${CourseListView.Course}" var="class">
-							<div class="class_row">
-								<tr>
-									<td>${class.cIdx}</td>
-									<td>${class.Name}</td>
-									<td>${class.Teacher}</td>
-									<td>${class.Day}</td>
-									<td>${class.StartTime}</td>
-									<td>${class.EndTime}</td>
-									<td>${class.ApplyPer}</td>
-									<td>${class.TotalPer}</td>
-									<td><button id="viewInfo" class="" onClick="viewInfo()">강의정보</button></td>
-									<td><button id="insert" class="" onClick="insert()">신청</button></td>
-								</tr>
-							</div>
-						</c:forEach>
-					</table>
-
-				</c:if> --%>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-				<tr class="">
-					<td class="">A01</td>
-					<td>컴퓨터기초</td>
-					<td>송가람</td>
-					<td>1</td>
-					<td>교양</td>
-					<td>수(3,4)</td>
-					<td>20/25</td>
-					<td><button id="viewInfo" class="" onClick="viewInfo()">강의정보</button></td>
-					<td><button id="insert" class="" onClick="insert()">신청</button></td>
-				</tr>
-				<tr class="">
-					<td class="">A01</td>
-					<td>컴퓨터기초</td>
-					<td>송가람</td>
-					<td>1</td>
-					<td>교양</td>
-					<td>수(3,4)</td>
-					<td>20/25</td>
-					<td><button id="viewInfo" class="" onClick="viewInfo()">강의정보</button></td>
-					<td><button id="insert" class="" onClick="insert()">신청</button></td>
-				</tr>
-				<tr class="">
-					<td class="">A01</td>
-					<td>컴퓨터기초</td>
-					<td>송가람</td>
-					<td>1</td>
-					<td>교양</td>
-					<td>수(3,4)</td>
-					<td>20/25</td>
-					<td><button id="viewInfo" class="" onClick="viewInfo()">강의정보</button></td>
-					<td><button id="insert" class="" onClick="insert()">신청</button></td>
-				</tr>
-			</table>
-
-			<br> <br> <br>
 
 			<table width=100% border=0>
 				<tr>
@@ -377,11 +257,9 @@ a {
 					<th>학년</th>
 					<th>이수<br>구분
 					</th>
-					<th>수업<br>시간
-					</th>
+					<th>수업시간</th>
 					<th>정원</th>
-					<th>강의<br>정보
-					</th>
+					<th>강의정보</th>
 					<th>삭제</th>
 				</tr>
 				<tr class="">
@@ -419,7 +297,9 @@ a {
 				</tr>
 			</table>
 
-			<br> <br> <br>
+			<br>
+			<br>
+			<br>
 
 			<table width=100% border=0>
 				<tr>
@@ -588,7 +468,7 @@ a {
 
 			<form>
 
-				삭제
+				강사삭제
 				<table width=100% border=0>
 					<tr>
 						<td>교과목명</td>
@@ -632,9 +512,9 @@ a {
 					</tr>
 					<tr>
 						<td colspan="2">
-							<button class="" onClick="closeDel()">취소</button>
-							<button type="submit" id="del" class=""
-								onClick="doDel(this.form)">삭제</button>
+							<button class="" onClick="closeInsert()">취소</button>
+							<button type="submit" id="insert" class=""
+								onClick="doInsert(this.form)">삭제</button>
 						</td>
 					</tr>
 				</table>
@@ -668,15 +548,6 @@ a {
 </body>
 
 <script>
-	function doSaveImg() {
-
-	}
-
-	function insert() {
-		alert('강좌 수강신청목록으로 입력!');
-		// 입력전 총 신청강좌 갯수 확인 필요!!
-	}
-
 	function doclearList() {
 		alert('목록초기화 실행!!');
 	}
@@ -702,8 +573,6 @@ a {
 	}
 
 	function doDel(form) {
-
-		alert('목록에서 삭제');
 
 		document.getElementById('delArea').style.display = 'none';
 		form.submit();

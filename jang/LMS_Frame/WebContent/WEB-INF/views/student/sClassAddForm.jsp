@@ -9,7 +9,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>LMS</title>
-<link href="../css/lms.css" rel="stylesheet">
+<link href="./css/lms.css" rel="stylesheet">
 <style>
 th {
 	text-align: center;
@@ -216,24 +216,6 @@ a {
 	<div id="container">
 
 		<%@ include file="/WEB-INF/views/include/header.jsp"%>
-		<!-- <div id="header" class="bgColorHeader">
-            
-            <table class="titleTable" width=100% border=0 cellspacing=0>
-                <tr><td rowspan=2 class="alignRight" width=15% valign="bottom"><img class="userImg" width=50 src="./images/userImg.png"></td>
-                    <td  class="alignLeft"> 2008123456114</td></tr>
-                <tr><td class="alignLeft"> 관리자</td></tr>
-            </table> 
-            <table class="titleTable" width=100% border=0 cellspacing=0>
-                <tr><td><a href="cList.html">강의</a></td>
-                    <td><a href="tList.html">강사</a></td>
-                    <td><a href="sList.html">[학생]</a></td></tr>                
-            </table> 
-        </div>
-	     -->
-
-
-
-
 
 		<div id="contentsAll">
 
@@ -267,7 +249,7 @@ a {
 
 
 				<!-- 수업 목록 출력 -->
-				<%-- <c:if test="${not empty CourseListView.Course}">
+				<c:if test="${not empty CourseListView.Course}">
 
 					<table id="idClass" width=100% border=0 cellspacing="0">
 						<tr class="bgColorGray">
@@ -301,7 +283,7 @@ a {
 						</c:forEach>
 					</table>
 
-				</c:if> --%>
+				</c:if>
 
 
 

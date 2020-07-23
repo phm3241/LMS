@@ -2,36 +2,34 @@ package lms.service;
 
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import dbcp.ConnectionProvider;
+import lms.dao.CourseDao;
+import lms.model.Course;
+import lms.util.CookieBox;
 
-public class LoginServiceImpl implements Service {
+public class CsearchServiceImpl implements Service {
 
 	// 자신이 사용할 Dao/Model/Service resurve 파일 번호를 항상 공유해주세용!
+	
+	CourseDao cDao;
+	CookieBox cookieBox;
+	
 	@Override
 	public String getViewPage(HttpServletRequest request, HttpServletResponse response) {
-		// String type = cookieBox.getValue("type");
-	
-		HttpSession session = request.getSession();
-		String type = (String) session.getAttribute("loginType");
-		
-		String path = null;
 		Connection conn = null;
+		List<Course> courseList = null;
+		String cName = request.getParameter("cname");
 		
 		try {
 			conn = ConnectionProvider.getConnection();
+			cDao = CourseDao.getInstance();			
+			courseList = cDao.selectCourseByNameList(conn, cName);
 			
-			if(type.equals("sLogin")) {
-				path = "/WEB-INF/views/student/sMypage.jsp";
-			} else if(type.equals("tLogin")) {
-				path = "/WEB-INF/views/teacher/tMypage.jsp";
-			} else {
-				path = "/WEB-INF/views/admin/cList.jsp";
-			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -44,8 +42,8 @@ public class LoginServiceImpl implements Service {
 			}
 		}
 		
-		
-		return path;
+		request.setAttribute("courseList", courseList);
+		return "/WEB-INF/views/teacher/tMypage.jsp";
 	}
 
 }

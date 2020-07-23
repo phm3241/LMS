@@ -42,17 +42,17 @@ public class LoginFilter implements Filter {
 		// (2) 현재 세션의 객체
 		HttpSession session = httpRequest.getSession(false);	// default: session 있으면 가져오기 없으면 생성하기, false: session 있으면 가져오고 없으면 null
 		
+		int idx = Integer.parseInt(request.getParameter("id"));
+		String pw = request.getParameter("pw");
+		String type = request.getParameter("loginType");
+		
 		Connection conn = null;
 		
 		// (3) 로그인 유무 확인하는 변수
 		boolean login = false;
 		
 		if(session != null) {
-			if(session.getAttribute("info") == null) {
-				int idx = Integer.parseInt(request.getParameter("id"));
-				String pw = request.getParameter("pw");
-				String type = request.getParameter("loginType");
-				
+			if(session.getAttribute("login") == null) {
 				try {
 					conn = ConnectionProvider.getConnection();
 					
@@ -65,12 +65,12 @@ public class LoginFilter implements Filter {
 						tDao = TeacherDao.getInstance();
 						teacher = tDao.selectBytIdPw(conn, idx, pw);
 						
-						session.setAttribute("info", teacher);
+						session.setAttribute("login", teacher);
 					} else {
 						aDao = AdminDao.getInstance();
 						admin = aDao.selectByIdPw(conn, idx, pw);
 						
-						session.setAttribute("info", admin);
+						session.setAttribute("login", admin);
 					}
 					session.setAttribute("loginType", type);
 				} catch (SQLException e) {

@@ -2,7 +2,10 @@ package lms.service;
 
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.sql.Time;
+import java.text.DateFormat;
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -21,12 +24,22 @@ public class CaddServiceImpl implements Service {
 		int resultCnt = 0;
 		Connection conn = null;
 		Course course = null;
+		Time sTime = null;
+		Time eTime = null;
 		
 		String name = request.getParameter("name");
 		String teacher = request.getParameter("teacher");
 		String content = request.getParameter("content");
 		String day = request.getParameter("day");
-		int startTime = Integer.parseInt(request.getParameter("startTime"));
+		String startTime = request.getParameter("startTime");
+		String endTime = request.getParameter("endTime");
+		DateFormat formatter = new SimpleDateFormat("HH:mm");
+		try {
+			sTime = new Time(formatter.parse(startTime).getTime());
+			eTime = new Time(formatter.parse(endTime).getTime());
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
 		int totalPer = Integer.parseInt(request.getParameter("totalPer"));
 		int applyPer = Integer.parseInt(request.getParameter("applyPer"));
 		int tIdx = Integer.parseInt(request.getParameter("tIdx"));
@@ -40,7 +53,8 @@ public class CaddServiceImpl implements Service {
 			course.setTeacher(teacher);
 			course.setContent(content);
 			course.setDay(day);
-			course.setStartTime(startTime);
+			course.setStartTime(sTime);
+			course.setEndTime(eTime);
 			course.setTotalPer(totalPer);
 			course.setApplyPer(applyPer);
 			course.settIdx(tIdx);
