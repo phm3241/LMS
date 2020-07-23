@@ -22,6 +22,8 @@ public class LoginServiceImpl implements Service {
 		} else {
 			path = "/WEB-INF/views/admin/cList.jsp";
 		}
+		
+		
 
 		return path;
 	}

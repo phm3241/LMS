@@ -483,7 +483,41 @@
 
     }
 	
-    insertCourse
+    
+	$(document).ready(function(){
+		
+		
+		$('#insertCourse').onclick(function(){
+	    	
+	    });
+		
+		
+		// 참고중인 코드
+		$('#uid').focusout(function(){
+			$.ajax({
+				url : 'idCheck.jsp',
+				type : 'GET', //POST, PUT, DELETE
+				data : { uid : $(this).val()},
+				success : function(data){
+					
+					if(data=='Y'){
+						$('#checkmsg').html('사용 가능한 아이디입니다.');	
+					}else{
+						$('#checkmsg').html('사용 불가능한 아이디입니다.');	
+					}
+					
+					}
+			});
+		});
+		
+		
+		
+		
+		
+		
+	}); //ready end
+	
+    
     
     
     
