@@ -21,7 +21,7 @@ public class AdminDao {
 		return dao;
 	}
 	
-	public Admin selectByIdPw (Connection conn, String id, String pw) throws SQLException {
+	public Admin selectByIdPw (Connection conn, int id, String pw) throws SQLException {
 		
 		PreparedStatement pstmt = null;
 		
@@ -34,7 +34,7 @@ public class AdminDao {
 			String sql = "select * from project.admin where id=? and pw=?;";
 			
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, id);
+			pstmt.setInt(1, id);
 			pstmt.setString(2, pw);
 			
 			rs = pstmt.executeQuery();
