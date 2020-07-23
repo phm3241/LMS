@@ -32,6 +32,8 @@ public class LoginServiceImpl implements Service {
 			admin = new Admin(id, pw);
 			path = "/WEB-INF/views/admin/cList.jsp";
 		}
+		
+		
 
 		return path;
 	}
