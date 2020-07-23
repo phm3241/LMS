@@ -45,7 +45,7 @@ public class DBCPInit extends HttpServlet {
 			 */
 			
 			// 후에 localhost를  AWS 인스턴스 연결로 변경해주면 됨.
-			String jdbcDriver = "jdbc:mysql://lms-testdb.cqjud1dl4kah.ap-northeast-2.rds.amazonaws.com/project?autoReconnect=true&useUnicode=true&characterEncoding=utf-8&servertimezone=UTC";
+			String jdbcDriver = "jdbc:mysql://lms-testdb.cqjud1dl4kah.ap-northeast-2.rds.amazonaws.com:3306/project?autoReconnect=true&useUnicode=true&characterEncoding=utf-8&servertimezone=UTC";
 			
 			String username = "test "; // 설정한 mysql 유저 네임
 			String pw = "wkddbsdnjsdhl5aud"; // 설정한 mysql 유저 비밀번호
