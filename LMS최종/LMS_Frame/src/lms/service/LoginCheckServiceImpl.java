@@ -24,6 +24,7 @@ public class LoginCheckServiceImpl implements Service {
 		Connection conn = null;
 		
 		String type = request.getParameter("loginType");
+		int id = Integer.parseInt(request.getParameter("id"));
 		String pw = request.getParameter("pw");
 		
 		
@@ -32,15 +33,12 @@ public class LoginCheckServiceImpl implements Service {
 			conn = ConnectionProvider.getConnection();
 			if(type.equals("sLogin")) {
 				sDao = StudentDao.getInstance();
-				int id = Integer.parseInt(request.getParameter("id"));
 				resultCnt = sDao.checkLoginStudent(conn, id, pw);
 			} else if(type.equals("tLogin")) {
 				tDao = TeacherDao.getInstance();
-				int id = Integer.parseInt(request.getParameter("id"));
 				resultCnt = tDao.checkLoginTeacher(conn, id, pw);
 			} else {
 				aDao = AdminDao.getInstance();
-				String id = request.getParameter("id");
 				resultCnt = aDao.checkLoginAdmin(conn, id, pw);
 			}
 		}catch(SQLException e) {

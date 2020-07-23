@@ -249,19 +249,9 @@
 <body>
 
 <div id="container">
-        <div id="header" class="bgColorHeader">
-            
-            <table class="titleTable" width=100% border=0 cellspacing=0>
-                <tr><td rowspan=2 class="alignRight" width=15% valign="bottom"><img class="userImg" width=50 src="./images/userImg.png"></td>
-                    <td  class="alignLeft"> 2008123456114</td></tr>
-                <tr><td class="alignLeft"> 관리자</td></tr>
-            </table> 
-            <table class="titleTable" width=100% border=0 cellspacing=0>
-                <tr><td><a href="cList.html">[강의]</a></td>
-                    <td><a href="tList.html">강사</a></td>
-                    <td><a href="sList.html">학생</a></td></tr>                
-            </table>
-        </div>
+
+		<%@ include file="/WEB-INF/views/include/header.jsp"%>
+        
 	    
         <div id="contentsAll">
 
@@ -483,7 +473,43 @@
 
     }
 	
-    insertCourse
+    
+	$(document).ready(function(){
+		
+		
+		$('#insertCourse').onclick(function(){
+			
+	    	
+	    });
+		
+		
+		
+		// 참고중인 코드
+		$('#uid').focusout(function(){
+			$.ajax({
+				url : 'idCheck.jsp',
+				type : 'GET', //POST, PUT, DELETE
+				data : { uid : $(this).val()},
+				success : function(data){
+					
+					if(data=='Y'){
+						$('#checkmsg').html('사용 가능한 아이디입니다.');	
+					}else{
+						$('#checkmsg').html('사용 불가능한 아이디입니다.');	
+					}
+					
+					}
+			});
+		});
+		
+		
+		
+		
+		
+		
+	}); //ready end
+	
+    
     
     
     
