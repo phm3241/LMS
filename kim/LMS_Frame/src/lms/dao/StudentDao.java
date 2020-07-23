@@ -257,6 +257,33 @@ public class StudentDao {
 			return student;	
 		}
 		
+		public int checkLoginStudent (Connection conn, int sIdx, String pw) throws SQLException {
+			
+			int checkLogin = 0;
+			
+			PreparedStatement pstmt = null;
+			
+			
+			try {
+				
+				String sql = "select * from project.student where sIdx=? and pw=?;";
+				
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setInt(1, sIdx);
+				pstmt.setString(2, pw);
+				
+				checkLogin = pstmt.executeUpdate();
+				
+			} finally {
+				if(pstmt != null) {
+					pstmt.close();
+				}
+				
+			}
+			
+			return checkLogin;	
+		}
+		
 	}
 	
 

@@ -4,6 +4,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
 import lms.model.Teacher;
 import lms.model.Teacher;
@@ -251,4 +254,31 @@ public class TeacherDao {
 			return teacher;	
 		}
 	
+		public int checkLoginTeacher (Connection conn, int tIdx, String pw) throws SQLException {
+			
+			int checkLogin = 0;
+			
+			PreparedStatement pstmt = null;
+			
+			
+			try {
+				
+				String sql = "select * from project.teacher where tIdx=? and pw=?;";
+				
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setInt(1, tIdx);
+				pstmt.setString(2, pw);
+				
+				checkLogin = pstmt.executeUpdate();
+				
+			} finally {
+				if(pstmt != null) {
+					pstmt.close();
+				}
+				
+			}
+			
+			return checkLogin;	
+		}
+		
 }
