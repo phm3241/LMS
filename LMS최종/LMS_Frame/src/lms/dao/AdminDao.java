@@ -42,7 +42,7 @@ public class AdminDao {
 			if (rs.next()) {
 				admin = new Admin();
 				
-				admin.setId(rs.getString("id"));
+				admin.setId(rs.getInt("id"));
 				admin.setPw(rs.getString("pw"));
 			}
 			
@@ -57,7 +57,7 @@ public class AdminDao {
 		return admin;	
 	}
 	
-	public int checkLoginAdmin (Connection conn, String id, String pw) throws SQLException {
+	public int checkLoginAdmin (Connection conn, int id, String pw) throws SQLException {
 		
 		int checkLogin = 0;
 		
@@ -69,7 +69,7 @@ public class AdminDao {
 			String sql = "select * from project.admin where id=? and pw=?;";
 			
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, id);
+			pstmt.setInt(1, id);
 			pstmt.setString(2, pw);
 			
 			checkLogin = pstmt.executeUpdate();
