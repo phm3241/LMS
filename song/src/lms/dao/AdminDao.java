@@ -20,6 +20,11 @@ public class AdminDao {
 		// TODO Auto-generated method stub
 		return 0;
 	}
+
+	public int checkLoginAdmin(Connection conn, String id, String pw) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 	
 	
 	

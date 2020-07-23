@@ -29,6 +29,11 @@ public class CourseDao {
 		
 		return list;
 	}
+
+	public List<Course> selectCourseByNameList(Connection conn, String cName) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 	
 	
