@@ -1,3 +1,6 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html lang="ko">
 
@@ -76,13 +79,12 @@
             font-weight : 500;
             margin: 3px 3px 3px 3px; 
         }
+
         .titleTable {       
             color : white;
             font-size : 20px;
             font-weight : 500;
-            margin: 3px 3px 3px 3px;            
-            
-        
+            margin: 3px 3px 3px 3px;
         }
         
         .btnStyle {            
@@ -113,7 +115,7 @@
         }
 
 
-        #insertArea{
+        #insertCourseArea{
                 
             top:100px;
             left:50%;
@@ -132,7 +134,7 @@
             
         }
 
-        #insertAreaInner{        
+        #insertCourseAreaInner{        
             margin : 10px 10px 10px 10px;
             background-color:white;       
             text-align:center;
@@ -141,9 +143,7 @@
         }
 
 
-
-
-            #modifyArea{
+        #infoCourseArea{
                 
                 top:100px;
                 left:50%;
@@ -162,7 +162,7 @@
                 
             }
     
-            #modifyAreaInner{        
+            #infoCourseAreaInner{        
                 margin : 10px 10px 10px 10px;
                 background-color:white;       
                 text-align:center;
@@ -171,7 +171,8 @@
             }
 
 
-            #delArea{
+
+            #modifyCourseArea{
                 
                 top:100px;
                 left:50%;
@@ -190,7 +191,35 @@
                 
             }
     
-            #delAreaInner{        
+            #modifyCourseAreaInner{        
+                margin : 10px 10px 10px 10px;
+                background-color:white;       
+                text-align:center;
+                font-size :10pt;
+                
+            }
+
+
+            #delCourseArea{
+                
+                top:100px;
+                left:50%;
+                margin-left :-150px;
+                
+                background-color:white;
+                width:300px;
+                
+                position:absolute;
+                /* z-index: 1; */            
+                
+                border: 2px solid  rgb(26, 188, 156);
+                display:none;
+                text-align:center;
+                font-size :12pt;
+                
+            }
+    
+            #delCourseAreaInner{        
                 margin : 10px 10px 10px 10px;
                 background-color:white;       
                 text-align:center;
@@ -212,7 +241,6 @@
 
 
 
-
     </style>
     <script></script>
 </head>
@@ -228,10 +256,10 @@
                 <tr><td class="alignLeft"> 관리자</td></tr>
             </table> 
             <table class="titleTable" width=100% border=0 cellspacing=0>
-                <tr><td><a href="cList.html">강의</a></td>
-                    <td><a href="tList.html">[강사]</a></td>
+                <tr><td><a href="cList.html">[강의]</a></td>
+                    <td><a href="tList.html">강사</a></td>
                     <td><a href="sList.html">학생</a></td></tr>                
-            </table> 
+            </table>
         </div>
 	    
         <div id="contentsAll">
@@ -239,33 +267,43 @@
         
         <table width=100% border=0>
             <tr><td colspan="2" class="tdRight">
-                강사명검색<button id="search" class="btnSearch">F</button><input type="text" id="search">
+                교과목검색<button id="search" class="btnSearch">F</button><input type="text" id="search">
             </td></tr>
-            <tr><td class="alignLeft bold">강사 목록</td>
+            <tr><td class="alignLeft bold">강의 목록</td>
                 <td class="tdRight">
-                    <button id="viewInsert" class="" onClick="viewInsert()">등록</button></td></tr>
+                    <button id="viewInsertCourse" class="" onClick="viewInsertCourse()">등록</button></td></tr>
         </table>
         
         <table id="idClass" width=100% border=0 cellspacing="0">
-            <tr class="bgColorGray"><th>번호</th><th>학번</th><th>이름</th>
-                <th>전공</th><th>학년</th><th>연락처</th><th>이메일</th>
-                <th>수정</th><th>삭제</th></tr>
+            <tr class="bgColorGray"><th>코드</th><th>교과목명</th><th>교수명</th>
+                <th>학년</th><th>이수<br>구분</th><th>수업<br>시간</th>
+                <th>정원</th><th>강의<br>정보</th><th>수정</th><th>삭제</th></tr>
             <tr class="">
-                <td class="">01</td><td>20205611</td><td>송가람</td>
-                <td>AI</td><td>11</td><td>010-5555-5555</td><td>a@a.com</td>                
-                <td><button id="viewModify" class="" onClick="viewModify()">수정</button></td>
-                <td><button id="viewDel" class="" onClick="viewDel()">삭제</button></td></tr>
+                <td class="">A01</td><td>컴퓨터역사</td><td>정신우</td>
+                <td>1</td><td>교양</td><td>수(3,4)</td><td>25</td>
+                <td><button id="viewInfoCourse" class="" onClick="viewInfoCourse()">강의정보</button></td>
+                <td><button id="viewModifyCourse" class="" onClick="viewModifyCourse()">수정</button></td>
+                <td><button id="viewDelCourse" class="" onClick="viewDelCourse()">삭제</button></td>
             <tr class="">
-                <td class="">01</td><td>20205611</td><td>송가람</td>
-                <td>AI</td><td>11</td><td>010-5555-5555</td><td>a@a.com</td>                
-                <td><button id="viewModify" class="" onClick="viewModify()">수정</button></td>
-                <td><button id="viewDel" class="" onClick="viewDel()">삭제</button></td></tr>
+                <td>A01</td><td>컴퓨터역사</td><td>정신우</td>
+                <td>1</td><td>교양</td><td>수(3,4)</td><td>25</td>
+                <td><button id="viewInfoCourse" class="" onClick="viewInfoCourse()">강의정보</button></td>
+                <td><button id="viewModifyCourse" class="" onClick="viewModifyCourse()">수정</button></td>
+                <td><button id="viewDelCourse" class="" onClick="viewDelCourse()">삭제</button></td>
             <tr class="">
-                <td class="">01</td><td>20205611</td><td>송가람</td>
-                <td>AI</td><td>11</td><td>010-5555-5555</td><td>a@a.com</td>                
-                <td><button id="viewModify" class="" onClick="viewModify()">수정</button></td>
-                <td><button id="viewDel" class="" onClick="viewDel()">삭제</button></td></tr>
-            
+                <td>A01</td><td>컴퓨터역사</td><td>정신우</td>
+                <td>1</td><td>교양</td><td>수(3,4)</td><td>25</td>
+                <td><button id="viewInfoCourse" class="" onClick="viewInfoCourse()">강의정보</button></td>
+                <td><button id="viewModifyCourse" class="" onClick="viewModifyCourse()">수정</button></td>
+                <td><button id="viewDelCourse" class="" onClick="viewDelCourse()">삭제</button></td>
+            <tr class="">
+                <td>A01</td><td>컴퓨터역사</td><td>정신우</td>
+                <td>1</td><td>교양</td><td>수(3,4)</td><td>25</td>
+                <td><button id="viewInfoCourse" class="" onClick="viewInfoCourse()">강의정보</button></td>
+                <td><button id="viewModifyCourse" class="" onClick="viewModifyCourse()">수정</button></td>
+                <td><button id="viewDelCourse" class="" onClick="viewDelCourse()">삭제</button></td>
+        
+                
                                 
             
 
@@ -285,12 +323,12 @@
         
     </div>
 
-    <div id="insertArea">
-        <div id="insertAreaInner">
+    <div id="insertCourseArea">
+        <div id="insertCourseAreaInner">
         
         <form>
 
-            강사등록
+            강의등록
             <table width=100% border=0>
                 <tr><td>교과목명</td>
                     <td><input type="text" id="search"></td></tr>
@@ -313,20 +351,55 @@
                 <tr><td>강의실</td>
                     <td><input type="text" id="search"></td></tr>
                 <tr><td colspan="2">
-                    <button class="" onClick="closeInsert()">취소</button>
-                    <button type="submit" id="insert" class="" onClick="doInsert(this.form)">등록</button>
+                    <button class="" onClick="closeInsertCourse()">취소</button>
+                    <button type="submit" id="insertCourse" class="" onClick="doInsertCourse(this.form)">등록</button>
                     </td></tr>
             </table>
         </form>
         </div>
     </div>
 
-    <div id="modifyArea">
-        <div id="modifyAreaInner">
+    <div id="infoCourseArea">
+        <div id="infoCourseAreaInner">
         
         <form>
 
-            강사수정
+            강의정보
+            <table width=100% border=0>
+                <tr><td>교과목명</td>
+                    <td></td></tr>
+                <tr><td>교수명</td>
+                    <td></td></tr>
+                <tr><td>과목내용</td>
+                    <td></td></tr>
+                <tr><td>대상학년</td>
+                    <td></td></tr>
+                <tr><td>이수구분</td>
+                    <td></td></tr>
+                <tr><td>학점</td>
+                    <td></td></tr>
+                <tr><td>수업시간</td>
+                    <td></td></tr>
+                <tr><td>정원</td>
+                    <td></td></tr>
+                <tr><td>교재</td>
+                    <td></td></tr>
+                <tr><td>강의실</td>
+                    <td></td></tr>
+                <tr><td colspan="2">
+                    <button class="" onClick="closeInfoCourse()">닫기</button>                    
+                </td></tr>
+            </table>
+        </form>
+        </div>
+    </div>
+
+    <div id="modifyCourseArea">
+        <div id="modifyCourseAreaInner">
+        
+        <form>
+
+            강의수정
             <table width=100% border=0>
                 <tr><td>교과목명</td>
                     <td><input type="text" id="search"></td></tr>
@@ -349,20 +422,20 @@
                 <tr><td>강의실</td>
                     <td><input type="text" id="search"></td></tr>
                 <tr><td colspan="2">
-                    <button class="" onClick="closeInsert()">취소</button>
-                    <button type="submit" id="modify" class="" onClick="doModify(this.form)">수정</button>
+                    <button class="" onClick="closeInsertCourse()">취소</button>
+                    <button type="submit" id="modifyCourse" class="" onClick="doModifyCourse(this.form)">수정</button>
                     </td></tr>
             </table>
         </form>
         </div>
     </div>
 
-    <div id="delArea">
-        <div id="delAreaInner">
+    <div id="delCourseArea">
+        <div id="delCourseAreaInner">
         
         <form>
 
-            강사삭제
+            강의삭제
             <table width=100% border=0>
                 <tr><td>교과목명</td>
                     <td></td></tr>
@@ -385,8 +458,8 @@
                 <tr><td>강의실</td>
                     <td></td></tr>
                 <tr><td colspan="2">
-                    <button class="" onClick="closeInsert()">취소</button>
-                    <button type="submit" id="insert" class="" onClick="doInsert(this.form)">등록</button>
+                    <button class="" onClick="closeInsertCourse()">취소</button>
+                    <button type="submit" id="insertCourse" class="" onClick="doInsertCourse(this.form)">등록</button>
                     </td></tr>
             </table>
         </form>
@@ -398,65 +471,74 @@
 
 <script>
 
-    function closeInsert() {
-            document.getElementById('insertArea').style.display = 'none';
+    function closeInsertCourse() {
+            document.getElementById('insertCourseArea').style.display = 'none';
 
     }
     
-    function viewInsert() {     
-        document.getElementById('insertArea').style.display = 'block';
+    function viewInsertCourse() {     
+        document.getElementById('insertCourseArea').style.display = 'block';
 
     }
 
-    function doInsert(form) {     
+    function doInsertCourse(form) {     
 
 
 
 
-        document.getElementById('insertArea').style.display = 'none';
-        form.submit();
-        
-
-    }
-    
-
-    function closeModify() {
-            document.getElementById('modifyArea').style.display = 'none';
-
-    }
-    
-    function viewModify() {     
-        document.getElementById('modifyArea').style.display = 'block';
-
-    }
-
-    function doModify(form) {     
-
-
-
-
-        document.getElementById('modifyArea').style.display = 'none';
+        document.getElementById('insertCourseArea').style.display = 'none';
         form.submit();
         
 
     }
 
-    function closeDel() {
-            document.getElementById('delArea').style.display = 'none';
+    function closeInfoCourse() {
+            document.getElementById('infoCourseArea').style.display = 'none';
 
     }
     
-    function viewDel() {     
-        document.getElementById('delArea').style.display = 'block';
+    function viewInfoCourse() {     
+        document.getElementById('infoCourseArea').style.display = 'block';
 
     }
 
-    function doDel(form) {     
+    function closeModifyCourse() {
+            document.getElementById('modifyCourseArea').style.display = 'none';
+
+    }
+    
+    function viewModifyCourse() {     
+        document.getElementById('modifyCourseArea').style.display = 'block';
+
+    }
+
+    function doModifyCourse(form) {     
 
 
 
 
-        document.getElementById('delArea').style.display = 'none';
+        document.getElementById('modifyCourseArea').style.display = 'none';
+        form.submit();
+        
+
+    }
+
+    function closeDelCourse() {
+            document.getElementById('delCourseArea').style.display = 'none';
+
+    }
+    
+    function viewDelCourse() {     
+        document.getElementById('delCourseArea').style.display = 'block';
+
+    }
+
+    function doDelCourse(form) {     
+
+
+
+
+        document.getElementById('delCourseArea').style.display = 'none';
         form.submit();
         
 
@@ -466,4 +548,3 @@
 </script>
 
 </html>
-

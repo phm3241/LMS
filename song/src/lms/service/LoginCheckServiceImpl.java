@@ -21,27 +21,25 @@ public class LoginCheckServiceImpl implements Service {
 	@Override
 	public String getViewPage(HttpServletRequest request, HttpServletResponse response) {
 		int resultCnt = 0;
-		String path = null;
 		Connection conn = null;
 		
 		String type = request.getParameter("loginType");
 		String id = request.getParameter("id");
 		String pw = request.getParameter("pw");
 		
+		
+		
 		try {
 			conn = ConnectionProvider.getConnection();
 			if(type.equals("sLogin")) {
 				sDao = StudentDao.getInstance();
 				resultCnt = sDao.selectById(conn, id, pw);
-				path = "/WEB-INF/views/student/loginCheck.jsp";
 			} else if(type.equals("tLogin")) {
 				tDao = TeacherDao.getInstance();
 				resultCnt = tDao.selectById(conn, id, pw);
-				path = "/WEB-INF/views/teacher/loginCheck.jsp";
 			} else {
 				aDao = AdminDao.getInstance();
 				resultCnt = aDao.selectById(conn, id, pw);
-				path = "/WEB-INF/views/admin/loginCheck.jsp";
 			}
 		}catch(SQLException e) {
 			e.printStackTrace();
@@ -56,7 +54,7 @@ public class LoginCheckServiceImpl implements Service {
 		}
 		
 		request.setAttribute("result", resultCnt);
-		return path;
+		return "/WEB-INF/views/loginCheck.jsp";
 	}
 
 }
