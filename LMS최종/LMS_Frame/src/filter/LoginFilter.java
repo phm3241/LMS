@@ -7,7 +7,6 @@ import java.sql.SQLException;
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
 import javax.servlet.FilterConfig;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
@@ -48,7 +47,6 @@ public class LoginFilter implements Filter {
 		String type = request.getParameter("loginType");
 		
 		Connection conn = null;
-		String path = null;
 		
 		// (3) 로그인 유무 확인하는 변수
 		boolean login = false;
@@ -62,7 +60,7 @@ public class LoginFilter implements Filter {
 						sDao = StudentDao.getInstance();
 						student = sDao.selectBysIdPw(conn, idx, pw);
 						
-						session.setAttribute("login", student);
+						session.setAttribute("info", student);
 					} else if(type.equals("tLogin")) {
 						tDao = TeacherDao.getInstance();
 						teacher = tDao.selectBytIdPw(conn, idx, pw);
@@ -74,6 +72,7 @@ public class LoginFilter implements Filter {
 						
 						session.setAttribute("login", admin);
 					}
+					session.setAttribute("loginType", type);
 				} catch (SQLException e) {
 					e.printStackTrace();
 				} finally {

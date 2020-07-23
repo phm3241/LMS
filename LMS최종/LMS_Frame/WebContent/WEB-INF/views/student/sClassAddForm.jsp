@@ -1,565 +1,720 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <!DOCTYPE html>
 <html lang="ko">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LMS</title>
-    <link href="./css/lms.css" rel="stylesheet">
-    <style>     
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LMS</title>
+<link href="./css/lms.css" rel="stylesheet">
+<style>
+th {
+	text-align: center;
+	/* font-weight : 900; */
+}
 
+td {
+	text-align: center;
+}
 
-        th {
-            text-align: center;
-            /* font-weight : 900; */
+input {
+	border: 2px solid;
+	height: 20px;
+	width: 150px;
+	border-color: rgb(188, 188, 188);
+}
 
-        }
+button {
+	width: 80px;
+	height: 30px;
+	text-align: center;
+	font-size: 14px;
+}
 
-        td {
-            text-align: center;
-        }
+.btnTmyPage {
+	width: 150px;
+	height: 30px;
+	text-align: center;
+	font-size: 14px;
+}
 
-        input {
+.btnSearch {
+	margin-left: 5px;
+	margin-right: -2px;
+	width: 50px;
+	height: 26px;
+	text-align: center;
+	font-size: 14px;
+}
 
-            border: 2px solid;
-            height : 20px;
-            width : 150px;
-            border-color: rgb(188, 188, 188);
+.tdRight {
+	text-align: right;
+}
 
-        }
+.alignLeft {
+	text-align: left;
+}
 
-        button {
-            width: 80px;
-            height: 30px;
-            text-align: center;
-            font-size :14px;
+.alignRight {
+	text-align: right;
+}
 
-        }
-        .btnTmyPage {
-            width: 150px;
-            height: 30px;
-            text-align: center;
-            font-size :14px;
-        }
+.bold {
+	font-size: 25px;
+	font-weight: 900;
+}
 
-        .btnSearch {
+a {
+	text-decoration: none;
+	color: white;
+	font-size: 20px;
+	font-weight: 500;
+	margin: 3px 3px 3px 3px;
+}
 
-            margin-left: 5px;
-            margin-right: -2px;
-            width: 50px;
-            height: 26px;
-            text-align: center;
-            font-size :14px;
+.titleTable {
+	color: white;
+	font-size: 20px;
+	font-weight: 500;
+	margin: 3px 3px 3px 3px;
+}
 
-        }
-
-        .tdRight {
-            text-align : right;
-        }
-
-        .alignLeft {
-		    text-align : left;
-        }
-
-
-        .alignRight {
-            text-align : right;
-        }
-
-        .bold {       
-            font-size : 25px;
-            font-weight : 900;
-        }
-
-        a {
-            text-decoration : none;
-            color : white;
-            font-size : 20px;
-            font-weight : 500;
-            margin: 3px 3px 3px 3px; 
-        }
-        .titleTable {       
-            color : white;
-            font-size : 20px;
-            font-weight : 500;
-            margin: 3px 3px 3px 3px;            
-            
-        
-        }
-        
-        .btnStyle {            
-            border-radius: 10px;
-            font-size:14px;
-            color: white;
-            font-weight : 900;
-            /* background-color: rgba(0, 0, 255, 0.7);
+.btnStyle {
+	border-radius: 10px;
+	font-size: 14px;
+	color: white;
+	font-weight: 900;
+	/* background-color: rgba(0, 0, 255, 0.7);
             border-color:  rgba(0, 0, 255, 1);             */
-        }
+}
 
-        .btnStyle:hover {
-            color: black;
-            background-color: white;
-            border-color:  gray; 
-        }
+.btnStyle:hover {
+	color: black;
+	background-color: white;
+	border-color: gray;
+}
 
-        .userImg {
-            border-radius: 10px;
-            border: 7px solid white;
-            
+.userImg {
+	border-radius: 10px;
+	border: 7px solid white;
+}
 
-        }
+#idClass td {
+	font-size: 14px;
+	border-bottom: 1px solid rgb(228, 228, 228);
+}
 
-        #idClass td {
-            font-size : 14px;
-            border-bottom: 1px solid rgb(228, 228, 228);
-        }
+#idSchedule {
+	border-color: rgb(228, 228, 228);
+}
 
-        #idSchedule {
-            border-color: rgb(228, 228, 228);
-        }
-        #idSchedule td {
-            font-size : 14px;
-            border-bottom: 1px solid rgb(228, 228, 228);
-        }
+#idSchedule td {
+	font-size: 14px;
+	border-bottom: 1px solid rgb(228, 228, 228);
+}
 
-        #infoArea{
-                
-                top:100px;
-                left:50%;
-                margin-left :-150px;
-                
-                background-color:white;
-                width:300px;
-                
-                position:absolute;
-                /* z-index: 1; */            
-                
-                border: 2px solid  rgb(26, 188, 156);
-                display:none;
-                text-align:center;
-                font-size :12pt;
-                
-            }
-    
-            #infoAreaInner{        
-                margin : 10px 10px 10px 10px;
-                background-color:white;       
-                text-align:center;
-                font-size :10pt;
-                
-            }
+#infoArea {
+	top: 100px;
+	left: 50%;
+	margin-left: -150px;
+	background-color: white;
+	width: 300px;
+	position: absolute;
+	/* z-index: 1; */
+	border: 2px solid rgb(26, 188, 156);
+	display: none;
+	text-align: center;
+	font-size: 12pt;
+}
 
+#infoAreaInner {
+	margin: 10px 10px 10px 10px;
+	background-color: white;
+	text-align: center;
+	font-size: 10pt;
+}
 
-          
+#delArea {
+	top: 100px;
+	left: 50%;
+	margin-left: -150px;
+	background-color: white;
+	width: 300px;
+	position: absolute;
+	/* z-index: 1; */
+	border: 2px solid rgb(26, 188, 156);
+	display: none;
+	text-align: center;
+	font-size: 12pt;
+}
 
+#delAreaInner {
+	margin: 10px 10px 10px 10px;
+	background-color: white;
+	text-align: center;
+	font-size: 10pt;
+}
 
-        #delArea{
-            
-            top:100px;
-            left:50%;
-            margin-left :-150px;
-            
-            background-color:white;
-            width:300px;
-            
-            position:absolute;
-            /* z-index: 1; */            
-            
-            border: 2px solid  rgb(26, 188, 156);
-            display:none;
-            text-align:center;
-            font-size :12pt;
-            
-        }
+#saveImgArea {
+	top: 100px;
+	left: 50%;
+	margin-left: -150px;
+	background-color: white;
+	width: 300px;
+	position: absolute;
+	/* z-index: 1; */
+	border: 2px solid rgb(26, 188, 156);
+	display: none;
+	text-align: center;
+	font-size: 12pt;
+}
 
-        #delAreaInner{        
-            margin : 10px 10px 10px 10px;
-            background-color:white;       
-            text-align:center;
-            font-size :10pt;
-            
-        }
+#saveImgAreaInner {
+	margin: 10px 10px 10px 10px;
+	background-color: white;
+	text-align: center;
+	font-size: 10pt;
+}
 
-        #saveImgArea{
-            
-            top:100px;
-            left:50%;
-            margin-left :-150px;
-            
-            background-color:white;
-            width:300px;
-            
-            position:absolute;
-            /* z-index: 1; */            
-            
-            border: 2px solid  rgb(26, 188, 156);
-            display:none;
-            text-align:center;
-            font-size :12pt;
-            
-        }
+#shareKaArea {
+	top: 100px;
+	left: 50%;
+	margin-left: -150px;
+	background-color: white;
+	width: 300px;
+	position: absolute;
+	/* z-index: 1; */
+	border: 2px solid rgb(26, 188, 156);
+	display: none;
+	text-align: center;
+	font-size: 12pt;
+}
 
-        #saveImgAreaInner{        
-            margin : 10px 10px 10px 10px;
-            background-color:white;       
-            text-align:center;
-            font-size :10pt;
-            
-        }
+#shareKaAreaInner {
+	margin: 10px 10px 10px 10px;
+	background-color: white;
+	text-align: center;
+	font-size: 10pt;
+}
 
-        #shareKaArea{
-            
-            top:100px;
-            left:50%;
-            margin-left :-150px;
-            
-            background-color:white;
-            width:300px;
-            
-            position:absolute;
-            /* z-index: 1; */            
-            
-            border: 2px solid  rgb(26, 188, 156);
-            display:none;
-            text-align:center;
-            font-size :12pt;
-            
-        }
+.bgColorGray {
+	background-color: rgb(228, 228, 228);
+}
 
-        #shareKaAreaInner{        
-            margin : 10px 10px 10px 10px;
-            background-color:white;       
-            text-align:center;
-            font-size :10pt;
-            
-        }
-
-   
-
-        .bgColorGray {
-            background-color: rgb(228, 228, 228);
-        }
-
-
-        .bgColorHeader {
-            background-color:rgb(26, 188, 156);
-        }
-        
-
-
-
-
-    </style>
-    <script></script>
+.bgColorHeader {
+	background-color: rgb(26, 188, 156);
+}
+</style>
+<script></script>
 </head>
 
 <body>
 
-<div id="container">
-        
-        <%@ include file="/WEB-INF/views/include/header.jsp"%>
-	    
-        <div id="contentsAll">
+	<div id="container">
 
-        [2020.1학기]
-        <table width=100% border=0>            
-            <tr><td class="alignLeft bold">개설강좌 조회</td>
-                <td class="tdRight">
-                    교과목검색<button id="search" class="btnSearch">F</button><input type="text" id="search">
-                </td>
-            </tr>
-        </table>
-        
-        <table id="idClass" width=100% border=0 cellspacing="0">
-            <tr class="bgColorGray"><th>강의<br>번호</th><th>강의명</th><th>교수명</th>
-                <th>학년</th><th>이수<br>구분</th><th>수업<br>시간</th><th>정원</th><th>강의<br>정보</th>
-                <th>신청</th>
-            </tr>
-            
-            
-            
-            
-            <tr class="">
-                <td class="">A01</td><td>컴퓨터기초</td><td>송가람</td>
-                <td>1</td><td>교양</td><td>수(3,4)</td><td>20/25</td>
-                <td><button id="viewInfo" class="" onClick="viewInfo()">강의정보</button></td>
-                <td><button id="insert" class="" onClick="insert()">신청</button></td></tr>
-            <tr class="">
-                <td class="">A01</td><td>컴퓨터기초</td><td>송가람</td>
-                <td>1</td><td>교양</td><td>수(3,4)</td><td>20/25</td>
-                <td><button id="viewInfo" class="" onClick="viewInfo()">강의정보</button></td>
-                <td><button id="insert" class="" onClick="insert()">신청</button></td></tr>
-            <tr class="">
-                <td class="">A01</td><td>컴퓨터기초</td><td>송가람</td>
-                <td>1</td><td>교양</td><td>수(3,4)</td><td>20/25</td>
-                <td><button id="viewInfo" class="" onClick="viewInfo()">강의정보</button></td>
-                <td><button id="insert" class="" onClick="insert()">신청</button></td></tr>
-        </table>
-		
-        <br><br><br>
+		<%@ include file="/WEB-INF/views/include/header.jsp"%>
 
-        <table width=100% border=0>            
-            <tr><td class="alignLeft bold">수강신청 목록</td>
-                <td class="tdRight">
-                    수강과목 : 4/5
-                    <button id="clearList"" class="btnTmyPage" onClick="doclearList()">목록 초기화</button>
-                </td></tr>
-        </table>
-        
-        <table id="idClass" width=100% border=0 cellspacing="0">
-            <tr class="bgColorGray"><th>강의<br>번호</th><th>강의명</th><th>교수명</th>
-                <th>학년</th><th>이수<br>구분</th><th>수업<br>시간</th><th>정원</th><th>강의<br>정보</th>
-                <th>삭제</th></tr>
-            <tr class="">
-                <td class="">A01</td><td>컴퓨터기초</td><td>송가람</td>
-                <td>1</td><td>교양</td><td>수(3,4)</td><td>20/25</td>
-                <td><button id="viewInfo" class="" onClick="viewInfo()">강의정보</button></td>
-                <td><button id="viewDel" class="" onClick="viewDel()">삭제</button></td></tr>
-            <tr class="">
-                <td class="">A01</td><td>컴퓨터기초</td><td>송가람</td>
-                <td>1</td><td>교양</td><td>수(3,4)</td><td>20/25</td>
-                <td><button id="viewInfo" class="" onClick="viewInfo()">강의정보</button></td>
-                <td><button id="viewDel" class="" onClick="viewDel()">삭제</button></td></tr>
-            <tr class="">
-                <td class="">A01</td><td>컴퓨터기초</td><td>송가람</td>
-                <td>1</td><td>교양</td><td>수(3,4)</td><td>20/25</td>
-                <td><button id="viewInfo" class="" onClick="viewInfo()">강의정보</button></td>
-                <td><button id="viewDel" class="" onClick="viewDel()">삭제</button></td></tr>
-        </table>
+		<div id="contentsAll">
 
-        <br><br><br>
+			[2020.1학기]
+			<table width=100% border=0>
+				<tr>
+					<td class="alignLeft bold">개설강좌 조회</td>
+					<td class="tdRight">교과목검색
+						<button id="search" class="btnSearch">F</button> 
+						<input type="text" id="search">
+					</td>
+				</tr>
+			</table>
 
-        <table width=100% border=0>            
-            <tr><td class="alignLeft bold">일정표</td>
-                <td class="tdRight">
-                <button id="saveImg" class="btnTmyPage" onClick="viewSaveImg()">이미지저장</button>                
-                <button id="shareKa" class="btnTmyPage" onClick="viewShareKa()">카카오톡공유</button>
-                </td></tr>
-        </table>
+			<table id="idClass" width=100% border=0 cellspacing="0">
+				<tr class="bgColorGray">
+					<th>강의<br>번호
+					</th>
+					<th>강의명</th>
+					<th>교수명</th>
+					<th>학년</th>
+					<th>이수<br>구분
+					</th>
+					<th>수업<br>시간
+					</th>
+					<th>정원</th>
+					<th>강의<br>정보
+					</th>
+					<th>신청</th>
+				</tr>
 
-        <table id="idSchedule" width=100% border=1 cellspacing="0">
-            
-            
-            <tr class="bgColorGray"><th width="100"></th><th>월</th><th>화</th><th>수</th><th>목</th>
-                <th>금</th></tr>
-            <tr class="">
-                <td>0교시<br>08:00</td><td></td><td></td><td></td><td></td><td></td>
-            <tr class="">
-                <td>1교시<br>08:00</td><td></td><td></td><td></td><td></td><td></td>
-            <tr class="">
-                <td>2교시<br>08:00</td><td></td><td></td><td></td><td></td><td></td>
-            <tr class="">
-                <td>3교시<br>08:00</td><td></td><td></td><td></td><td></td><td></td>
-            <tr class="">
-                <td>4교시<br>08:00</td><td></td><td></td><td></td><td></td><td></td>
-            <tr class="">
-                <td>5교시<br>08:00</td><td></td><td></td><td></td><td></td><td></td>
-            <tr class="">
-                <td>6교시<br>08:00</td><td></td><td></td><td></td><td></td><td></td>
-            <tr class="">
-                <td>7교시<br>08:00</td><td></td><td></td><td></td><td></td><td></td>
-            <tr class="">
-                <td>8교시<br>08:00</td><td></td><td></td><td></td><td></td><td></td>
-        </table>
-        
+
+				<!-- 수업 목록 출력 -->
+				<c:if test="${not empty CourseListView.Course}">
+
+					<table id="idClass" width=100% border=0 cellspacing="0">
+						<tr class="bgColorGray">
+							<th>강의<br>번호</th>
+							<th>강의명</th>
+							<th>교수명</th>
+							<th>요일</th>
+							<th>시작<br>시간</th>
+							<th>종료<br>시간</th>
+							<th>신청<br>현황</th>
+							<th>정원</th>
+							<th>강의<br>정보</th>
+							<th>신청</th>
+						</tr>
+
+						<c:forEach items="${CourseListView.Course}" var="class">
+							<div class="class_row">
+								<tr>
+									<td>${class.cIdx}</td>
+									<td>${class.Name}</td>
+									<td>${class.Teacher}</td>
+									<td>${class.Day}</td>
+									<td>${class.StartTime}</td>
+									<td>${class.EndTime}</td>
+									<td>${class.ApplyPer}</td>
+									<td>${class.TotalPer}</td>
+									<td><button id="viewInfo" class="" onClick="viewInfo()">강의정보</button></td>
+									<td><button id="insert" class="" onClick="insert()">신청</button></td>
+								</tr>
+							</div>
+						</c:forEach>
+					</table>
+
+				</c:if>
 
 
 
-        </div>        
-             
-
-        
-    </div>
-
-    <div id="infoArea">
-        <div id="infoAreaInner">
-        
-        <form>
-
-            강의정보
-            <table width=100% border=0>
-                <tr><td>교과목명</td>
-                    <td></td></tr>
-                <tr><td>교수명</td>
-                    <td></td></tr>
-                <tr><td>과목내용</td>
-                    <td></td></tr>
-                <tr><td>대상학년</td>
-                    <td></td></tr>
-                <tr><td>이수구분</td>
-                    <td></td></tr>
-                <tr><td>학점</td>
-                    <td></td></tr>
-                <tr><td>수업시간</td>
-                    <td></td></tr>
-                <tr><td>정원</td>
-                    <td></td></tr>
-                <tr><td>교재</td>
-                    <td></td></tr>
-                <tr><td>강의실</td>
-                    <td></td></tr>
-                <tr><td colspan="2">
-                    <button class="" onClick="closeInfo()">닫기</button>                    
-                </td></tr>
-            </table>
-        </form>
-        </div>
-    </div>
-
-
-    <div id="delArea">
-        <div id="delAreaInner">
-        
-        <form>
-
-            삭제
-            <table width=100% border=0>
-                <tr><td>교과목명</td>
-                    <td></td></tr>
-                <tr><td>교수명</td>
-                    <td></td></tr>
-                <tr><td>과목내용</td>
-                    <td></td></tr>
-                <tr><td>대상학년</td>
-                    <td></td></tr>
-                <tr><td>이수구분</td>
-                    <td></td></tr>
-                <tr><td>학점</td>
-                    <td></td></tr>
-                <tr><td>수업시간</td>
-                    <td></td></tr>
-                <tr><td>정원</td>
-                    <td></td></tr>
-                <tr><td>교재</td>
-                    <td></td></tr>
-                <tr><td>강의실</td>
-                    <td></td></tr>
-                <tr><td colspan="2">
-                    <button class="" onClick="closeDel()">취소</button>
-                    <button type="submit" id="del" class="" onClick="doDel(this.form)">삭제</button>
-                    </td></tr>
-            </table>
-        </form>
-        </div>
-    </div>
-
-    <div id="saveImgArea">
-        <div id="saveImgAreaInner">
-        
-
-
-            <button class="btnTmyPage" onClick="closeSaveImg()">취소</button>
-            <button class="btnTmyPage" onClick="doSaveImg()">이미지저장</button>
-       
-        </div>
-    </div>
 
 
 
-    <div id="shareKaArea">
-        <div id="shareKaAreaInner">
-        
 
-            <button class="btnTmyPage" onClick="closeShareKa()">취소</button>
-            <button class="btnTmyPage" onClick="doShareKa()">카카오톡공유</button>
-       
-        </div>
-    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+				<tr class="">
+					<td class="">A01</td>
+					<td>컴퓨터기초</td>
+					<td>송가람</td>
+					<td>1</td>
+					<td>교양</td>
+					<td>수(3,4)</td>
+					<td>20/25</td>
+					<td><button id="viewInfo" class="" onClick="viewInfo()">강의정보</button></td>
+					<td><button id="insert" class="" onClick="insert()">신청</button></td>
+				</tr>
+				<tr class="">
+					<td class="">A01</td>
+					<td>컴퓨터기초</td>
+					<td>송가람</td>
+					<td>1</td>
+					<td>교양</td>
+					<td>수(3,4)</td>
+					<td>20/25</td>
+					<td><button id="viewInfo" class="" onClick="viewInfo()">강의정보</button></td>
+					<td><button id="insert" class="" onClick="insert()">신청</button></td>
+				</tr>
+				<tr class="">
+					<td class="">A01</td>
+					<td>컴퓨터기초</td>
+					<td>송가람</td>
+					<td>1</td>
+					<td>교양</td>
+					<td>수(3,4)</td>
+					<td>20/25</td>
+					<td><button id="viewInfo" class="" onClick="viewInfo()">강의정보</button></td>
+					<td><button id="insert" class="" onClick="insert()">신청</button></td>
+				</tr>
+			</table>
+
+			<br> <br> <br>
+
+			<table width=100% border=0>
+				<tr>
+					<td class="alignLeft bold">수강신청 목록</td>
+					<td class="tdRight">수강과목 : 4/5
+						<button id="clearList" " class="btnTmyPage"
+							onClick="doclearList()">목록 초기화</button>
+					</td>
+				</tr>
+			</table>
+
+			<table id="idClass" width=100% border=0 cellspacing="0">
+				<tr class="bgColorGray">
+					<th>강의<br>번호
+					</th>
+					<th>강의명</th>
+					<th>교수명</th>
+					<th>학년</th>
+					<th>이수<br>구분
+					</th>
+					<th>수업<br>시간
+					</th>
+					<th>정원</th>
+					<th>강의<br>정보
+					</th>
+					<th>삭제</th>
+				</tr>
+				<tr class="">
+					<td class="">A01</td>
+					<td>컴퓨터기초</td>
+					<td>송가람</td>
+					<td>1</td>
+					<td>교양</td>
+					<td>수(3,4)</td>
+					<td>20/25</td>
+					<td><button id="viewInfo" class="" onClick="viewInfo()">강의정보</button></td>
+					<td><button id="viewDel" class="" onClick="viewDel()">삭제</button></td>
+				</tr>
+				<tr class="">
+					<td class="">A01</td>
+					<td>컴퓨터기초</td>
+					<td>송가람</td>
+					<td>1</td>
+					<td>교양</td>
+					<td>수(3,4)</td>
+					<td>20/25</td>
+					<td><button id="viewInfo" class="" onClick="viewInfo()">강의정보</button></td>
+					<td><button id="viewDel" class="" onClick="viewDel()">삭제</button></td>
+				</tr>
+				<tr class="">
+					<td class="">A01</td>
+					<td>컴퓨터기초</td>
+					<td>송가람</td>
+					<td>1</td>
+					<td>교양</td>
+					<td>수(3,4)</td>
+					<td>20/25</td>
+					<td><button id="viewInfo" class="" onClick="viewInfo()">강의정보</button></td>
+					<td><button id="viewDel" class="" onClick="viewDel()">삭제</button></td>
+				</tr>
+			</table>
+
+			<br> <br> <br>
+
+			<table width=100% border=0>
+				<tr>
+					<td class="alignLeft bold">일정표</td>
+					<td class="tdRight">
+						<button id="saveImg" class="btnTmyPage" onClick="viewSaveImg()">이미지저장</button>
+						<button id="shareKa" class="btnTmyPage" onClick="viewShareKa()">카카오톡공유</button>
+					</td>
+				</tr>
+			</table>
+
+			<table id="idSchedule" width=100% border=1 cellspacing="0">
+
+
+				<tr class="bgColorGray">
+					<th width="100"></th>
+					<th>월</th>
+					<th>화</th>
+					<th>수</th>
+					<th>목</th>
+					<th>금</th>
+				</tr>
+				<tr class="">
+					<td>0교시<br>08:00
+					</td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+				<tr class="">
+					<td>1교시<br>08:00
+					</td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+				<tr class="">
+					<td>2교시<br>08:00
+					</td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+				<tr class="">
+					<td>3교시<br>08:00
+					</td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+				<tr class="">
+					<td>4교시<br>08:00
+					</td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+				<tr class="">
+					<td>5교시<br>08:00
+					</td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+				<tr class="">
+					<td>6교시<br>08:00
+					</td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+				<tr class="">
+					<td>7교시<br>08:00
+					</td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+				<tr class="">
+					<td>8교시<br>08:00
+					</td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+			</table>
+
+
+
+
+		</div>
+
+
+
+	</div>
+
+	<div id="infoArea">
+		<div id="infoAreaInner">
+
+			<form>
+
+				강의정보
+				<table width=100% border=0>
+					<tr>
+						<td>교과목명</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>교수명</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>과목내용</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>대상학년</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>이수구분</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>학점</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>수업시간</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>정원</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>교재</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>강의실</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td colspan="2">
+							<button class="" onClick="closeInfo()">닫기</button>
+						</td>
+					</tr>
+				</table>
+			</form>
+		</div>
+	</div>
+
+
+	<div id="delArea">
+		<div id="delAreaInner">
+
+			<form>
+
+				삭제
+				<table width=100% border=0>
+					<tr>
+						<td>교과목명</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>교수명</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>과목내용</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>대상학년</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>이수구분</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>학점</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>수업시간</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>정원</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>교재</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>강의실</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td colspan="2">
+							<button class="" onClick="closeDel()">취소</button>
+							<button type="submit" id="del" class=""
+								onClick="doDel(this.form)">삭제</button>
+						</td>
+					</tr>
+				</table>
+			</form>
+		</div>
+	</div>
+
+	<div id="saveImgArea">
+		<div id="saveImgAreaInner">
+
+
+
+			<button class="btnTmyPage" onClick="closeSaveImg()">취소</button>
+			<button class="btnTmyPage" onClick="doSaveImg()">이미지저장</button>
+
+		</div>
+	</div>
+
+
+
+	<div id="shareKaArea">
+		<div id="shareKaAreaInner">
+
+
+			<button class="btnTmyPage" onClick="closeShareKa()">취소</button>
+			<button class="btnTmyPage" onClick="doShareKa()">카카오톡공유</button>
+
+		</div>
+	</div>
 
 </body>
 
 <script>
+	function doSaveImg() {
 
+	}
 
-    function doSaveImg() {
+	function insert() {
+		alert('강좌 수강신청목록으로 입력!');
+		// 입력전 총 신청강좌 갯수 확인 필요!!
+	}
 
-        
-    }
+	function doclearList() {
+		alert('목록초기화 실행!!');
+	}
 
-    function insert() {
-        alert('강좌 수강신청목록으로 입력!');
-        // 입력전 총 신청강좌 갯수 확인 필요!!
-    }
+	function closeInfo() {
+		document.getElementById('infoArea').style.display = 'none';
 
+	}
 
-    function doclearList() {
-        alert('목록초기화 실행!!');
-    }
+	function viewInfo() {
+		document.getElementById('infoArea').style.display = 'block';
 
+	}
 
-    function closeInfo() {
-            document.getElementById('infoArea').style.display = 'none';
+	function closeDel() {
+		document.getElementById('delArea').style.display = 'none';
 
-    }
-    
-    function viewInfo() {     
-        document.getElementById('infoArea').style.display = 'block';
+	}
 
-    }
-   
+	function viewDel() {
+		document.getElementById('delArea').style.display = 'block';
 
-    function closeDel() {
-        document.getElementById('delArea').style.display = 'none';
+	}
 
-    }
-    
-    function viewDel() {     
-        document.getElementById('delArea').style.display = 'block';
+	function doDel(form) {
 
-    }
+		alert('목록에서 삭제');
 
-    function doDel(form) {     
+		document.getElementById('delArea').style.display = 'none';
+		form.submit();
 
-        alert('목록에서 삭제');
+	}
 
+	function closeSaveImg() {
+		document.getElementById('saveImgArea').style.display = 'none';
 
+	}
 
-        document.getElementById('delArea').style.display = 'none';
-        form.submit();
-        
+	function viewSaveImg() {
+		document.getElementById('saveImgArea').style.display = 'block';
 
-    }
+	}
 
+	function closeShareKa() {
+		document.getElementById('shareKaArea').style.display = 'none';
 
-    function closeSaveImg() {
-        document.getElementById('saveImgArea').style.display = 'none';
+	}
 
-    }
+	function viewShareKa() {
+		document.getElementById('shareKaArea').style.display = 'block';
 
-    function viewSaveImg() {     
-        document.getElementById('saveImgArea').style.display = 'block';
+	}
 
-    }
+	function doShareKa() {
 
-    function closeShareKa() {
-        document.getElementById('shareKaArea').style.display = 'none';
-
-    }
-
-    function viewShareKa() {     
-        document.getElementById('shareKaArea').style.display = 'block';
-
-    } 
-  
-
-    
-
-    function doShareKa() {     
-
-
-
-    }
-
-
-
-
-
-    
-
+	}
 </script>
 
 </html>
