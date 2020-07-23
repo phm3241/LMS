@@ -50,12 +50,12 @@
   
   
   <!-- 로그인 필터 설정 -->
-  <filter>
+<filter>
   	<filter-name>LoginFilter</filter-name>
   	<filter-class>filter.LoginFilter</filter-class>
   </filter>
   <!-- 매핑을 통해 filter 서블릿을 적용할 경로를 설정합니다. -->
-  <filter-mapping>
+ <filter-mapping>
   	<filter-name>LoginFilter</filter-name>
   	<url-pattern>/login.do</url-pattern>  <!-- 박혜미 추가부분 200724 -->
   </filter-mapping>
