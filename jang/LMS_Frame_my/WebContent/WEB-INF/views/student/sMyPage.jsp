@@ -541,6 +541,7 @@ a {
 
 <script>
 
+//0723 윤원 추가
 $(document).ready(function() {
 	
 	alert('jqeury');
@@ -555,10 +556,9 @@ $(document).ready(function() {
 			var cIdx = value.cIdx;
 			var cName = value.name;
 			var cTeacher = value.teacher;
-			var contents = value.content;
+			var content = value.content;
 			var cDay = value.day;
 			var cStartTime = value.startTime;
-			var cEndTime = value.endTime;
 			var cTotalPer = value.totalPer;
 			var cApplyPer = value.applyPer;
 			var tIdx = value.tIdx;
@@ -580,14 +580,21 @@ $(document).ready(function() {
 				str+='	<td>'+cIdx+'</td>';
 				str+='	<td>'+cName+'</td>';
 				str+='	<td>'+cTeacher+'</td>';
+				str+='	<td>'+cDay+'</td>';
 				str+='	<td>'+cStartTime+'</td>';
 				str+='	<td>'+cTotalPer+'</td>';
 				str+='	<td>'+cApplyPer+'</td>';
 				str+='	<td>'+tIdx+'</td>';
+				str+='	<td><button id="viewInfo" class="btnInfo';
+				str+=cIdx;
+				str+='\" onClick="viewInfo('+cIdx, cName, cTeacher, cDay, cStartTime, cTotalPer, content+')">강의정보</button></td>';
+				str+='	<td><button id="viewDel" class="btnDel';
+				str+=cIdx;
+				str+='\" onClick="viewDel('+cIdx, cName, cTeacher, cDay, cStartTime, cTotalPer, content+')">삭제</button></td>';
 				str+='</tr>';
 				
 				
-				
+				$('#idClass').append(str);
 		});
 		
 		
@@ -607,8 +614,45 @@ $(document).ready(function() {
 
 	}
 
-	function viewInfo() {
+	//0723 윤원 추가
+	function viewInfo(cIdx, cName, cTeacher, cDay, cStartTime, cTotalPer, content) {
 		document.getElementById('infoArea').style.display = 'block';
+		
+		//$.getJSON('여기에 경로', function(data){
+			
+			//$.each(data, function(key, value){
+				//if(value.idx==cIdx){
+					//강의번호,강의명,강사명,세부사항, 요일, 시작시간,정원
+					
+					var cIdxStr = JSON.stringify(cIdx);
+					var cNameStr = JSON.stringify(cName);
+					var cTeacherStr = JSON.stringify(cTeacher);
+					var cDayStr = JSON.stringify(cDay);
+					var cStartTimeStr = JSON.stringify(cStartTime);
+					var cTotalPerStr = JSON.stringify(cTotalPer);
+					var contentStr = JSON.stringify(content);
+					
+					
+					var str='';
+					str+='<div id="cDetail">';
+					str+='	<div>강의번호 : '+cIdx+'</div>';
+					str+='	<div>강의명 : '+cNameStr+'</div>';
+					str+='	<div>강사명 : '+cTeacherStr+'</div>';
+					str+='	<div>요일 : '+cDayStr+'</div>';
+					str+='	<div>시작 시간 : '+cStartTimeStr+'</div>';
+					str+='	<div>정원 : '+cTotalPerStr+'</div>';
+					str+='	<div>강의번호 : '+contentStr+'</div>';
+					str+='</div>';
+					
+					$('#infoArea').append(str);
+				}
+			})
+			
+			
+		});
+		
+		
+		
 
 	}
 
@@ -617,9 +661,14 @@ $(document).ready(function() {
 
 	}
 
-	function viewDel() {
+	function viewDel(cIdx) {
 		document.getElementById('delArea').style.display = 'block';
-
+		
+		alert...???
+		
+		
+		
+		
 	}
 
 	function doDel(form) {

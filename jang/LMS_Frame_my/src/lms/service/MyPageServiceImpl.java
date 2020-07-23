@@ -32,7 +32,7 @@ public class MyPageServiceImpl implements Service {
 		student=new Student();
 		course=new Course();
 		
-		//result = 강의idx
+		//result = 강의idx...??
 		int result = 0;
 		Connection conn = null;
 		
@@ -52,18 +52,11 @@ public class MyPageServiceImpl implements Service {
 				result=cDao.selectMyCourse(conn, course, student);
 				
 				
-				
-				
-				
-				
-				
 				request.setAttribute("result", result);
 				
 				path="/WEB-INF/views/student/sMypage.jsp";
-				//resultCnt = sDao.checkLoginStudent(conn, id, pw);
+				
 			} else if(type.equals("tLogin")) {
-				//tDao = TeacherDao.getInstance();
-				//resultCnt = tDao.checkLoginTeacher(conn, id, pw);
 				path="/WEB-INF/views/teacher/tMypage.jsp";
 				
 			}
