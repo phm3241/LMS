@@ -34,12 +34,16 @@ public class LoginCheckServiceImpl implements Service {
 			if(type.equals("sLogin")) {
 				sDao = StudentDao.getInstance();
 				resultCnt = sDao.checkLoginStudent(conn, id, pw);
+				System.out.println(resultCnt);
+				
 			} else if(type.equals("tLogin")) {
 				tDao = TeacherDao.getInstance();
 				resultCnt = tDao.checkLoginTeacher(conn, id, pw);
+				System.out.println(resultCnt);
 			} else {
 				aDao = AdminDao.getInstance();
 				resultCnt = aDao.checkLoginAdmin(conn, id, pw);
+				System.out.println(resultCnt);
 			}
 		}catch(SQLException e) {
 			e.printStackTrace();
