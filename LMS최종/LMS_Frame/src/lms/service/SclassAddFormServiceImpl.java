@@ -11,6 +11,9 @@ public class SclassAddFormServiceImpl implements Service {
 	@Override
 	public String getViewPage(HttpServletRequest request, HttpServletResponse response) {
 		// 모든 강의 목록 list로 던져주기
+		
+		
+		
 		return "/WEB-INF/views/student/sClassAddForm.jsp";
 	}
 
