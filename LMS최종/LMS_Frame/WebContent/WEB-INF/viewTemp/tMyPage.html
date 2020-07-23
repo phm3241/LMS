@@ -153,34 +153,88 @@
           
 
 
-            #delArea{
-                
-                top:100px;
-                left:50%;
-                margin-left :-150px;
-                
-                background-color:white;
-                width:300px;
-                
-                position:absolute;
-                /* z-index: 1; */            
-                
-                border: 2px solid  rgb(26, 188, 156);
-                display:none;
-                text-align:center;
-                font-size :12pt;
-                
-            }
-    
-            #delAreaInner{        
-                margin : 10px 10px 10px 10px;
-                background-color:white;       
-                text-align:center;
-                font-size :10pt;
-                
-            }
+        #delArea{
+            
+            top:100px;
+            left:50%;
+            margin-left :-150px;
+            
+            background-color:white;
+            width:300px;
+            
+            position:absolute;
+            /* z-index: 1; */            
+            
+            border: 2px solid  rgb(26, 188, 156);
+            display:none;
+            text-align:center;
+            font-size :12pt;
+            
+        }
 
+        #delAreaInner{        
+            margin : 10px 10px 10px 10px;
+            background-color:white;       
+            text-align:center;
+            font-size :10pt;
+            
+        }
 
+        #saveImgArea{
+            
+            top:100px;
+            left:50%;
+            margin-left :-150px;
+            
+            background-color:white;
+            width:300px;
+            
+            position:absolute;
+            /* z-index: 1; */            
+            
+            border: 2px solid  rgb(26, 188, 156);
+            display:none;
+            text-align:center;
+            font-size :12pt;
+            
+        }
+
+        #saveImgAreaInner{        
+            margin : 10px 10px 10px 10px;
+            background-color:white;       
+            text-align:center;
+            font-size :10pt;
+            
+        }
+
+        #shareKaArea{
+            
+            top:100px;
+            left:50%;
+            margin-left :-150px;
+            
+            background-color:white;
+            width:300px;
+            
+            position:absolute;
+            /* z-index: 1; */            
+            
+            border: 2px solid  rgb(26, 188, 156);
+            display:none;
+            text-align:center;
+            font-size :12pt;
+            
+        }
+
+        #shareKaAreaInner{        
+            margin : 10px 10px 10px 10px;
+            background-color:white;       
+            text-align:center;
+            font-size :10pt;
+            
+        }
+
+   
 
         .bgColorGray {
             background-color: rgb(228, 228, 228);
@@ -250,8 +304,8 @@
         <table width=100% border=0>            
             <tr><td class="alignLeft bold">일정표</td>
                 <td class="tdRight">
-                <button id="saveImg" class="btnTmyPage" onClick="doSaveImg()">이미지저장</button>                
-                <button id="shareKa" class="btnTmyPage" onClick="doShareKa()">카카오톡공유</button>
+                <button id="saveImg" class="btnTmyPage" onClick="viewSaveImg()">이미지저장</button>                
+                <button id="shareKa" class="btnTmyPage" onClick="viewShareKa()">카카오톡공유</button>
                 </td></tr>
         </table>
 
@@ -361,6 +415,28 @@
         </div>
     </div>
 
+    <div id="saveImgArea">
+        <div id="saveImgAreaInner">
+        
+
+
+            <button class="btnTmyPage" onClick="closeSaveImg()">취소</button>
+            <button class="btnTmyPage" onClick="doSaveImg()">이미지저장</button>
+       
+        </div>
+    </div>
+
+
+
+    <div id="shareKaArea">
+        <div id="shareKaAreaInner">
+        
+
+            <button class="btnTmyPage" onClick="closeShareKa()">취소</button>
+            <button class="btnTmyPage" onClick="doShareKa()">카카오톡공유</button>
+       
+        </div>
+    </div>
 
 </body>
 
@@ -398,6 +474,41 @@
 
     }
 
+
+    function closeSaveImg() {
+        document.getElementById('saveImgArea').style.display = 'none';
+
+    }
+
+    function viewSaveImg() {     
+        document.getElementById('saveImgArea').style.display = 'block';
+
+    }
+
+    function closeShareKa() {
+        document.getElementById('shareKaArea').style.display = 'none';
+
+    }
+
+    function viewShareKa() {     
+        document.getElementById('shareKaArea').style.display = 'block';
+
+    } 
+  
+
+    
+
+    function doShareKa() {     
+
+
+
+    }
+
+
+
+
+
+    
 
 </script>
 
