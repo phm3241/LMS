@@ -4,7 +4,6 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
 
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -22,8 +21,6 @@ public class CsearchServiceImpl implements Service {
 	
 	@Override
 	public String getViewPage(HttpServletRequest request, HttpServletResponse response) {
-		int resultCnt = 0;
-		String type = cookieBox.getValue("type");
 		Connection conn = null;
 		List<Course> courseList = null;
 		String cName = request.getParameter("cname");
@@ -31,7 +28,7 @@ public class CsearchServiceImpl implements Service {
 		try {
 			conn = ConnectionProvider.getConnection();
 			cDao = CourseDao.getInstance();			
-			courseList = cDao.selectCourseByName(conn, cName);
+			courseList = cDao.selectCourseByNameList(conn, cName);
 			
 		} catch (SQLException e) {
 			e.printStackTrace();

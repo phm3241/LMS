@@ -20,6 +20,11 @@ public class StudentDao {
 		// TODO Auto-generated method stub
 		return 0;
 	}
+
+	public int checkLoginStudent(Connection conn, int id, String pw) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 	
 	
 	
