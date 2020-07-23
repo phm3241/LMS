@@ -1,15 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@
-
-
- %>
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="UTF-8">
-	<title>LMS</title>
-	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<meta charset="UTF-8">
+<title>LMS</title>
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <style>
 
 
@@ -216,7 +212,7 @@
 				}, 	
 				success : function(data) {
 					
-					if (data == 0) {
+					if (data == 'N') {
 						$('#loginCheck').text("아이디와 비밀번호가 일치하지 않습니다. 확인 후 다시 입력해주세요");
 						$('#loginCheck').addClass('checkN');
 						// $('#loginCheck').prop('checked', false);
