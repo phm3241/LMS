@@ -1,3 +1,7 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+    
+    
 <!DOCTYPE html>
 <html lang="ko">
 
@@ -229,8 +233,8 @@
             </table> 
             <table class="titleTable" width=100% border=0 cellspacing=0>
                 <tr><td><a href="cList.html">강의</a></td>
-                    <td><a href="tList.html">강사</a></td>
-                    <td><a href="sList.html">[학생]</a></td></tr>                
+                    <td><a href="tList.html">[강사]</a></td>
+                    <td><a href="sList.html">학생</a></td></tr>                
             </table> 
         </div>
 	    
@@ -251,18 +255,18 @@
                 <th>전공</th><th>학년</th><th>연락처</th><th>이메일</th>
                 <th>수정</th><th>삭제</th></tr>
             <tr class="">
-                <td class="">01</td><td>20221125</td><td>남영준</td>
-                <td>컴퓨터사이언스</td><td>11</td><td>010-5555-5555</td><td>a@a.com</td>                
+                <td class="">01</td><td>20205611</td><td>송가람</td>
+                <td>AI</td><td>11</td><td>010-5555-5555</td><td>a@a.com</td>                
                 <td><button id="viewModify" class="" onClick="viewModify()">수정</button></td>
                 <td><button id="viewDel" class="" onClick="viewDel()">삭제</button></td></tr>
             <tr class="">
-                <td class="">01</td><td>20221125</td><td>남영준</td>
-                <td>컴퓨터사이언스</td><td>11</td><td>010-5555-5555</td><td>a@a.com</td>                
+                <td class="">01</td><td>20205611</td><td>송가람</td>
+                <td>AI</td><td>11</td><td>010-5555-5555</td><td>a@a.com</td>                
                 <td><button id="viewModify" class="" onClick="viewModify()">수정</button></td>
                 <td><button id="viewDel" class="" onClick="viewDel()">삭제</button></td></tr>
             <tr class="">
-                <td class="">01</td><td>20221125</td><td>남영준</td>
-                <td>컴퓨터사이언스</td><td>11</td><td>010-5555-5555</td><td>a@a.com</td>                
+                <td class="">01</td><td>20205611</td><td>송가람</td>
+                <td>AI</td><td>11</td><td>010-5555-5555</td><td>a@a.com</td>                
                 <td><button id="viewModify" class="" onClick="viewModify()">수정</button></td>
                 <td><button id="viewDel" class="" onClick="viewDel()">삭제</button></td></tr>
             
@@ -290,7 +294,7 @@
         
         <form>
 
-            학생등록
+            강사등록
             <table width=100% border=0>
                 <tr><td>교과목명</td>
                     <td><input type="text" id="search"></td></tr>
@@ -326,7 +330,7 @@
         
         <form>
 
-            학생수정
+            강사수정
             <table width=100% border=0>
                 <tr><td>교과목명</td>
                     <td><input type="text" id="search"></td></tr>
@@ -362,7 +366,7 @@
         
         <form>
 
-            학생삭제
+            강사삭제
             <table width=100% border=0>
                 <tr><td>교과목명</td>
                     <td></td></tr>
