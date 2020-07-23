@@ -7,10 +7,10 @@ import java.sql.SQLException;
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
 import javax.servlet.FilterConfig;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
-import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -23,7 +23,6 @@ import lms.model.Admin;
 import lms.model.Student;
 import lms.model.Teacher;
 
-@WebFilter("*.jsp")
 public class LoginFilter implements Filter {
 	
 	StudentDao sDao;
@@ -47,6 +46,7 @@ public class LoginFilter implements Filter {
 		String type = request.getParameter("loginType");
 		
 		Connection conn = null;
+		String path = null;
 		
 		// (3) 로그인 유무 확인하는 변수
 		boolean login = false;
@@ -60,7 +60,7 @@ public class LoginFilter implements Filter {
 						sDao = StudentDao.getInstance();
 						student = sDao.selectBysIdPw(conn, idx, pw);
 						
-						session.setAttribute("info", student);
+						session.setAttribute("login", student);
 					} else if(type.equals("tLogin")) {
 						tDao = TeacherDao.getInstance();
 						teacher = tDao.selectBytIdPw(conn, idx, pw);
@@ -72,7 +72,6 @@ public class LoginFilter implements Filter {
 						
 						session.setAttribute("login", admin);
 					}
-					session.setAttribute("loginType", type);
 				} catch (SQLException e) {
 					e.printStackTrace();
 				} finally {
@@ -85,17 +84,16 @@ public class LoginFilter implements Filter {
 					}
 				}
 			}
-			else if(session.getAttribute("login") != null) {
+			else {
 				login = true;
 				
 			}
 		}
 		
 		// 2. 체인의 다음 필터 처리
-		// 로그인이 되어있으면 다음 필터 처리로 이동
 		if(login) {
 			chain.doFilter(request, response);
-		} else {	// 로그인이 안되어있다면 로그인 페이지로 이동
+		} else {
 			// 포워딩할 페이지 경로
 			// forward=server: context 경로 필요없음 
 			// String path = "/member/sessionLoginForm.jsp";

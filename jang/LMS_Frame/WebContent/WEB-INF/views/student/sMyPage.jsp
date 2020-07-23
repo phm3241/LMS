@@ -208,7 +208,7 @@ a {
 	background-color: rgb(26, 188, 156);
 }
 </style>
-<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script></script>
 </head>
 
 <body>
@@ -548,63 +548,6 @@ a {
 </body>
 
 <script>
-
-$(document).ready(function() {
-	
-	alert('jqeury');
-	
-	var sIdx = ${session.sIdx};
-	
-	
-	 $.getJSON('mypage.do', function(data){
-		//data와 각각 어떻게 처리할지 함수 정의
-		$.each(data, function(key, value){
-			
-			var cIdx = value.cIdx;
-			var cName = value.name;
-			var cTeacher = value.teacher;
-			var contents = value.content;
-			var cDay = value.day;
-			var cStartTime = value.startTime;
-			var cEndTime = value.endTime;
-			var cTotalPer = value.totalPer;
-			var cApplyPer = value.applyPer;
-			var tIdx = value.tIdx;
-
-			/*<tr class="">
-					<td class="">A01</td>
-					<td>컴퓨터기초</td>
-					<td>송가람</td>
-					<td>1</td>
-					<td>교양</td>
-					<td>수(3,4)</td>
-					<td>20/25</td>
-					<td><button id="viewInfo" class="" onClick="viewInfo()">강의정보</button></td>
-					<td><button id="viewDel" class="" onClick="viewDel()">삭제</button></td>
-				</tr>*/
-
-			var str='';
-				str+='<tr class="course'+cIdx+'">';
-				str+='	<td>'+cIdx+'</td>';
-				str+='	<td>'+cName+'</td>';
-				str+='	<td>'+cTeacher+'</td>';
-				str+='	<td>'+cStartTime+'</td>';
-				str+='	<td>'+cTotalPer+'</td>';
-				str+='	<td>'+cApplyPer+'</td>';
-				str+='	<td>'+tIdx+'</td>';
-				
-				
-				
-		});
-		
-		
-	});
-	 
-
-});
-
-
-
 	function doclearList() {
 		alert('목록초기화 실행!!');
 	}
