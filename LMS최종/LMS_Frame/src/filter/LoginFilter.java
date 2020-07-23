@@ -111,7 +111,7 @@ public class LoginFilter implements Filter {
 			// redirect=client: context 경로 필요
 			HttpServletResponse httpResponse = (HttpServletResponse) response;
 			String location = httpRequest.getContextPath()+"/views/loginForm.jsp";
-			System.out.println(location);
+			System.out.println("filter location : " + location);
 			httpResponse.sendRedirect(location);
 		}
 	}
