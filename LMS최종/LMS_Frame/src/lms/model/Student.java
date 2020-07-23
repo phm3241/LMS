@@ -1,35 +1,41 @@
 package lms.model;
 
-
 //자신이 사용할 Dao/Model/Service resurve 파일 번호를 항상 공유해주세용!
-public class Teacher {
 
-	private int tIdx;
+// 학생 DTO (Model) 담당 : 김승연
+// 				    작업 일시 : 2020. 07. 21
+
+public class Student {
+
+	private int sIdx;
 	private String pw;
 	private String name;
 	private String tel;
 	private String email;
 	private String major;
-	private String job;
-	
-	public Teacher() {}
+	private int grade;
 
-	public Teacher(int tIdx, String pw, String name, String tel, String email, String major, String job) {
-		this.tIdx = tIdx;
+	public Student() {
+
+	}
+
+	public Student(int sIdx, String pw, String name, String tel, String email, String major, int grade) {
+		this.sIdx = sIdx;
 		this.pw = pw;
 		this.name = name;
 		this.tel = tel;
 		this.email = email;
 		this.major = major;
-		this.job = job;
+		this.grade = grade;
 	}
 
-	public int gettIdx() {
-		return tIdx;
+
+	public int getsIdx() {
+		return sIdx;
 	}
 
-	public void settIdx(int tIdx) {
-		this.tIdx = tIdx;
+	public void setsIdx(int sIdx) {
+		this.sIdx = sIdx;
 	}
 
 	public String getPw() {
@@ -72,21 +78,19 @@ public class Teacher {
 		this.major = major;
 	}
 
-	public String getJob() {
-		return job;
+	public int getGrade() {
+		return grade;
 	}
 
-	public void setJob(String job) {
-		this.job = job;
+	public void setGrade(int grade) {
+		this.grade = grade;
 	}
 
 	@Override
 	public String toString() {
-		return "Teacher [tIdx=" + tIdx + ", pw=" + pw + ", name=" + name + ", tel=" + tel + ", email=" + email
-				+ ", major=" + major + ", job=" + job + "]";
+		return "Student [sIdx=" + sIdx + ", pw=" + pw + ", name=" + name + ", tel=" + tel + ", email=" + email
+				+ ", major=" + major + ", grade=" + grade + "]";
 	}
-
-
 
 	
 	
