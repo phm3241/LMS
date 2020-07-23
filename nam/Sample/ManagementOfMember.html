@@ -1,0 +1,385 @@
+﻿<!DOCTYPE html>
+<html lang="ko">
+ 
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Member Manager</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            font-family: '맑은 고딕';
+        }
+        .input_header {
+            float: left;
+            display: block;
+            height: 30px;
+            line-height: 30px;
+            text-align: center;
+            padding: 5px 20px;
+            width: 100px;
+            font-size: 14px;
+        }
+        hr {}
+        input[type="text"] {
+            border: solid 2px #dddddd;
+            border-radius: 8px;
+            width: 100px;
+        }
+        input[type="submit"] {
+            width: 70px;
+            height: 26px;
+            border-radius: 15px 15px 15px 15px;
+            border: 1px solid #CCCCCC;
+            margin-left: -1px;
+            display: inline-block;
+        }
+        h1 {
+            /* border : 3px solid; */
+        }
+        table,
+        th,
+        td {
+            border: 0px solid #CCCCCC;
+        }
+        table {
+            width: 100%;
+            border-collapse: seperate;
+            border-spacing: 1px 1px;
+        }
+        th,
+        td {
+            padding: 1px;
+            border-bottom: 1px solid black;
+        }
+        tr:hover {
+            background-color: #F5F5F5;
+        }
+        .topcorner {
+            font-size: 14px;
+            background-color: #F5F5F5;
+            display : none;
+            /* visibility: hidden; */
+            position: absolute;
+            top: 0;
+            right: 0;
+        }
+    </style>
+ 
+ 
+</head>
+ 
+<body>
+    <h1>Member Manager</h1>
+    <br>
+    <hr><br>
+    <h2>회원등록</h2>
+    <br>
+    <form action="" method="get" id="inputform">
+        <label class="input_header">아이디(이메일)</label>
+        <label class="input_header">비밀번호</label>
+        <label class="input_header">이름</label>
+        <br><br>
+        <label class="input_header">
+            <input type="text" name="id" id="id"></label>
+        <label class="input_header">
+            <input type="text" name="pw" id="pw"></label>
+        <label class="input_header">
+            <input type="text" name="name" id="name"></label>
+        <label class="input_header">
+            <input type="submit" value="등록"></label>
+    </form>
+    <br><br><br>
+    <hr><br>
+    <h2>회원리스트</h2>
+    <br>
+    <table border=1, cellspacing=0 id="tableValue">
+        <tbody>
+            <tr>
+                <td>index</td>
+                <td>아이디(이메일)</td>
+                <td>비밀번호</td>
+                <td>이름</td>
+                <td>관리</td>
+            </tr>
+        </tbody>
+    </table>
+ 
+    <div class="topcorner" id="modifyForm">
+        
+        <table>
+            <tr><td>데이터 수정</td><td align="right"><input type='button' value='닫기' onClick="CloseModifyForm()"></td></tr>
+            <tr><td>아이디(이메일)</td><td><input type="text" name="eid" id="eid"></td></tr>
+            <tr><td>비밀번호</td><td><input type="text" name="epw" id="epw"></td></tr>
+            <tr><td>이름</td><td><input type="text" name="ename" id ="ename"></td></tr>
+            <tr><td colspan="2" align="center">
+                <input type="hidden" id="ehidex" name="ehidex">
+                <input type="button" value="수정"  onClick="DoModifyForm()"></td></tr>
+        </table>
+        
+    </div>
+ 
+</body>
+ 
+ 
+<script>
+ 
+ 
+    //객체 생성
+    function Member(i, p, n) {
+        // var id = i;
+        // var pw = p;
+        // var name = n;
+ 
+        this.id = i;
+        this.pw = p;
+        this.name = n;
+ 
+        this.getId = function () {
+            return id;
+        }
+        this.getPw = function () {
+            return pw;
+        }
+        this.getName = function () {
+            return name;
+        }
+        this.setId = function (i) {
+            id = i;
+        }
+        this.setPw = function (p) {
+            pw = p;
+        }
+        this.setName = function (n) {
+            name = n;
+        }
+    }
+ 
+ 
+    //테이블에 열 추가
+    function addTableRow(i, uid, upw, uname) {
+        var table = document.getElementById("tableValue");
+        var rowlen = table.rows.length;
+        var row = table.insertRow(rowlen);
+        var addStr = "<input type='button' value='수정' onClick='Modify(\"tableValue\",";
+        addStr += i + ")'>";
+        addStr += "<input type='button' value='삭제' onClick='Delete(\"tableValue\",";
+        addStr += i + ")'>";
+ 
+        row.insertCell(0).innerHTML = i;
+        row.insertCell(1).innerHTML = uid;
+        row.insertCell(2).innerHTML = upw;
+        row.insertCell(3).innerHTML = uname;
+        row.insertCell(4).innerHTML = addStr;
+    }
+ 
+ 
+    // localStorage에 JSON 형태로 저장:자바스크립트 객체를 문자열로 변환함.
+    function saveLocalStoragebyJSON() {
+        setJsdata = JSON.stringify(members);
+        console.log(setJsdata);
+        localStorage.setItem("memberArray", setJsdata);
+    }
+ 
+ 
+ 
+    var setJsdata;
+    var getJsdata = localStorage.getItem("memberArray");
+    var members = JSON.parse(getJsdata); // JSON 형식의 문자열을 자바스크립트 객체로 변환함.
+ 
+    for (var i = 0; i <= members.length - 1; i++) {
+        addTableRow(i + 1, members[i].id, members[i].pw, members[i].name);
+    }
+    // var members = [];
+ 
+    var form = document.getElementById('inputform');
+ 
+    //alert(form);
+    // form.setAttribute('action', 'http://www.naver.com');
+ 
+    //사용자 정보 입력
+    form.onsubmit = function () {
+ 
+        var uid = document.getElementById('id');
+        var upw = document.getElementById('pw');
+        var uname = document.getElementById('name');
+ 
+ 
+        if (uid.value == null || uid.value.length < 1) {
+            alert('아이디를 입력해주세요.');
+            uid.focus();
+            return false;
+        }
+ 
+        if (upw.value == null || upw.value.length < 1) {
+            alert('비밀번호를 입력해주세요.');
+            upw.focus();
+            return false;
+        }
+ 
+        if (uname.value == null || uname.value.length < 1) {
+            alert('이름을 입력해주세요.');
+            uname.focus();
+            return false;
+        }
+ 
+        //입력-데이터
+        members.push(new Member(uid.value, upw.value, uname.value));
+        saveLocalStoragebyJSON();
+ 
+        //화면표시
+        addTableRow(members.length, uid.value, upw.value, uname.value);
+        console.log(members);
+ 
+        return false;
+    }
+ 
+    function Modify(tableid, index) {
+ 
+        var modifyForm = document.getElementById("modifyForm");
+        // modifyForm.style.visibility=true;
+ 
+        document.getElementById("eid").value = members[index-1].id;
+        document.getElementById("epw").value = members[index-1].pw;
+        document.getElementById("ename").value = members[index-1].name;
+        document.getElementById("ehidex").value = index;
+       
+        modifyForm.style.display='block';
+ 
+    }
+ 
+    function CloseModifyForm(){
+        modifyForm.style.display='none';
+    }
+ 
+    function DoModifyForm() {
+ 
+        // var uid = document.getElementById('eid').value;
+        var uid = document.getElementById('eid');
+        var upw = document.getElementById('epw');
+        var uname = document.getElementById('ename');
+        var uidex = document.getElementById('ehidex');
+ 
+        console.log(uid.value);
+        console.log(upw.value);
+        console.log(uname.value);
+        console.log(uidex.value);
+ 
+ 
+        if (uid.value == null || uid.value.length < 1) {
+            alert('아이디를 입력해주세요.');
+            uid.focus();
+            return false;
+        }
+ 
+        if (upw.value == null || upw.value.length < 1) {
+            alert('비밀번호를 입력해주세요.');
+            upw.focus();
+            return false;
+        }
+ 
+        if (uname.value == null || uname.value.length < 1) {
+            alert('이름을 입력해주세요.');
+            uname.focus();
+            return false;
+        }
+ 
+        //입력-데이터
+        console.log(members);
+        console.log(members[5].id);
+        var i = uidex.value-1;
+        // console.log(a);
+        console.log(members[i]);
+        members[i].id = uid.value;
+        members[i].pw = upw.value;
+        members[i].name = uname.value;        
+        saveLocalStoragebyJSON();
+ 
+        //화면표시
+        var table = document.getElementById("tableValue");
+        table.remove();
+        console.log(members);
+        location.reload(true);
+ 
+ 
+        var modifyForm = document.getElementById("modifyForm");        
+        modifyForm.style.display='none';
+ 
+    }
+ 
+    
+ 
+    function Delete(tableid, index) {
+        var ck;
+        ck = confirm("삭제하시겠습니까?" + index);
+ 
+        if (ck) {
+            //데이터 삭제
+            var value = members.splice((index - 1), 1);
+            saveLocalStoragebyJSON();
+ 
+            //화면 반영
+            var table = document.getElementById("tableValue");
+            table.remove();
+            console.log(members);
+            location.reload(true);
+            // table.deleteRow(index);            
+        }
+        else {
+ 
+        }
+ 
+ 
+    }
+ 
+ 
+ 
+ 
+    // //목록
+    // for( var i=0;i<members.length;i++){
+    //     members[i].getId, members[i].getName, members[i].getPw
+    // }        
+    // //수정
+    // members[i].setId(i), members[i].setName(n), members[i].setPw(p)
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+    // //저장
+    // localStorage.setItem('name', '야옹');
+ 
+    // //탐색
+    // var saveData = localStorage.getItem('name');
+    // console.log('저장데이터 : '+saveData);
+ 
+    // //수정 - overwrite
+    // localStorage.setItem('name', '야옹옹옹');
+    // saveData = localStorage.getItem('name');
+    // console.log('저장데이터 : '+saveData);
+ 
+ 
+    // //삭제
+    // localStorage.removeItem('name');
+    // saveData = localStorage.getItem('name');
+    // console.log('저장데이터 : '+saveData);
+ 
+    // //전체 삭제 : clear()
+    // localStorage.clear();
+ 
+    // //sessionStorage.setItem('sname','hong');
+ 
+ 
+ 
+ 
+</script>
+ 
+</html>
