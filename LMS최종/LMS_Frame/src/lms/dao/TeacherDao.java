@@ -149,8 +149,8 @@ public class TeacherDao {
 	}
 
 	// 학생 정보 전체 리스트 : ArrayList
-public List<Teacher> teacherList(Connection conn) throws SQLException {
-	
+	public List<Teacher> teacherList(Connection conn) throws SQLException {
+
 		Statement stmt = null;
 		ResultSet rs;
 
@@ -188,7 +188,7 @@ public List<Teacher> teacherList(Connection conn) throws SQLException {
 	}
 
 	// 교수 이름으로 조회
-	public int selectTeacherByName(Connection conn, Teacher teacher) throws SQLException {
+	public int selectTeacherByIdx(Connection conn, Teacher teacher) throws SQLException {
 
 		int result = 0;
 
@@ -197,10 +197,10 @@ public List<Teacher> teacherList(Connection conn) throws SQLException {
 
 		try {
 
-			String sql = "SELECT * FROM project.teacher where name=?";
+			String sql = "SELECT * FROM project.teacher where tIdx=?";
 
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, teacher.getName());
+			pstmt.setInt(1, teacher.gettIdx());
 
 			rs = pstmt.executeQuery();
 

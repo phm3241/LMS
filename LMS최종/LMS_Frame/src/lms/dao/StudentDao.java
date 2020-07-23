@@ -191,7 +191,7 @@ public class StudentDao {
 	}
 
 	// 학생 이름으로 조회
-	public int selectStudentByName(Connection conn, Student student) throws SQLException {
+	public int selectStudentByIdx(Connection conn, Student student) throws SQLException {
 
 		int result = 0;
 
@@ -200,10 +200,10 @@ public class StudentDao {
 
 		try {
 
-			String sql = "SELECT * FROM project.student where name=?";
+			String sql = "SELECT * FROM project.student where sIdx=?";
 
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, student.getName());
+			pstmt.setInt(1, student.getsIdx());
 
 			rs = pstmt.executeQuery();
 
