@@ -1,8 +1,6 @@
 package filter;
 
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.SQLException;
 
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
@@ -14,23 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import dbcp.ConnectionProvider;
-import lms.dao.AdminDao;
-import lms.dao.StudentDao;
-import lms.dao.TeacherDao;
-import lms.model.Admin;
-import lms.model.Student;
-import lms.model.Teacher;
-
-
-public class LoginFilter implements Filter {
-	
-	StudentDao sDao;
-	TeacherDao tDao;
-	AdminDao aDao;
-	Student student;
-	Admin admin;
-	Teacher teacher;
+public class LoginFilter implements Filter {	
 	
 	@Override
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
@@ -42,62 +24,12 @@ public class LoginFilter implements Filter {
 		// (2) 현재 세션의 객체
 		HttpSession session = httpRequest.getSession(false);	// default: session 있으면 가져오기 없으면 생성하기, false: session 있으면 가져오고 없으면 null
 		
-		Connection conn = null;
-		
 		// (3) 로그인 유무 확인하는 변수
 		boolean login = false;
 		
 		if(session != null) {
 			if(session.getAttribute("info") == null) {
-				String pw = request.getParameter("pw").trim();
-				System.out.println("pw :" +pw);
-				int idx = Integer.parseInt(request.getParameter("id").trim());
-				String type = request.getParameter("loginType");
-				
-				try {
-					conn = ConnectionProvider.getConnection();
-					
-					if(type.equals("sLogin")) {
-						sDao = StudentDao.getInstance();
-						student = sDao.selectBysIdPw(conn, idx, pw);
-						
-						session.setAttribute("info", student);
-						
-						// 박혜미 추가부분 200724
-						login = true;
-						
-						
-					} else if(type.equals("tLogin")) {
-						tDao = TeacherDao.getInstance();
-						teacher = tDao.selectBytIdPw(conn, idx, pw);
-						// 박혜미 추가부분 200724
-						login = true;
-						
-						session.setAttribute("info", teacher);
-					} else {
-						aDao = AdminDao.getInstance();
-						admin = aDao.selectByIdPw(conn, idx, pw);
-						
-						session.setAttribute("info", admin);
-						// 박혜미 추가부분 200724
-						login = true;
-					}
-					session.setAttribute("loginType", type);
-				} catch (SQLException e) {
-					e.printStackTrace();
-				} finally {
-					if(conn != null) {
-						try {
-							conn.close();
-						} catch (SQLException e) {
-							e.printStackTrace();
-						}
-					}
-				}
-			}
-			else if(session.getAttribute("info") != null) {
 				login = true;
-				
 			}
 		}
 		
