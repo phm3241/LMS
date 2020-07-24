@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
+<% String pw = session.getAttribute("sessionPw").toString(); %>
 <!DOCTYPE html>
 <html lang="ko">
 
@@ -201,16 +201,25 @@ a {
 </body>
 
 <script>
-	function doModify(form) {
-
-		form.submit();
-
-	}
 	
-	function checkPw() {
-		if()
+	$(document).ready(function(){
+	
+		var sessionPw = "<%= session.getAttribute("pw") %>"
 		
-	}
+		if 
+		
+		
+		function doModify(form) {
+
+			form.submit();
+
+		}
+
+		
+		
+	});
+		
+	
 </script>
 
 </html>

@@ -49,8 +49,8 @@ public class InfoEditServiceImpl implements Service {
 				student = (Student) session.getAttribute("info");
 				sIdx = student.getsIdx();
 				sDao.editStudent(conn, sIdx, tel, email);
+				sDao.
 				
-				request.setAttribute("info", student);
 				path = "/WEB-INF/views/student/sInfo.jsp";
 			} else if(type.equals("tLogin")) {
 				teacher = (Teacher) session.getAttribute("info");
