@@ -208,7 +208,7 @@ a {
 	background-color: rgb(26, 188, 156);
 }
 </style>
-<script></script>
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 </head>
 
 <body>
@@ -554,6 +554,8 @@ a {
 	//**강의목록 전체 - 수강신청페이지
     function makeCourseListTableDATA() {
 		
+		alert("전체목록!");
+		
     	 $.getJSON('sAddFormCourseList.do', function(data){
  			//data와 각각 어떻게 처리할지 함수 정의
  			$.each(data, function(key, value){
@@ -568,7 +570,7 @@ a {
  				var cApplyPer = value.applyPer;
  				var tIdx = value.tIdx;
 			
-				CourseList.push(new Course(cIdx, name, teacher, content, startTime, totalPer, applyPer, tIdx));
+				CourseList.push(new Course(cIdx, cName, cTeacher, content,cDay, cStartTime, cTotalPer, cApplyPer, tIdx));
  			});
  			
  		});
@@ -584,7 +586,7 @@ a {
         makeHtml += '<th>수업<br>시간</th><th>정원</th>';
         makeHtml += '<th>강의<br>정보</th><th>신청</th></tr>';
 
-        for (var i = 0; i <= CourseList.length - 1; i++) {
+        for (var i = 0; i < CourseList.length; i++) {
 
             makeHtml += '<tr><td>'+CourseList[i].cIdx+'</td>';
             makeHtml += '<td>'+CourseList[i].name+'</td>';
@@ -687,14 +689,13 @@ a {
         
     }
  
-    function insert(i) {        
-		
+    function insert(i) {      
     	
+    	alert("insert!");
     	var cIdx=CourseList[i].cIdx;
-    	var sIdx=${session.sIdx};
+    	var sIdx="${session.sIdx}";
     	//저장하는 ajax - 완료됐으면 Y
     	$.ajax({
-    		
     		url : 'sMyPageCourseListCheck.do',
     		data : {
     				sIdx:sIdx,
@@ -708,14 +709,10 @@ a {
     				}else{
     					alert("수강신청 실패!");
     				}
-    			
-
 				SelectedCourseList.push(CourseList[i]);
 		        makeSelectedCourseListTable();
     			}
-    	
-    		}
-    	
+    		});
     }
 
     function doclearList() {
