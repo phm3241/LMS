@@ -4,34 +4,25 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%
-	String type = (String)session.getAttribute("loginType");
-	if(type.equals("sLogin")){
-		Student student = (Student)session.getAttribute("info");
-	} else if(type.equals("tLogin")){
-		Teacher teacher = (Teacher)session.getAttribute("info");
-	} else{
-		Admin admin = (Admin)session.getAttribute("info");
-	}
-	
-%>
+
 <div id="header" class="bgColorHeader">
 	<table class="titleTable" width=100% border=0 cellspacing=0>
 		<tr>
 			<td rowspan=2 class="alignRight" width=15% valign="bottom"><img
 				class="userImg" width=50 src="./images/userImg.png"></td>
 			<!-- 로그인번호가 관리자이면, -->
-			<c:if test="${type == aLogin} ">
-				<td class="alignLeft">${admin.id}</td>
+			<%-- <c:out value="${sessionScope.loginType }"/> --%>
+			<%-- <c:if test="${sessionScope.loginType == aLogin} ">
+				<td class="alignLeft">${sessionScope.admin.id}</td>
 			</c:if>
 			<!-- 로그인번호가 학생. 교수이면, -->
 			<c:if test="${type == tLogin} ">
 				<td class="alignLeft">${teacher.tIdx} ${teacher.name}</td>
 			</c:if>
 			<!-- 로그인번호가 학생. 교수이면, -->
-			<c:if test="${type == sLogin} ">
-				<td class="alignLeft">${student.sIdx} ${student.name}</td>
-			</c:if>
+			<c:if test="${sessionScope.loginType == 'sLogin'} "> --%>
+				<td class="alignLeft"><c:out value= "${sessionScope.loginType }"/> ${sessionScope.info.sIdx} ${sessionScope.info.name} ${sessionScope.loginType }</td>
+			<%-- </c:if> --%>
 		</tr>
 		<tr>
 			<!-- 로그인번호가 관리자이면, -->
@@ -43,8 +34,8 @@
 				<td class="alignLeft">${teacher.major}${teacher.job}</td>
 			</c:if>
 			<!-- 로그인번호가 학생이면, -->
-			<c:if test="${type == sLogin} ">
-				<td class="alignLeft">${student.major}${studnet.grade}</td>
+			<c:if test="${sessionScope.loginType == sLogin} ">
+				<td class="alignLeft">${sessionScope.info.major}${sessionScope.info.grade}</td>
 			</c:if>
 		</tr>
 	</table>
