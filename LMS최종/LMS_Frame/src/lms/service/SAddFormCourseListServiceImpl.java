@@ -60,6 +60,7 @@ public class SAddFormCourseListServiceImpl implements Service {
 		}
 		
 		request.setAttribute("courseList", listJson);
+		System.out.println("listjson : "+listJson);
 		
 		
 		return "/WEB-INF/views/student/sAddFormCourseList.jsp";

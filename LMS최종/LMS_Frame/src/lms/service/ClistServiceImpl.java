@@ -44,7 +44,7 @@ public class ClistServiceImpl implements Service {
 
 		request.setAttribute("cListView", cListView);
 
-		return "/WEB-INF/views/admin/cList.jsp";
+		return "/WEB-INF/views/admin/cList2.jsp";
 	}
 
 }

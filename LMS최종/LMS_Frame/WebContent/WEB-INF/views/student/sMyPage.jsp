@@ -542,7 +542,7 @@ a {
 
 
 			<button class="btnTmyPage" onClick="closeShareKa()">취소</button>
-			<button class="btnTmyPage" onClick="doShareKa()">카카오톡공유</button>
+			<%@ include file="/NewFile.html"%>
 
 		</div>
 	</div>

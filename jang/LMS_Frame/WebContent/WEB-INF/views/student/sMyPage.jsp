@@ -215,10 +215,10 @@ a {
 
 	<div id="container">
 	
-	<%@ include file="/WEB-INF/views/include/header.jsp"%>
-		<!-- <div id="header" class="bgColorHeader">
-
-			<table class="titleTable" width=100% border=0 cellspacing=0>
+	
+		<div id="header" class="bgColorHeader">
+			<%@ include file="/WEB-INF/views/include/header.jsp"%>
+<!-- 			<table class="titleTable" width=100% border=0 cellspacing=0>
 				<tr>
 					<td rowspan=2 class="alignRight" width=15% valign="bottom"><img
 						class="userImg" width=50 src="./images/userImg.png"></td>
@@ -234,8 +234,8 @@ a {
 					<td><a href="sMyPage.html">[나의 강의실]</a></td>
 					<td><a href="sInfo.html">내정보</a></td>
 				</tr>
-			</table>
-		</div> -->
+			</table> -->
+		</div> 
 
 		<div id="contentsAll">
 
@@ -561,60 +561,6 @@ a {
 
 	function viewInfo() {
 		document.getElementById('infoArea').style.display = 'block';
-		
-		var sIdx = ${session.sIdx};
-		
-		//$.ajax()
-		
-		
-		 $.getJSON('sMyPageData.do', function(sIdx){
-			//data와 각각 어떻게 처리할지 함수 정의
-			$.each(sIdx, function(key, value){
-				
-				var cIdx = value.cIdx;
-				var cName = value.name;
-				var cTeacher = value.teacher;
-				var content = value.content;
-				var cDay = value.day;
-				var cStartTime = value.startTime;
-				var cTotalPer = value.totalPer;
-				var cApplyPer = value.applyPer;
-				var tIdx = value.tIdx;
-				/*<tr class="">
-						<td class="">A01</td>
-						<td>컴퓨터기초</td>
-						<td>송가람</td>
-						<td>1</td>
-						<td>교양</td>
-						<td>수(3,4)</td>
-						<td>20/25</td>
-						<td><button id="viewInfo" class="" onClick="viewInfo()">강의정보</button></td>
-						<td><button id="viewDel" class="" onClick="viewDel()">삭제</button></td>
-					</tr>*/
-				var str='';
-					str+='<tr class="myCourse'+cIdx+'">';
-					str+='	<td>'+cIdx+'</td>';
-					str+='	<td>'+cName+'</td>';
-					str+='	<td>'+cTeacher+'</td>';
-					str+='	<td>'+cDay+'</td>';
-					str+='	<td>'+cStartTime+'</td>';
-					str+='	<td>'+cTotalPer+'</td>';
-					str+='	<td>'+cApplyPer+'</td>';
-					str+='	<td>'+tIdx+'</td>';
-					str+='	<td><button id="viewInfo" class="btnInfo';
-					str+=cIdx;
-					str+='\" onClick="viewInfo('+cIdx, cName, cTeacher, cDay, cStartTime, cTotalPer, content+')">강의정보</button></td>';
-					str+='	<td><button id="viewDel" class="btnDel';
-					str+=cIdx;
-					str+='\" onClick="viewDel('+cIdx, cName, cTeacher, cDay, cStartTime, cTotalPer, content+')">삭제</button></td>';
-					str+='</tr>';
-					
-					$('#idClass').append(str);
-			});
-			
-			
-		});
-		
 
 	}
 

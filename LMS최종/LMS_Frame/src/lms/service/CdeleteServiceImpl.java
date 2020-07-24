@@ -24,6 +24,7 @@ public class CdeleteServiceImpl implements Service {
 		int resultCnt = 0;		
 		Connection conn = null;
 		Student student = null;
+		String path = null;
 		int cIdx = Integer.parseInt(request.getParameter("cIdx"));
 		
 		try {
@@ -32,9 +33,11 @@ public class CdeleteServiceImpl implements Service {
 			
 			if(type.equals("tLogin")){
 				resultCnt = dao.deleteCourse(conn, cIdx);
+				path = "/WEB-INF/views/teacher/tMypage.jsp";
 			} else {
 				student = (Student)session.getAttribute("info");
 				resultCnt = dao.deleteMyCourse(conn, cIdx, student);
+				path = "/WEB-INF/views/student/sClassAddForm.jsp";
 			}
 			
 			request.setAttribute("resultCnt", resultCnt);
@@ -52,7 +55,7 @@ public class CdeleteServiceImpl implements Service {
 			}
 		}
 		
-		return "/WEB-INF/views/teacher/tMypage.jsp";
+		return path;
 	}
 
 }
