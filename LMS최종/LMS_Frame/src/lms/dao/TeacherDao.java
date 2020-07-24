@@ -35,7 +35,7 @@ public class TeacherDao {
 		// 처리하고 싶은 sql 쿼리문과 조건을 설정합니다.
 		// 이런 테이블이 있다는 가정하에 작성한 spl문
 		String sql = "INSERT INTO project.teacher (tIdx, pw, name, tel, email, major, job) "
-				+ "	VALUES(?, ?, ?, ?, ?, ?, ?)";
+				+ "	VALUES(?, ?, ?, ?, ?, ?, ?);";
 
 		try {
 
@@ -70,7 +70,7 @@ public class TeacherDao {
 		ResultSet rs;
 
 		try {
-			String sql = "SELECT * FROM project.teacher where tIdx=?";
+			String sql = "SELECT * FROM project.teacher where tIdx=?;";
 
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, teacher.gettIdx());
@@ -101,7 +101,7 @@ public class TeacherDao {
 
 		// 처리하고 싶은 sql 쿼리문과 조건을 설정합니다.
 		// 이런 테이블이 있다는 가정하에 작성한 spl문
-		String sql = "UPDATE project.teacher set tel = ?, email = ? where tIdx = ?";
+		String sql = "UPDATE project.teacher set tel = ?, email = ? where tIdx = ?;";
 
 		try {
 
@@ -128,7 +128,7 @@ public class TeacherDao {
 
 		int result = 0;
 		PreparedStatement pstmt = null;
-		String sql = "delete from project.teacher where tIdx=?";
+		String sql = "delete from project.teacher where tIdx=?;";
 
 		try {
 			pstmt = conn.prepareStatement(sql);
@@ -153,7 +153,7 @@ public class TeacherDao {
 
 		List<Teacher> teacherList = new ArrayList<Teacher>();
 
-		String sql = "SELECT * FROM project.teacher";
+		String sql = "SELECT * FROM project.teacher;";
 
 		try {
 
@@ -194,7 +194,7 @@ public class TeacherDao {
 
 		try {
 
-			String sql = "SELECT * FROM project.teacher where tIdx=?";
+			String sql = "SELECT * FROM project.teacher where tIdx=?;";
 
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, teacher.gettIdx());

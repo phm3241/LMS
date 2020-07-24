@@ -7,31 +7,12 @@ public class CourseListView {
 	
 	// 강의 목록 DTO
 	private List<Course> courseList;
-	// 강의 목록 DTO <이름으로 검색>
-	private List<Course> selectCourseByNameList;
 	
-	// 수강 신청 목록 DTO MyCourse
-	private List<Course> selectMyCourseBysIdx;
-	
-	
-	public List<Course> getSelectMyCourseBysIdx() {
-		return selectMyCourseBysIdx;
-	}
 
 
-	public void setSelectMyCourseBysIdx(List<Course> selectMyCourseBysIdx) {
-		this.selectMyCourseBysIdx = selectMyCourseBysIdx;
-	}
 
-
-	public CourseListView(List<Course> selectMyCourseBysIdx) {
-		this.selectMyCourseBysIdx = selectMyCourseBysIdx;
-	}
-
-
-	public CourseListView(List<Course> courseList, List<Course> selectCourseByNameList) {
+	public CourseListView(List<Course> courseList) {
 		this.courseList = courseList;
-		this.selectCourseByNameList = selectCourseByNameList;
 	}
 
 
@@ -45,23 +26,5 @@ public class CourseListView {
 	}
 
 
-	public List<Course> getSelectCourseByNameList() {
-		return selectCourseByNameList;
-	}
-
-
-	public void setSelectCourseByNameList(List<Course> selectCourseByNameList) {
-		this.selectCourseByNameList = selectCourseByNameList;
-	}
-
-
-	@Override
-	public String toString() {
-		return "CourseListView [courseList=" + courseList + ", selectCourseByNameList=" + selectCourseByNameList + "]";
-	}
-
-
-	
-	
 	
 }
