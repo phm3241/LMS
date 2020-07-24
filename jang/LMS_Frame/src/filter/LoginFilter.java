@@ -10,7 +10,6 @@ import javax.servlet.FilterConfig;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
-import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -23,7 +22,7 @@ import lms.model.Admin;
 import lms.model.Student;
 import lms.model.Teacher;
 
-@WebFilter("*.jsp")
+
 public class LoginFilter implements Filter {
 	
 	StudentDao sDao;
@@ -42,17 +41,17 @@ public class LoginFilter implements Filter {
 		// (2) 현재 세션의 객체
 		HttpSession session = httpRequest.getSession(false);	// default: session 있으면 가져오기 없으면 생성하기, false: session 있으면 가져오고 없으면 null
 		
-		int idx = Integer.parseInt(request.getParameter("id"));
-		String pw = request.getParameter("pw");
-		String type = request.getParameter("loginType");
-		
 		Connection conn = null;
 		
 		// (3) 로그인 유무 확인하는 변수
 		boolean login = false;
 		
 		if(session != null) {
-			if(session.getAttribute("login") == null) {
+			if(session.getAttribute("info") == null) {
+				int idx = Integer.parseInt(request.getParameter("id").trim());
+				String pw = request.getParameter("pw").trim();
+				String type = request.getParameter("loginType");
+				
 				try {
 					conn = ConnectionProvider.getConnection();
 					
@@ -61,16 +60,21 @@ public class LoginFilter implements Filter {
 						student = sDao.selectBysIdPw(conn, idx, pw);
 						
 						session.setAttribute("info", student);
+						
+						// 박혜미 추가부분 200724
+						login = true;
+						
+						
 					} else if(type.equals("tLogin")) {
 						tDao = TeacherDao.getInstance();
 						teacher = tDao.selectBytIdPw(conn, idx, pw);
 						
-						session.setAttribute("login", teacher);
+						session.setAttribute("info", teacher);
 					} else {
 						aDao = AdminDao.getInstance();
 						admin = aDao.selectByIdPw(conn, idx, pw);
 						
-						session.setAttribute("login", admin);
+						session.setAttribute("info", admin);
 					}
 					session.setAttribute("loginType", type);
 				} catch (SQLException e) {
@@ -85,7 +89,7 @@ public class LoginFilter implements Filter {
 					}
 				}
 			}
-			else if(session.getAttribute("login") != null) {
+			else if(session.getAttribute("info") != null) {
 				login = true;
 				
 			}
@@ -105,7 +109,9 @@ public class LoginFilter implements Filter {
 			// 3. response를 이용하여 응답의 필터링 작업 수행
 			// redirect=client: context 경로 필요
 			HttpServletResponse httpResponse = (HttpServletResponse) response;
-			String location = httpRequest.getContextPath()+"/views/loginForm.jsp";
+			// String location = httpRequest.getContextPath()+"/views/loginForm.jsp";
+			String location = httpRequest.getContextPath()+"/index.do";
+			System.out.println("filter location : " + location);
 			httpResponse.sendRedirect(location);
 		}
 	}
@@ -113,7 +119,7 @@ public class LoginFilter implements Filter {
 	// 초기화
 	@Override
 	public void init(FilterConfig arg0) throws ServletException {
-
+		
 	}
 	
 	// 웹컨테이너에서 소멸

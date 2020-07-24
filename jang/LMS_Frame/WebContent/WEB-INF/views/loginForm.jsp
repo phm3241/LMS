@@ -1,9 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@
 
-
- %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -170,7 +167,7 @@
 						</tr>
 						<tr>
 							<td class="alignRight"><img class="loginImg" height="35px" src="./images/loginId.png"></td>
-							<td class="alignLeft"><input type="password" name="pw" class="input" required></td>
+							<td class="alignLeft"><input type="password" name="pw"  class="input" ></td>
 							
 						</tr>
 						<tr>
@@ -188,8 +185,6 @@
         </div>
 
 	</div>
-
-
 </body>
 
 </html>
@@ -207,26 +202,30 @@
 				return false;
 			}
 			
-			
+			var flag = true;  // 결과값 미리 변수로 설정해주어야한다.
+			var params = jQuery("#loginForm").serialize();
 			// 비동기 통신으로 아이디-비번 체크
 			$.ajax({
 				url : 'loginCheck.do', //상대경로
-				data : {
-					check : $(this).val()
-				}, 	
+				data : params, 	
+				//async : false,
 				success : function(data) {
 					
-					if (data == 0) {
+					if (data == 1) {
+						// $('#loginCheck').prop('checked', true);
+						flag= true;
+						//return true;
+
+					} else {
+						
 						$('#loginCheck').text("아이디와 비밀번호가 일치하지 않습니다. 확인 후 다시 입력해주세요");
 						$('#loginCheck').addClass('checkN');
 						// $('#loginCheck').prop('checked', false);
 						$('#pw').focus();
-						return false;
-
-					} else {
-						// $('#loginCheck').prop('checked', true);
-						return true;
-					}
+						flag= false;
+						//return false;
+					};
+					return flag;
 				}
 			}); //ajax end
 			
@@ -243,7 +242,7 @@
 	}); //ready end
 
 	
-</script>
+</script> 
 
 
 

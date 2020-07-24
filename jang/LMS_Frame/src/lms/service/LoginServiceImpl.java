@@ -26,9 +26,9 @@ public class LoginServiceImpl implements Service {
 			conn = ConnectionProvider.getConnection();
 			
 			if(type.equals("sLogin")) {
-				path = "/WEB-INF/views/student/sMypage.jsp";
+				path = "/WEB-INF/views/student/sMyPage.jsp";
 			} else if(type.equals("tLogin")) {
-				path = "/WEB-INF/views/teacher/tMypage.jsp";
+				path = "/WEB-INF/views/teacher/tMyPage.jsp";
 			} else {
 				path = "/WEB-INF/views/admin/cList.jsp";
 			}
