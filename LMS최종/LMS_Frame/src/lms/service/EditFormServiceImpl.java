@@ -11,7 +11,8 @@ public class EditFormServiceImpl implements Service {
 	@Override
 	public String getViewPage(HttpServletRequest request, HttpServletResponse response) {
 		// TODO Auto-generated method stub
-		return null;
+		
+		return "/WEB-INF/views/editForm.jsp";
 	}
 
 }
