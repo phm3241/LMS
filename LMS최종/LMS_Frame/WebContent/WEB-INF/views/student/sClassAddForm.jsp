@@ -557,6 +557,7 @@ a {
 		alert("전체목록!");
 		
     	 $.getJSON('sAddFormCourseList.do', function(data){
+    		 alert("e들어옴");
  			//data와 각각 어떻게 처리할지 함수 정의
  			$.each(data, function(key, value){
  				
@@ -571,7 +572,10 @@ a {
  				var tIdx = value.tIdx;
 			
 				CourseList.push(new Course(cIdx, cName, cTeacher, content,cDay, cStartTime, cTotalPer, cApplyPer, tIdx));
+				
+				
  			});
+ 			
  			
  		});
 		
