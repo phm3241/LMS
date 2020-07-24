@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import lms.model.Course;
+import lms.model.MyCourse;
 import lms.model.Student;
 
 public class CourseDao {
@@ -44,8 +45,7 @@ public class CourseDao {
 			pstmt.setString(2, course.getTeacher());
 			pstmt.setString(3, course.getContent());
 			pstmt.setString(4, course.getDay());
-			pstmt.setTime(5, course.getStartTime());
-			pstmt.setTime(6, course.getEndTime());
+			pstmt.setInt(5, course.getStartTime());
 			pstmt.setInt(7, course.getTotalPer());
 			pstmt.setInt(8, course.getApplyPer());
 			pstmt.setInt(10, course.gettIdx()); 
@@ -81,8 +81,7 @@ public class CourseDao {
 				course.setTeacher(rs.getString("teacher"));
 				course.setContent(rs.getString("content"));
 				course.setDay(rs.getString("day"));
-				course.setStartTime(rs.getTime("startTime"));
-				course.setEndTime(rs.getTime("endTime"));
+				course.setStartTime(rs.getInt("startTime"));
 				course.setTotalPer(rs.getInt("totalPer"));
 				course.setApplyPer(rs.getInt("applyPer"));
 				course.settIdx(rs.getInt("tIdx"));
@@ -139,8 +138,7 @@ public class CourseDao {
 			pstmt.setString(2, course.getTeacher());
 			pstmt.setString(3, course.getContent());
 			pstmt.setString(4, course.getDay());
-			pstmt.setTime(5, course.getStartTime());
-			pstmt.setTime(6, course.getEndTime());
+			pstmt.setInt(5, course.getStartTime());
 			pstmt.setInt(7, course.getTotalPer());
 			pstmt.setInt(8, course.getApplyPer());
 
@@ -157,9 +155,11 @@ public class CourseDao {
 	}
 
 	// 수강신청한 강의 리스트 조회 : myCourse 조회 = select ?
-	public int selectMyCourse(Connection conn, Course course, Student student) throws SQLException {
+	//0724 윤원수정
+	public List<MyCourse> selectMyCourse(Connection conn, Course course, Student student) throws SQLException {
 
-		int result = 0;
+		List<MyCourse> resultList = null;
+		MyCourse myCourse=null;
 
 		PreparedStatement pstmt = null;
 		ResultSet rs;
@@ -174,7 +174,10 @@ public class CourseDao {
 			rs = pstmt.executeQuery();
 
 			if (rs.next()) {
-				result = rs.getInt(1);
+				myCourse = new MyCourse(student.getsIdx(), rs.getInt("cIdx"));
+				
+				resultList.add(myCourse);
+				
 			}
 
 		} finally {
@@ -183,7 +186,7 @@ public class CourseDao {
 			}
 		}
 
-		return result;
+		return resultList;
 
 	}
 
@@ -236,8 +239,7 @@ public class CourseDao {
 					course.setTeacher(rs.getString("teacher"));
 					course.setContent(rs.getString("content"));
 					course.setDay(rs.getString("day"));
-					course.setStartTime(rs.getTime("startTime"));
-					course.setEndTime(rs.getTime("endTime"));
+					course.setStartTime(rs.getInt("startTime"));
 					course.setTotalPer(rs.getInt("totalPer"));
 					course.setApplyPer(rs.getInt("applyPer"));
 					course.settIdx(rs.getInt("tIdx"));

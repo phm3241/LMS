@@ -72,6 +72,10 @@ public class AdminDao {
 			pstmt.setInt(1, id);
 			pstmt.setString(2, pw);
 			
+			//원본
+			//checkLogin = pstmt.executeUpdate();
+			
+			// 박혜미 수정코드 200724 : 
 			checkLogin = pstmt.executeUpdate();
 			
 		} finally {
