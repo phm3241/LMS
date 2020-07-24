@@ -11,6 +11,9 @@ import dbcp.ConnectionProvider;
 import lms.dao.AdminDao;
 import lms.dao.StudentDao;
 import lms.dao.TeacherDao;
+import lms.model.Admin;
+import lms.model.Student;
+import lms.model.Teacher;
 	
 public class LoginCheckServiceImpl implements Service {
 
@@ -18,12 +21,17 @@ public class LoginCheckServiceImpl implements Service {
 	StudentDao sDao;
 	TeacherDao tDao;
 	AdminDao aDao;
+	Student student;
+	Teacher teacher;
+	Admin admin;
 	
 	@Override
 	public String getViewPage(HttpServletRequest request, HttpServletResponse response) {
 		int resultCnt = 0;
 		Connection conn = null;
-		HttpSession session;
+		
+		// default: session 있으면 가져오기 없으면 생성하기, false: session 있으면 가져오고 없으면 null
+		HttpSession session = request.getSession();
 		
 		String type = request.getParameter("loginType");
 		System.out.println("loginType :"+ type);
@@ -44,6 +52,7 @@ public class LoginCheckServiceImpl implements Service {
 					
 				if(resultCnt==1) {
 					// 로그인 결과가 맞을 떄 ㅡ> 세션 객체
+					student = sDao.selectBysIdPw(conn, id, pw);
 					session.setAttribute("info", student);
 					}
 				
@@ -51,10 +60,22 @@ public class LoginCheckServiceImpl implements Service {
 				tDao = TeacherDao.getInstance();
 				resultCnt = tDao.checkLoginTeacher(conn, id, pw);
 				System.out.println("교수 로그인체크 결과: "+resultCnt);
+				
+				if(resultCnt==1) {
+					// 로그인 결과가 맞을 떄 ㅡ> 세션 객체
+					teacher = tDao.selectBytIdPw(conn, id, pw);
+					session.setAttribute("info", teacher);
+					}
 			} else {
 				aDao = AdminDao.getInstance();
 				resultCnt = aDao.checkLoginAdmin(conn, id, pw);
 				System.out.println("관리자 로그인체크 결과: "+resultCnt);
+				
+				if(resultCnt==1) {
+					// 로그인 결과가 맞을 떄 ㅡ> 세션 객체
+					admin = aDao.selectByIdPw(conn, id, pw);
+					session.setAttribute("info", admin);
+					}
 			}
 		}catch(SQLException e) {
 			e.printStackTrace();

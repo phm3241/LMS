@@ -35,6 +35,7 @@ public class LoginFilter implements Filter {
 	@Override
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
 			throws IOException, ServletException {
+		
 		// 1. request 파라미터를 이용하여 요청의 필터 작업 수행
 		// (1) 현재 세션 객체를 확인
 		HttpServletRequest httpRequest = (HttpServletRequest) request;	// ServletRequest > HttpServlet : 상위->하위 명시적 캐스팅
