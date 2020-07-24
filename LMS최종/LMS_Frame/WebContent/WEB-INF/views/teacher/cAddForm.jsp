@@ -137,7 +137,8 @@
 <body>
 
 <div id="container">
-        <div id="header" class="bgColorHeader">
+<%@ include file="/WEB-INF/views/include/header.jsp"%>
+<!--         <div id="header" class="bgColorHeader">
             
             <table class="titleTable" width=100% border=0 cellspacing=0>
                 <tr><td rowspan=2 class="alignRight" width=15% valign="bottom"><img class="userImg" width=50 src="./images/userImg.png"></td>
@@ -149,7 +150,7 @@
                     <td><a href="tMyPage.html">나의 강의실</a></td>
                     <td><a href="tInfo.html">내정보</a></td></tr>                
             </table> 
-        </div>
+        </div> -->
 	    
         <div id="contentsAll">
     	

@@ -139,7 +139,8 @@
 <body>
 
 <div id="container">
-        <div id="header" class="bgColorHeader">
+<%@ include file="/WEB-INF/views/include/header.jsp"%>
+ <!--        <div id="header" class="bgColorHeader">
             
             <table class="titleTable" width=100% border=0 cellspacing=0>
                 <tr><td rowspan=2 class="alignRight" width=15% valign="bottom"><img class="userImg" width=50 src="./images/userImg.png"></td>
@@ -153,7 +154,7 @@
             </table> 
         </div>
 	    
-        <div id="contentsAll">
+        <div id="contentsAll"> -->
     
             <form>
 

@@ -113,7 +113,7 @@ a {
 <body>
 
 	<div id="container">
-	
+	<%@ include file="/WEB-INF/views/include/header.jsp"%>
 		<!-- <div id="header" class="bgColorHeader">
 		
 			<table class="titleTable" width=100% border=0 cellspacing=0>
@@ -164,6 +164,18 @@ a {
 						<td class="alignRight">비밀번호 확인</td>
 						<td class="alignLeft"><input type="password" id="pw2"></td>
 					</tr>
+				<%-- <c:if test="${info.pw eq }"> 비밀번호 확인 실패 시--%> 
+					<tr>
+						<td class="alignRight">핸드폰</td>
+						<td class="alignLeft"><input type="text" id="phone"
+							value="010-1234-1234"></td>
+					</tr>
+					<tr>
+						<td class="alignRight">이메일</td>
+						<td class="alignLeft"><input type="text" id="email"
+							value="1234@naver.com"></td>
+					</tr>
+				<%-- </c:if> --%>
 				<c:if test="">
 					<tr>
 						<td class="alignRight">핸드폰</td>

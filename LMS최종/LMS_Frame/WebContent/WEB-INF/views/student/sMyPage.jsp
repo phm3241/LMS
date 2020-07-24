@@ -214,7 +214,7 @@ a {
 <body>
 
 	<div id="container">
-	
+	<%@ include file="/WEB-INF/views/include/header.jsp"%>
 	
 <!-- 		<div id="header" class="bgColorHeader">
 			
