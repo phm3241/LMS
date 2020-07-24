@@ -18,7 +18,7 @@ public class LoginServiceImpl implements Service {
 	
 		HttpSession session = request.getSession();
 		String type = (String) session.getAttribute("loginType");
-		
+		System.out.println("type :" +type);
 		String path = null;
 		Connection conn = null;
 		

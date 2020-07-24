@@ -6,17 +6,17 @@ import java.util.List;
 public class TeacherListView {
 
 	// 교수 목록DTO
-	private List<Course> teacherList;
+	private List<Teacher> teacherList;
 
-	public TeacherListView(List<Course> teacherList) {
+	public TeacherListView(List<Teacher> teacherList) {
 		this.teacherList = teacherList;
 	}
 
-	public List<Course> getTeacherList() {
+	public List<Teacher> getTeacherList() {
 		return teacherList;
 	}
 
-	public void setTeacherList(List<Course> teacherList) {
+	public void setTeacherList(List<Teacher> teacherList) {
 		this.teacherList = teacherList;
 	}
 

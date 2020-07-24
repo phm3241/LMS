@@ -32,6 +32,8 @@ public class InfoEditServiceImpl implements Service {
 		String tel = request.getParameter("tel");
 		String email = request.getParameter("email");
 		
+		System.out.println("수정할 전화번호 : " + tel+ " / 수정할 이메일 주소 : " + email);
+		
 		// 변수 초기화
 		String path = null;
 		Connection conn = null;
@@ -47,6 +49,8 @@ public class InfoEditServiceImpl implements Service {
 				student = (Student) session.getAttribute("info");
 				sIdx = student.getsIdx();
 				sDao.editStudent(conn, sIdx, tel, email);
+				
+				request.setAttribute("info", student);
 				path = "/WEB-INF/views/student/sInfo.jsp";
 			} else if(type.equals("tLogin")) {
 				teacher = (Teacher) session.getAttribute("info");
@@ -65,6 +69,7 @@ public class InfoEditServiceImpl implements Service {
 				}
 			}
 		}
+		
 		
 		return path;
 	}

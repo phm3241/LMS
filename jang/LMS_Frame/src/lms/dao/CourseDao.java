@@ -64,8 +64,6 @@ public class CourseDao {
 	}
 
 	
-
-	
 	// 개설강의 이름으로 조회 : select (복수일 경우를 대비하여 list)
 	public List<Course> selectCourseByNameList (Connection conn, String name) throws SQLException {
 		
@@ -108,7 +106,7 @@ public class CourseDao {
 	}
 	
 	// 개설 강의 삭제 : delete
-	public int deleteCourse(Connection conn, Course course) throws SQLException {
+	public int deleteCourse(Connection conn, int cIdx) throws SQLException {
 
 		int result = 0;
 		PreparedStatement pstmt = null;
@@ -116,7 +114,7 @@ public class CourseDao {
 
 		try {
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, course.getcIdx());
+			pstmt.setInt(1, cIdx);
 
 			result = pstmt.executeUpdate();
 
@@ -129,6 +127,7 @@ public class CourseDao {
 		return result;
 	}
 
+	
 	// 개설 강의 수정 : update
 	public int editCourse(Connection conn, Course course) throws SQLException {
 
@@ -268,7 +267,7 @@ public class CourseDao {
 	}
 
 	// 수강신청한 강의 취소 : myCourse 조회 => delete ?
-	public int deleteMyCourse(Connection conn, Course course, Student student) throws SQLException {
+	public int deleteMyCourse(Connection conn, int cIdx, Student student) throws SQLException {
 
 		int result = 0;
 
@@ -280,7 +279,7 @@ public class CourseDao {
 
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, student.getsIdx());
-			pstmt.setInt(2, course.getcIdx());
+			pstmt.setInt(2, cIdx);
 
 			result = pstmt.executeUpdate();
 

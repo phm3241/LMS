@@ -1,15 +1,15 @@
 package lms.model;
 
-public class MyCourse {
 
+//자신이 사용할 Dao/Model/Service resurve 파일 번호를 항상 공유해주세용!
+public class MyCourse {
+	
 	private int sIdx;
 	private int cIdx;
 	
-	public MyCourse() {}
-
 	
 	public MyCourse(int sIdx, int cIdx) {
-		super();
+	
 		this.sIdx = sIdx;
 		this.cIdx = cIdx;
 	}
@@ -33,15 +33,9 @@ public class MyCourse {
 	public void setcIdx(int cIdx) {
 		this.cIdx = cIdx;
 	}
+	
+	
 
-
-	@Override
-	public String toString() {
-		return "MyCourse [sIdx=" + sIdx + ", cIdx=" + cIdx + "]";
-	}
-	
-	
-	
 	
 	
 }

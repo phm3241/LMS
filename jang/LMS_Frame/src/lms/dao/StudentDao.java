@@ -8,10 +8,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import lms.model.Course;
 import lms.model.Student;
-import lms.model.Teacher;
-import lms.model.TempletModel;
 
 public class StudentDao {
 
@@ -44,7 +41,7 @@ public class StudentDao {
 		// 처리하고 싶은 sql 쿼리문과 조건을 설정합니다.
 		// 이런 테이블이 있다는 가정하에 작성한 spl문
 		String sql = "INSERT INTO project.student (sIdx, pw, name, tel, email, major, grade) "
-				+ "	VALUES(?, ?, ?, ?, ?, ?, ?)";
+				+ "	VALUES(?, ?, ?, ?, ?, ?, ?);";
 
 		try {
 
@@ -80,7 +77,7 @@ public class StudentDao {
 
 		try {
 			// 학번으로 내 정보 확인
-			String sql = "SELECT * FROM project.student where sIdx=?";
+			String sql = "SELECT * FROM project.student where sIdx=?;";
 
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, student.getsIdx());
@@ -102,20 +99,20 @@ public class StudentDao {
 	}
 
 	// 학생 내정보 수정 : update
-	public int editStudent(Connection conn, Student student) throws SQLException {
+	public int editStudent(Connection conn, int sIdx, String tel, String email) throws SQLException {
 
 		int result = 0;
 
 		PreparedStatement pstmt = null;
 
 		// 수정사항 : 전화번호/이메일
-		String sql = "update project.student set tel=?, email=? where sIdx=?";
+		String sql = "update project.student set tel=?, email=? where sIdx=?;";
 
 		try {
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, student.getTel());
-			pstmt.setString(2, student.getEmail());
-			pstmt.setInt(3, student.getsIdx());
+			pstmt.setString(1, tel);
+			pstmt.setString(2, email);
+			pstmt.setInt(3, sIdx);
 
 			result = pstmt.executeUpdate();
 
@@ -134,7 +131,7 @@ public class StudentDao {
 
 		int result = 0;
 		PreparedStatement pstmt = null;
-		String sql = "delete from project.student where sIdx=?";
+		String sql = "delete from project.student where sIdx=?;";
 
 		try {
 			pstmt = conn.prepareStatement(sql);
@@ -159,7 +156,7 @@ public class StudentDao {
 
 		List<Student> studentList = new ArrayList<Student>();
 
-		String sql = "SELECT * FROM project.student";
+		String sql = "SELECT * FROM project.student;";
 
 		try {
 
@@ -200,7 +197,7 @@ public class StudentDao {
 
 		try {
 
-			String sql = "SELECT * FROM project.student where sIdx=?";
+			String sql = "SELECT * FROM project.student where sIdx=?;";
 
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, student.getsIdx());
@@ -241,10 +238,14 @@ public class StudentDao {
 			rs = pstmt.executeQuery();
 
 			if (rs.next()) {
-				student = new Student();
-
-				student.setsIdx(rs.getInt("sIdx"));
-				student.setPw(rs.getString("pw"));
+				student = new Student(
+										rs.getInt("sIdx"),
+										rs.getString("pw"),
+										rs.getString("name"),
+										rs.getString("tel"),
+										rs.getString("email"),
+										rs.getString("major"),
+										rs.getInt("grade"));
 			}
 
 		} finally {

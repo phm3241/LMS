@@ -63,10 +63,11 @@ public class AdminDao {
 		
 		PreparedStatement pstmt = null;
 		
+		ResultSet rs = null;
 		
 		try {
 			
-			String sql = "select * from project.admin where id=? and pw=?;";
+			String sql = "select count(*) from project.admin where id=? and pw=?;";
 			
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, id);
@@ -76,9 +77,18 @@ public class AdminDao {
 			//checkLogin = pstmt.executeUpdate();
 			
 			// 박혜미 수정코드 200724 : 
-			checkLogin = pstmt.executeUpdate();
+			rs= pstmt.executeQuery();
+			
+			if(rs.next()) {
+				checkLogin = rs.getInt(1);
+			}
 			
 		} finally {
+			
+			if(rs != null) {
+				rs.close();
+			}
+			
 			if(pstmt != null) {
 				pstmt.close();
 			}

@@ -2,7 +2,6 @@ package lms.service;
 
 import java.sql.Connection;
 import java.sql.SQLException;
-import java.text.ParseException;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -23,7 +22,7 @@ public class CaddServiceImpl implements Service {
 		Course course = null;
 		
 		String name = request.getParameter("name");
-		String teacher = request.getParameter("teacher");
+		String teacherName = request.getParameter("teacher");
 		String content = request.getParameter("content");
 		String day = request.getParameter("day");
 		int startTime = Integer.parseInt(request.getParameter("startTime"));
@@ -37,7 +36,7 @@ public class CaddServiceImpl implements Service {
 			
 			course = new Course();
 			course.setName(name);
-			course.setTeacher(teacher);
+			course.setTeacher(teacherName);
 			course.setContent(content);
 			course.setDay(day);
 			course.setStartTime(startTime);
