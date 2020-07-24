@@ -106,7 +106,7 @@ public class CourseDao {
 	}
 	
 	// 개설 강의 삭제 : delete
-	public int deleteCourse(Connection conn, Course course) throws SQLException {
+	public int deleteCourse(Connection conn, int cIdx) throws SQLException {
 
 		int result = 0;
 		PreparedStatement pstmt = null;
@@ -114,7 +114,7 @@ public class CourseDao {
 
 		try {
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, course.getcIdx());
+			pstmt.setInt(1, cIdx);
 
 			result = pstmt.executeUpdate();
 
@@ -267,7 +267,7 @@ public class CourseDao {
 	}
 
 	// 수강신청한 강의 취소 : myCourse 조회 => delete ?
-	public int deleteMyCourse(Connection conn, Course course, Student student) throws SQLException {
+	public int deleteMyCourse(Connection conn, int cIdx, Student student) throws SQLException {
 
 		int result = 0;
 
@@ -279,7 +279,7 @@ public class CourseDao {
 
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, student.getsIdx());
-			pstmt.setInt(2, course.getcIdx());
+			pstmt.setInt(2, cIdx);
 
 			result = pstmt.executeUpdate();
 
