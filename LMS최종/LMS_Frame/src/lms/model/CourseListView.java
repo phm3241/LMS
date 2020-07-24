@@ -14,21 +14,21 @@ public class CourseListView {
 	private List<Course> selectMyCourseBysIdx;
 	
 	
-	public CourseListView () {}
-	
-	
-	public List<Course> AllCourseListView (List<Course> courseList) {
-		return courseList; 
+	public List<Course> getSelectMyCourseBysIdx() {
+		return selectMyCourseBysIdx;
 	}
-	
-	// 학생 이름정보로 select해서 받아오는 강의 리스트
+
+
+	public void setSelectMyCourseBysIdx(List<Course> selectMyCourseBysIdx) {
+		this.selectMyCourseBysIdx = selectMyCourseBysIdx;
+	}
+
+
 	public CourseListView(List<Course> selectMyCourseBysIdx) {
 		this.selectMyCourseBysIdx = selectMyCourseBysIdx;
 	}
 
 
-	
-	
 	public CourseListView(List<Course> courseList, List<Course> selectCourseByNameList) {
 		this.courseList = courseList;
 		this.selectCourseByNameList = selectCourseByNameList;
@@ -55,17 +55,6 @@ public class CourseListView {
 	}
 
 
-	public List<Course> getSelectMyCourseBysIdx() {
-		return selectMyCourseBysIdx;
-	}
-
-
-	public void setSelectMyCourseBysIdx(List<Course> selectMyCourseBysIdx) {
-		this.selectMyCourseBysIdx = selectMyCourseBysIdx;
-	}
-	
-	
-	
 	@Override
 	public String toString() {
 		return "CourseListView [courseList=" + courseList + ", selectCourseByNameList=" + selectCourseByNameList + "]";
