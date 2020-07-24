@@ -564,10 +564,12 @@ a {
 		
 		var sIdx = ${session.sIdx};
 		
+		//$.ajax()
 		
-		 $.getJSON('sMyPageData.do', function(data){
+		
+		 $.getJSON('sMyPageData.do', function(sIdx){
 			//data와 각각 어떻게 처리할지 함수 정의
-			$.each(data, function(key, value){
+			$.each(sIdx, function(key, value){
 				
 				var cIdx = value.cIdx;
 				var cName = value.name;
