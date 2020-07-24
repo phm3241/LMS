@@ -2,8 +2,6 @@ package lms.service;
 
 import java.sql.Connection;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -11,7 +9,6 @@ import javax.servlet.http.HttpSession;
 
 import dbcp.ConnectionProvider;
 import lms.dao.CourseDao;
-import lms.model.Course;
 import lms.model.Student;
 
 public class SclassResetServiceImpl implements Service {

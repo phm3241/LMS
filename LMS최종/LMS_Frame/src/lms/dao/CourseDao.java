@@ -9,7 +9,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import lms.model.Course;
-import lms.model.MyCourse;
 import lms.model.Student;
 
 public class CourseDao {

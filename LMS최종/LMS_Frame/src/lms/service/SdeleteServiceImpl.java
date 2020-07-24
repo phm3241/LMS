@@ -8,9 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import dbcp.ConnectionProvider;
 import lms.dao.StudentDao;
-import lms.dao.TempletDao;
 import lms.model.Student;
-import lms.model.TempletModel;
 
 public class SdeleteServiceImpl implements Service {
 
