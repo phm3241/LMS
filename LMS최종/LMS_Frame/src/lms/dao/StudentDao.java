@@ -238,10 +238,14 @@ public class StudentDao {
 			rs = pstmt.executeQuery();
 
 			if (rs.next()) {
-				student = new Student();
-
-				student.setsIdx(rs.getInt("sIdx"));
-				student.setPw(rs.getString("pw"));
+				student = new Student(
+										rs.getInt("sIdx"),
+										rs.getString("pw"),
+										rs.getString("name"),
+										rs.getString("tel"),
+										rs.getString("email"),
+										rs.getString("major"),
+										rs.getInt("grade"));
 			}
 
 		} finally {

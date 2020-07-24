@@ -161,14 +161,14 @@ public class TeacherDao {
 			rs = stmt.executeQuery(sql);
 
 			while (rs.next()) {
-				Teacher teacher = new Teacher();
-				teacher.settIdx(rs.getInt("tIdx"));
-				teacher.setPw(rs.getString("pw"));
-				teacher.setName(rs.getString("name"));
-				teacher.setTel(rs.getString("tel"));
-				teacher.setEmail(rs.getString("email"));
-				teacher.setMajor(rs.getString("major"));
-				teacher.setJob(rs.getString("job"));
+				Teacher teacher = new Teacher(
+												rs.getInt("tIdx"),
+												rs.getString("pw"),
+												rs.getString("name"),
+												rs.getString("tel"),
+												rs.getString("email"),
+												rs.getString("major"),
+												rs.getString("job"));
 
 				teacherList.add(teacher);
 			}
@@ -235,10 +235,14 @@ public class TeacherDao {
 			rs = pstmt.executeQuery();
 
 			if (rs.next()) {
-				teacher = new Teacher();
-
-				teacher.settIdx(rs.getInt("tIdx"));
-				teacher.setPw(rs.getString("pw"));
+				teacher = new Teacher(
+										rs.getInt("tIdx"),
+										rs.getString("pw"),
+										rs.getString("name"),
+										rs.getString("tel"),
+										rs.getString("email"),
+										rs.getString("major"),
+										rs.getString("job"));
 			}
 
 		} finally {
