@@ -578,6 +578,7 @@ a {
 				CourseList.push(new Course(cIdx, cName, cTeacher, content, cStartTime, cTotalPer, cApplyPer, tIdx));
 				
  			});
+ 			
  			 makeCourseListTableHTML();
  			
  		});
@@ -694,7 +695,7 @@ a {
     }
 
     function doSaveImg() {
-
+		
         
     }
  
@@ -703,6 +704,8 @@ a {
     	alert("insert!");
     	var cIdx=CourseList[i].cIdx;
     	var sIdx="${session.sIdx}";
+    	alert(cIdx);
+    	alert(sIdx);
     	//저장하는 ajax - 완료됐으면 Y
     	$.ajax({
     		url : 'sMyPageCourseListCheck.do',
@@ -722,7 +725,6 @@ a {
 		        makeSelectedCourseListTable();
     			}
     				
-    		alert("ajax메서드안");
     		});
     }
 

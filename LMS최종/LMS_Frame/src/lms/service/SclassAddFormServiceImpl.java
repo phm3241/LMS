@@ -54,6 +54,7 @@ public class SclassAddFormServiceImpl implements Service {
 		request.setAttribute("myList", myList);
 		request.setAttribute("courseList", courseList);
 		
+		System.out.println("여기가 courseList : "+courseList);
 		
 		return "/WEB-INF/views/student/sClassAddForm.jsp";
 	}

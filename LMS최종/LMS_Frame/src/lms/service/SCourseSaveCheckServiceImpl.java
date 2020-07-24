@@ -15,7 +15,7 @@ import lms.model.MyCourse;
 //import lms.model.SMyCourseListView;
 import lms.model.Student;
 
-public class SMyPageSaveCheckServiceImpl implements Service {
+public class SCourseSaveCheckServiceImpl implements Service {
 
 	CourseDao dao;
 	Course course;
@@ -42,13 +42,11 @@ public class SMyPageSaveCheckServiceImpl implements Service {
 			conn=ConnectionProvider.getConnection();
 			dao=CourseDao.getInstance();
 
-			resultCnt=dao.insertMyCourse(conn, myCourse);
+			resultCnt=dao.insertMyCourse(conn, sIdx, cIdx);
 			
 			if(resultCnt>0) {
 				
 				result="Y";
-			}else {
-				
 			}
 			
 		} catch (SQLException e) {
