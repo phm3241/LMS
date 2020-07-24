@@ -113,6 +113,7 @@ a {
 <body>
 
 	<div id="container">
+	
 		<!-- <div id="header" class="bgColorHeader">
 		
 			<table class="titleTable" width=100% border=0 cellspacing=0>
@@ -136,34 +137,34 @@ a {
 
 		<div id="contentsAll">
 
-			<form>
-
-
+			<form id="infoEditForm" action="editForm.do" method="post">
+		
 				<table width=100% border=0>
 					<tr>
 						<td width=50% class="alignRight">학과</td>
-						<td width=45% class="alignLeft">컴퓨터학과</td>
+						<td width=45% class="alignLeft">${info.major}</td>
 					</tr>
 					<tr>
 						<td class="alignRight">학번</td>
-						<td class="alignLeft">2008123456114</td>
+						<td class="alignLeft">${info.sIdx}</td>
 					</tr>
 					<tr>
 						<td class="alignRight">학년</td>
-						<td class="alignLeft">1</td>
+						<td class="alignLeft">${info.grade}</td>
 					</tr>
 					<tr>
 						<td class="alignRight">이름</td>
-						<td class="alignLeft">남영준</td>
+						<td class="alignLeft">${info.name}</td>
 					</tr>
 					<tr>
 						<td class="alignRight">비밀번호</td>
-						<td class="alignLeft"><input type="password" id="pw1"></td>
+						<td class="alignLeft"><input type="hidden" id="pw1" value="${info.pw}"></td>
 					</tr>
 					<tr>
 						<td class="alignRight">비밀번호 확인</td>
 						<td class="alignLeft"><input type="password" id="pw2"></td>
 					</tr>
+				<c:if test="">
 					<tr>
 						<td class="alignRight">핸드폰</td>
 						<td class="alignLeft"><input type="text" id="phone"
@@ -174,7 +175,7 @@ a {
 						<td class="alignLeft"><input type="text" id="email"
 							value="1234@naver.com"></td>
 					</tr>
-
+				</c:if>
 					<tr>
 						<td colspan="2">
 
