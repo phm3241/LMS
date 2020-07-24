@@ -20,7 +20,6 @@ public class MyPageServiceImpl implements Service {
 		String type = (String) session.getAttribute("loginType");
 		
 		String path = null;
-		Connection conn = null;
 		
 			
 		if(type.equals("sLogin")) {
