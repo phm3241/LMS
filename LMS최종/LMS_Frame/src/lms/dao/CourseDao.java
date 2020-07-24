@@ -64,6 +64,46 @@ public class CourseDao {
 	}
 
 	
+	// 개설된 강의 전체 조회 : 어드민 사용
+	public List<Course> allCourseListView (Connection conn) throws SQLException{
+		
+		Statement stmt = null;
+		ResultSet rs = null;
+		
+		List<Course> AllCourseListView = new ArrayList<Course>();
+		
+		String sql = "SELECT * FROM project.course;";
+		
+		try {
+			
+			stmt = conn.createStatement();
+			rs = stmt.executeQuery(sql);
+			
+			while (rs.next()) {
+				Course course = new Course();
+				course.setcIdx(rs.getInt("cIdx"));
+				course.setName(rs.getString("name"));
+				course.setTeacher(rs.getString("teacher"));
+				course.setContent(rs.getString("content"));
+				course.setDay(rs.getString("day"));
+				course.setStartTime(rs.getInt("startTime"));
+				course.setTotalPer(rs.getInt("totalPer"));
+				course.setApplyPer(rs.getInt("applyPer"));
+				course.settIdx(rs.getInt("tIdx"));
+				
+				AllCourseListView.add(course);
+				
+			}
+			
+		}finally {
+			
+			if(stmt != null) {
+				stmt.close();
+			}
+			
+		}
+		return AllCourseListView;
+	}
 
 	
 	// 개설강의 이름으로 조회 : select (복수일 경우를 대비하여 list)
