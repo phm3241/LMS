@@ -28,7 +28,7 @@ public class LoginFilter implements Filter {
 		boolean login = false;
 		
 		if(session != null) {
-			if(session.getAttribute("info") == null) {
+			if(session.getAttribute("info") != null) {
 				login = true;
 			}
 		}

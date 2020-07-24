@@ -45,7 +45,7 @@ public class LoginCheckServiceImpl implements Service {
 		
 		try {
 			conn = ConnectionProvider.getConnection();
-			if(type.equals("sLogi n")) {
+			if(type.equals("sLogin")) {
 				sDao = StudentDao.getInstance();
 				resultCnt = sDao.checkLoginStudent(conn, id, pw);
 				System.out.println("학생 로그인체크 결과: "+resultCnt);
@@ -54,6 +54,7 @@ public class LoginCheckServiceImpl implements Service {
 					// 로그인 결과가 맞을 떄 ㅡ> 세션 객체
 					student = sDao.selectBysIdPw(conn, id, pw);
 					session.setAttribute("info", student);
+					session.setAttribute("loginType", type);
 					}
 				
 			} else if(type.equals("tLogin")) {
@@ -65,6 +66,7 @@ public class LoginCheckServiceImpl implements Service {
 					// 로그인 결과가 맞을 떄 ㅡ> 세션 객체
 					teacher = tDao.selectBytIdPw(conn, id, pw);
 					session.setAttribute("info", teacher);
+					session.setAttribute("loginType", type);
 					}
 			} else {
 				aDao = AdminDao.getInstance();
@@ -75,6 +77,7 @@ public class LoginCheckServiceImpl implements Service {
 					// 로그인 결과가 맞을 떄 ㅡ> 세션 객체
 					admin = aDao.selectByIdPw(conn, id, pw);
 					session.setAttribute("info", admin);
+					session.setAttribute("loginType", type);
 					}
 			}
 		}catch(SQLException e) {
