@@ -11,31 +11,30 @@
 			<td rowspan=2 class="alignRight" width=15% valign="bottom"><img
 				class="userImg" width=50 src="./images/userImg.png"></td>
 			<!-- 로그인번호가 관리자이면, -->
-			<%-- <c:out value="${sessionScope.loginType }"/> --%>
-			<%-- <c:if test="${sessionScope.loginType == aLogin} ">
-				<td class="alignLeft">${sessionScope.admin.id}</td>
+			<c:if test="${loginType eq 'aLogin'}">
+				<td class="alignLeft">${info.id}</td>
 			</c:if>
 			<!-- 로그인번호가 학생. 교수이면, -->
-			<c:if test="${type == tLogin} ">
-				<td class="alignLeft">${teacher.tIdx} ${teacher.name}</td>
+			<c:if test="${loginType eq 'tLogin'} ">
+				<td class="alignLeft">${info.tIdx} ${info.name}</td>
 			</c:if>
 			<!-- 로그인번호가 학생. 교수이면, -->
-			<c:if test="${sessionScope.loginType == 'sLogin'} "> --%>
-				<td class="alignLeft"><c:out value= "${sessionScope.loginType }"/> ${sessionScope.info.sIdx} ${sessionScope.info.name} ${sessionScope.loginType }</td>
-			<%-- </c:if> --%>
+			<c:if test="${loginType eq 'sLogin'} ">
+				<td class="alignLeft"> ${info.sIdx} ${info.name}</td>
+			</c:if>
 		</tr>
 		<tr>
 			<!-- 로그인번호가 관리자이면, -->
-			<c:if test="${type == aLogin} ">
+			<c:if test="${loginType eq 'aLogin'}">
 				<td class="alignLeft">관리자</td>
 			</c:if>
 			<!-- 로그인번호가 교수이면, -->
-			<c:if test="${type == tLogin} ">
-				<td class="alignLeft">${teacher.major}${teacher.job}</td>
+			<c:if test="${loginType eq 'tLogin'} ">
+				<td class="alignLeft">${info.major}${info.job}</td>
 			</c:if>
 			<!-- 로그인번호가 학생이면, -->
-			<c:if test="${sessionScope.loginType == sLogin} ">
-				<td class="alignLeft">${sessionScope.info.major}${sessionScope.info.grade}</td>
+			<c:if test="${loginType eq 'sLogin'} ">
+				<td class="alignLeft">${info.major}${info.grade}</td>
 			</c:if>
 		</tr>
 	</table>
