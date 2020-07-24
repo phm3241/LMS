@@ -1,39 +1,50 @@
+<%@page import="lms.model.Admin"%>
+<%@page import="lms.model.Teacher"%>
+<%@page import="lms.model.Student"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
-
-
+<%
+	String type = (String)session.getAttribute("loginType");
+	if(type.equals("sLogin")){
+		Student student = (Student)session.getAttribute("info");
+	} else if(type.equals("tLogin")){
+		Teacher teacher = (Teacher)session.getAttribute("info");
+	} else{
+		Admin admin = (Admin)session.getAttribute("info");
+	}
+	
+%>
 <div id="header" class="bgColorHeader">
 	<table class="titleTable" width=100% border=0 cellspacing=0>
 		<tr>
 			<td rowspan=2 class="alignRight" width=15% valign="bottom"><img
 				class="userImg" width=50 src="./images/userImg.png"></td>
 			<!-- 로그인번호가 관리자이면, -->
-			<c:if test="${loginType == aLogin}">
-				<td class="alignLeft">${info.Id}</td>
+			<c:if test="${type == aLogin} ">
+				<td class="alignLeft">${admin.id}</td>
 			</c:if>
 			<!-- 로그인번호가 학생. 교수이면, -->
-			<c:if test="${loginType == tLogin} ">
-				<td class="alignLeft">${info.tIdx} ${login.Name}</td>
+			<c:if test="${type == tLogin} ">
+				<td class="alignLeft">${teacher.tIdx} ${teacher.name}</td>
 			</c:if>
 			<!-- 로그인번호가 학생. 교수이면, -->
-			<c:if test="${loginType == sLogin} ">
-				<td class="alignLeft">${info.sIdx} ${login.Name}</td>
+			<c:if test="${type == sLogin} ">
+				<td class="alignLeft">${student.sIdx} ${student.name}</td>
 			</c:if>
 		</tr>
 		<tr>
 			<!-- 로그인번호가 관리자이면, -->
-			<c:if test="${loginType == aLogin}">
+			<c:if test="${type == aLogin} ">
 				<td class="alignLeft">관리자</td>
 			</c:if>
 			<!-- 로그인번호가 교수이면, -->
-			<c:if test="${loginType == tLogin}">
-				<td class="alignLeft">${info.Major}${login.Job}</td>
+			<c:if test="${type == tLogin} ">
+				<td class="alignLeft">${teacher.major}${teacher.job}</td>
 			</c:if>
 			<!-- 로그인번호가 학생이면, -->
-			<c:if test="${loginType == sLogin}">
-				<td class="alignLeft">${info.Major}${login.Grade}</td>
+			<c:if test="${type == sLogin} ">
+				<td class="alignLeft">${student.major}${studnet.grade}</td>
 			</c:if>
 		</tr>
 	</table>
