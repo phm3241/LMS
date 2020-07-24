@@ -106,7 +106,7 @@ public class CourseDao {
 	}
 	
 	// 개설 강의 삭제 : delete
-	public int deleteCourse(Connection conn, Course course) throws SQLException {
+	public int deleteCourse(Connection conn, int cIdx) throws SQLException {
 
 		int result = 0;
 		PreparedStatement pstmt = null;
@@ -114,7 +114,7 @@ public class CourseDao {
 
 		try {
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, course.getcIdx());
+			pstmt.setInt(1, cIdx);
 
 			result = pstmt.executeUpdate();
 
