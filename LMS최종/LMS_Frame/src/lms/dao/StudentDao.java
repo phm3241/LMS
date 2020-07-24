@@ -127,7 +127,7 @@ public class StudentDao {
 	}
 
 	// 학생 내정보 삭제 : delete
-	public int deleteCourse(Connection conn, Student student) throws SQLException {
+	public int deleteStudent(Connection conn, Student student) throws SQLException {
 
 		int result = 0;
 		PreparedStatement pstmt = null;
