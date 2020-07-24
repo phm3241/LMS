@@ -561,6 +561,9 @@ a {
  			//data와 각각 어떻게 처리할지 함수 정의
  			$.each(data, function(key, value){
  				
+ 				console.log(value);
+ 				//alert(value.cIdx);
+ 				console.log("value.name : "+value.name);
  				var cIdx = value.cIdx;
  				var cName = value.name;
  				var cTeacher = value.teacher;
@@ -571,13 +574,15 @@ a {
  				var cApplyPer = value.applyPer;
  				var tIdx = value.tIdx;
 			
-				CourseList.push(new Course(cIdx, cName, cTeacher, content,cDay, cStartTime, cTotalPer, cApplyPer, tIdx));
-				
+ 				
+				CourseList.push(new Course(cIdx, cName, cTeacher, content, cStartTime, cTotalPer, cApplyPer, tIdx));
 				
  			});
- 			
+ 			 makeCourseListTableHTML();
  			
  		});
+    	 
+    	 
 		
     }
     
@@ -716,6 +721,8 @@ a {
 				SelectedCourseList.push(CourseList[i]);
 		        makeSelectedCourseListTable();
     			}
+    				
+    		alert("ajax메서드안");
     		});
     }
 
