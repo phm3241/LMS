@@ -14,7 +14,7 @@ public class LinkServiceImpl implements Service {
 		// TODO Auto-generated method stub
 		
 		// Front Controller에 view 페이지를 요청합니다.
-		return "/WEB-INF/view/scheduleLink.jsp";
+		return "/WEB-INF/views/scheduleLink.jsp";
 	}
 
 
