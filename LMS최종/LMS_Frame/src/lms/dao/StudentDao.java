@@ -8,10 +8,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import lms.model.Course;
 import lms.model.Student;
-import lms.model.Teacher;
-import lms.model.TempletModel;
 
 public class StudentDao {
 
@@ -102,7 +99,7 @@ public class StudentDao {
 	}
 
 	// 학생 내정보 수정 : update
-	public int editStudent(Connection conn, Student student) throws SQLException {
+	public int editStudent(Connection conn, int sIdx, String tel, String email) throws SQLException {
 
 		int result = 0;
 
@@ -113,9 +110,9 @@ public class StudentDao {
 
 		try {
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, student.getTel());
-			pstmt.setString(2, student.getEmail());
-			pstmt.setInt(3, student.getsIdx());
+			pstmt.setString(1, tel);
+			pstmt.setString(2, email);
+			pstmt.setInt(3, sIdx);
 
 			result = pstmt.executeUpdate();
 

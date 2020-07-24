@@ -48,8 +48,9 @@ public class LoginFilter implements Filter {
 		
 		if(session != null) {
 			if(session.getAttribute("info") == null) {
-				int idx = Integer.parseInt(request.getParameter("id").trim());
 				String pw = request.getParameter("pw").trim();
+				System.out.println("pw :" +pw);
+				int idx = Integer.parseInt(request.getParameter("id").trim());
 				String type = request.getParameter("loginType");
 				
 				try {
@@ -68,6 +69,8 @@ public class LoginFilter implements Filter {
 					} else if(type.equals("tLogin")) {
 						tDao = TeacherDao.getInstance();
 						teacher = tDao.selectBytIdPw(conn, idx, pw);
+						// 박혜미 추가부분 200724
+						login = true;
 						
 						session.setAttribute("info", teacher);
 					} else {
@@ -75,6 +78,8 @@ public class LoginFilter implements Filter {
 						admin = aDao.selectByIdPw(conn, idx, pw);
 						
 						session.setAttribute("info", admin);
+						// 박혜미 추가부분 200724
+						login = true;
 					}
 					session.setAttribute("loginType", type);
 				} catch (SQLException e) {

@@ -2,6 +2,7 @@ package lms.service;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 public class EditFormServiceImpl implements Service {
 
@@ -10,9 +11,17 @@ public class EditFormServiceImpl implements Service {
 	
 	@Override
 	public String getViewPage(HttpServletRequest request, HttpServletResponse response) {
-		// TODO Auto-generated method stub
+		HttpSession session = request.getSession();
+		String type = (String) session.getAttribute("loginType");
 		
-		return "/WEB-INF/views/editForm.jsp";
+		String path = null;
+		
+		if(type.equals("sLogin")) {
+			path = "/WEB-INF/views/student/sInfo.jsp";
+		} else if(type.equals("tLogin")) {
+			path = "/WEB-INF/views/teacher/tInfo.jsp";
+		}
+		return path;
 	}
 
 }

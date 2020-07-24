@@ -156,18 +156,20 @@
 						<tr><td colspan="2"><h1 class="subtitle">로그인</h1></td></tr>
 						<tr>
 							<td colspan="2" class="fontInnerTable">
-								<input type="radio" name="loginType" value="sLogin" checked="checked"> 학생
-								<input type="radio" name="loginType" value="tLogin"> 교수
-								<input type="radio" name="loginType" value="aLogin"> 관리자
+								<input type="radio" name="loginType" id="loginType" value="sLogin" checked="checked"> 학생
+								<input type="radio" name="loginType" id="loginType" value="tLogin"> 교수
+								<input type="radio" name="loginType" id="loginType" value="aLogin"> 관리자
 							</td>
 						</tr>
 						<tr>
 							<td class="alignRight" width=25%><img class="loginImg" height="35px" src="./images/loginId.png"></td>
-							<td class="alignLeft"><input type="text" class="input" name="id" placeholder="학번 또는 교번을 입력해주세요" required></td>
+							<td class="alignLeft"><input type="text" class="input" name="id" id="id" placeholder="학번 또는 교번을 입력해주세요" required></td>
 						</tr>
 						<tr>
 							<td class="alignRight"><img class="loginImg" height="35px" src="./images/loginId.png"></td>
-							<td class="alignLeft"><input type="password" name="pw"  class="input" ></td>
+							<td class="alignLeft"><input type="password" name="pw"  id="pw" class="input" >
+							<span id="loginCheck"></span>
+							</td>
 							
 						</tr>
 						<tr>
@@ -187,8 +189,6 @@
 	</div>
 </body>
 
-</html>
-
 <script>
 	
 	$(document).ready(function() {
@@ -197,24 +197,34 @@
 		$('#loginForm').submit(function() {
 			
 			// 아이디와 비번 입력요청
-			if($('#id')==null || $('#pw')==null){
+			//if($('#pw')==null || $('#id')==null){
+			if($('#pw').val()==null){
+				alert("pw : " + $('#pw').val());
 				$('#loginCheck').text("아이디와 비밀번호를 입력해주세요.");
 				return false;
 			}
 			
-			var flag = true;  // 결과값 미리 변수로 설정해주어야한다.
+			
+			
+			
+			/////////////////////////////////////////////////////////
+			// var flag =false;  // 결과값 미리 변수로 설정해주어야한다.
 			var params = jQuery("#loginForm").serialize();
 			// 비동기 통신으로 아이디-비번 체크
 			$.ajax({
 				url : 'loginCheck.do', //상대경로
 				data : params, 	
+				// data : { loginType :$('#loginType').val() ,id : $('#id').val(), pw : $('#pw').val()},
+				// dataType: 'json',
 				//async : false,
+				type: 'POST',
+				
 				success : function(data) {
-					
 					if (data == 1) {
 						// $('#loginCheck').prop('checked', true);
-						flag= true;
-						//return true;
+						// flag= true;
+						
+						location.href = "/LMS_Frame/login.do";
 
 					} else {
 						
@@ -222,12 +232,18 @@
 						$('#loginCheck').addClass('checkN');
 						// $('#loginCheck').prop('checked', false);
 						$('#pw').focus();
-						flag= false;
-						//return false;
+						// flag= false;
+						
 					};
-					return flag;
-				}
-			}); //ajax end
+					// return flag;
+				},
+				error : function(data) { console.log("success")},
+				complete : function(data) { console.log("success")},
+			}) //ajax end
+
+			return false;	
+			
+			
 			
 			
 			
@@ -236,13 +252,24 @@
 		}); //loginForm.submit() end
 
 		
-		
-		
+	
 			
 	}); //ready end
 
 	
+	
+	function getRequest(){
+		
+		
+		
+	}
+	
 </script> 
+
+
+
+</html>
+
 
 
 
