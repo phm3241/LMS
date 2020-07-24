@@ -10,7 +10,9 @@ public class ClistServiceImpl implements Service {
 	
 	@Override
 	public String getViewPage(HttpServletRequest request, HttpServletResponse response) {
-		// TODO Auto-generated method stub
+		
+		
+		
 		return "/WEB-INF/views/admin/cList.jsp";
 	}
 

@@ -14,8 +14,6 @@ public class CourseListView {
 	private List<Course> selectMyCourseBysIdx;
 	
 	
-	
-	
 	public List<Course> getSelectMyCourseBysIdx() {
 		return selectMyCourseBysIdx;
 	}

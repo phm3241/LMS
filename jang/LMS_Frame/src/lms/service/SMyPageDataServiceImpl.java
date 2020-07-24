@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import dbcp.ConnectionProvider;
 import lms.dao.CourseDao;
 import lms.model.Course;
+import lms.model.CourseListView;
 import lms.model.MyCourse;
 import lms.model.SMyCourseListView;
 import lms.model.Student;
@@ -24,8 +25,8 @@ public class SMyPageDataServiceImpl implements Service {
 	@Override
 	public String getViewPage(HttpServletRequest request, HttpServletResponse response) {
 
-		SMyCourseListView cListView=null;
 		
+		CourseListView cListView=null;
 		Connection conn= null;
 		
 		List<Course> courseList = null;
@@ -35,9 +36,8 @@ public class SMyPageDataServiceImpl implements Service {
 			conn=ConnectionProvider.getConnection();
 			dao=CourseDao.getInstance();
 			
-			myCourseList=dao.selectMyCourse(conn, course, student);
+			myCourseList=dao.selectMyCourseBysIdx(conn, sIdx);
 			
-			cListView = new SMyCourseListView(courseList, myCourseList);
 			
 			
 		} catch (SQLException e) {
