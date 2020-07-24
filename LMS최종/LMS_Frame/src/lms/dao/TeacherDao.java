@@ -259,19 +259,27 @@ public class TeacherDao {
 		int checkLogin = 0;
 		
 		PreparedStatement pstmt = null;
-		
+		ResultSet rs = null;
 		
 		try {
 			
-			String sql = "select * from project.teacher where tIdx=? and pw=?;";
+			String sql = "select count(*) from project.teacher where tIdx=? and pw=?;";
 			
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, tIdx);
 			pstmt.setString(2, pw);
 			
-			checkLogin = pstmt.executeUpdate();
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				checkLogin = rs.getInt(1);
+			}
 			
 		} finally {
+			if(rs != null) {
+				rs.close();
+			}
+			
 			if(pstmt != null) {
 				pstmt.close();
 			}

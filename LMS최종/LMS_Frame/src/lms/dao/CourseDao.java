@@ -31,13 +31,15 @@ public class CourseDao {
 		int result = 0;
 
 		PreparedStatement pstmt = null;
+		
+		
 		String sql = "INSERT INTO project.class (`name`,`teacher`,`content`, `day`,`startTime`,`endTime`,`totalPer`,`applyPer`,`tIdx`)\r\n"
 				+ "VALUES (?,?,?,?,?,?,?,?,?)";
 
 		// 마지막값 tIdx는 교수번호를 Model에서 가져와야..
 
 		try {
-
+			
 			pstmt = conn.prepareStatement(sql);
 //			pstmt.setInt(1, course.getcIdx()); 강의번호는 자동생성
 			pstmt.setString(1, course.getName());
@@ -48,6 +50,8 @@ public class CourseDao {
 			pstmt.setInt(7, course.getTotalPer());
 			pstmt.setInt(8, course.getApplyPer());
 			pstmt.setInt(10, course.gettIdx()); 
+			
+			result = pstmt.executeUpdate();
 
 		} finally {
 			if (pstmt != null) {
