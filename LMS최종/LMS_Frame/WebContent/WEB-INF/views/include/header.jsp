@@ -26,19 +26,19 @@
 		</tr>
 		<tr>
 			<!-- 로그인번호가 관리자이면, -->
-			<c:if test="${type == aLogin} ">
+			<c:if test="${type eq aLogin} ">
 				<td class="alignLeft">관리자</td>
 			</c:if>
 			<!-- 로그인번호가 교수이면, -->
-			<c:if test="${type == tLogin} ">
+			<c:if test="${type eq tLogin} ">
 				<td class="alignLeft">${teacher.major}${teacher.job}</td>
 			</c:if>
 			<!-- 로그인번호가 학생이면, -->
-			<c:if test="${sessionScope.loginType == sLogin} ">
+			<c:if test="${sessionScope.loginType eq sLogin} ">
 				<td class="alignLeft">${sessionScope.info.major}${sessionScope.info.grade}</td>
 			</c:if>
 		</tr>
-	</table>
+		</table>
 
 
 	<table class="titleTable" width=100% border=0 cellspacing=0>
