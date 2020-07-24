@@ -11,15 +11,15 @@
 				class="userImg" width=50 src="./images/userImg.png"></td>
 			<!-- 로그인번호가 관리자이면, -->
 			<c:if test="${loginType == aLogin}">
-				<td class="alignLeft">${login.Id}</td>
+				<td class="alignLeft">${info.Id}</td>
 			</c:if>
 			<!-- 로그인번호가 학생. 교수이면, -->
 			<c:if test="${loginType == tLogin} ">
-				<td class="alignLeft">${login.tIdx} ${login.Name}</td>
+				<td class="alignLeft">${info.tIdx} ${login.Name}</td>
 			</c:if>
 			<!-- 로그인번호가 학생. 교수이면, -->
 			<c:if test="${loginType == sLogin} ">
-				<td class="alignLeft">${login.sIdx} ${login.Name}</td>
+				<td class="alignLeft">${info.sIdx} ${login.Name}</td>
 			</c:if>
 		</tr>
 		<tr>
@@ -29,11 +29,11 @@
 			</c:if>
 			<!-- 로그인번호가 교수이면, -->
 			<c:if test="${loginType == tLogin}">
-				<td class="alignLeft">${login.Major}${login.Job}</td>
+				<td class="alignLeft">${info.Major}${login.Job}</td>
 			</c:if>
 			<!-- 로그인번호가 학생이면, -->
 			<c:if test="${loginType == sLogin}">
-				<td class="alignLeft">${login.major}${login.Grade}</td>
+				<td class="alignLeft">${info.Major}${login.Grade}</td>
 			</c:if>
 		</tr>
 	</table>

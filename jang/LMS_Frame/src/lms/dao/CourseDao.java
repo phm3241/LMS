@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import lms.model.Course;
+import lms.model.MyCourse;
 import lms.model.Student;
 
 public class CourseDao {
@@ -31,24 +32,27 @@ public class CourseDao {
 		int result = 0;
 
 		PreparedStatement pstmt = null;
+		
+		
 		String sql = "INSERT INTO project.class (`name`,`teacher`,`content`, `day`,`startTime`,`endTime`,`totalPer`,`applyPer`,`tIdx`)\r\n"
 				+ "VALUES (?,?,?,?,?,?,?,?,?)";
 
 		// 마지막값 tIdx는 교수번호를 Model에서 가져와야..
 
 		try {
-
+			
 			pstmt = conn.prepareStatement(sql);
 //			pstmt.setInt(1, course.getcIdx()); 강의번호는 자동생성
 			pstmt.setString(1, course.getName());
 			pstmt.setString(2, course.getTeacher());
 			pstmt.setString(3, course.getContent());
 			pstmt.setString(4, course.getDay());
-			pstmt.setTime(5, course.getStartTime());
-			pstmt.setTime(6, course.getEndTime());
+			pstmt.setInt(5, course.getStartTime());
 			pstmt.setInt(7, course.getTotalPer());
 			pstmt.setInt(8, course.getApplyPer());
 			pstmt.setInt(10, course.gettIdx()); 
+			
+			result = pstmt.executeUpdate();
 
 		} finally {
 			if (pstmt != null) {
@@ -59,6 +63,9 @@ public class CourseDao {
 		return result;
 	}
 
+	
+
+	
 	// 개설강의 이름으로 조회 : select (복수일 경우를 대비하여 list)
 	public List<Course> selectCourseByNameList (Connection conn, String name) throws SQLException {
 		
@@ -67,7 +74,7 @@ public class CourseDao {
 		
 		List<Course> selectCourseByNameList = new ArrayList<Course>();
 		
-		String sql = "SELECT * FROM project.course where name=?";
+		String sql = "SELECT * FROM project.course where name=?;";
 		
 		try {
 			
@@ -81,8 +88,7 @@ public class CourseDao {
 				course.setTeacher(rs.getString("teacher"));
 				course.setContent(rs.getString("content"));
 				course.setDay(rs.getString("day"));
-				course.setStartTime(rs.getTime("startTime"));
-				course.setEndTime(rs.getTime("endTime"));
+				course.setStartTime(rs.getInt("startTime"));
 				course.setTotalPer(rs.getInt("totalPer"));
 				course.setApplyPer(rs.getInt("applyPer"));
 				course.settIdx(rs.getInt("tIdx"));
@@ -139,8 +145,7 @@ public class CourseDao {
 			pstmt.setString(2, course.getTeacher());
 			pstmt.setString(3, course.getContent());
 			pstmt.setString(4, course.getDay());
-			pstmt.setTime(5, course.getStartTime());
-			pstmt.setTime(6, course.getEndTime());
+			pstmt.setInt(5, course.getStartTime());
 			pstmt.setInt(7, course.getTotalPer());
 			pstmt.setInt(8, course.getApplyPer());
 
@@ -155,6 +160,7 @@ public class CourseDao {
 		return result;
 
 	}
+	
 
 	// 수강신청한 강의 리스트 조회 : myCourse 조회 = select ?
 	public int selectMyCourse(Connection conn, Course course, Student student) throws SQLException {
@@ -185,6 +191,80 @@ public class CourseDao {
 
 		return result;
 
+	}
+	
+	
+	// MyCourse 에 학생번호와 강의번호 Insert
+	public int insertMyCourse (Connection conn, MyCourse mycourse) throws SQLException{
+		
+		int result = 0;
+		
+		PreparedStatement pstmt = null;
+		
+		String sql = "INSERT INTO `project`.`myCourse` (`sIdx`, `cIdx`)VALUES (?,?);";
+		
+		try {
+			
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, mycourse.getsIdx());
+			pstmt.setInt(2, mycourse.getcIdx());
+			
+			result = pstmt.executeUpdate();
+			
+		}finally {
+			if (pstmt != null) {
+				pstmt.close();
+			}
+		}
+		
+		return result;
+		
+	}
+	
+	
+	// MyCourse 에서 학생 아이디로 조회 후 LEFT JOIN한 cIdx 데이터 리스트 저장
+	public List<Course> selectMyCourseBysIdx (Connection conn, int sIdx) throws SQLException{
+		
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		List<Course> selectMyCourseBysIdx = new ArrayList<Course>();
+		
+		String sql = "SELECT myCourse.*, course.* FROM myCourse" + 
+				"LEFT JOIN course on myCourse.cIdx = course.cIdx where myCourse.sIdx=?;";
+		
+		try {
+			
+			pstmt = conn.prepareStatement(sql);
+			
+			rs = pstmt.executeQuery();
+			
+			while (rs.next()) {
+				Course course = new Course();
+				course.setcIdx(rs.getInt("cIdx"));
+				course.setName(rs.getString("name"));
+				course.setTeacher(rs.getString("teacher"));
+				course.setContent(rs.getString("content"));
+				course.setDay(rs.getString("day"));
+				course.setStartTime(rs.getInt("startTime"));
+				course.setTotalPer(rs.getInt("totalPer"));
+				course.setApplyPer(rs.getInt("applyPer"));
+				course.settIdx(rs.getInt("tIdx")); 
+				
+				selectMyCourseBysIdx.add(course);
+			}
+			
+		} finally {
+			if(rs != null) {
+				rs.close();
+			}
+			
+			if (pstmt != null) {
+				pstmt.close();
+			}
+			
+		}
+		return selectMyCourseBysIdx;
 	}
 
 	// 수강신청한 강의 취소 : myCourse 조회 => delete ?
@@ -236,8 +316,7 @@ public class CourseDao {
 					course.setTeacher(rs.getString("teacher"));
 					course.setContent(rs.getString("content"));
 					course.setDay(rs.getString("day"));
-					course.setStartTime(rs.getTime("startTime"));
-					course.setEndTime(rs.getTime("endTime"));
+					course.setStartTime(rs.getInt("startTime"));
 					course.setTotalPer(rs.getInt("totalPer"));
 					course.setApplyPer(rs.getInt("applyPer"));
 					course.settIdx(rs.getInt("tIdx"));

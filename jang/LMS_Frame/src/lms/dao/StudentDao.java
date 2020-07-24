@@ -261,20 +261,41 @@ public class StudentDao {
 		
 		int checkLogin = 0;
 		
+		
 		PreparedStatement pstmt = null;
 		
+		// 박혜미 추가코드 200724
+		ResultSet rs = null;
 		
 		try {
 			
-			String sql = "select * from project.student where sIdx=? and pw=?;";
+			// 원본
+			// String sql = "select * from project.student where sIdx=? and pw=?;";
+			
+			// 박혜미 수정코드 200724 : count로 변경하고
+			String sql = "select count(*) from project.student where sIdx=? and pw=?;";
 			
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, sIdx);
 			pstmt.setString(2, pw);
 			
-			checkLogin = pstmt.executeUpdate();
+			// 원본
+			// checkLogin = pstmt.executeUpdate();
+			
+			// 박혜미 수정코드 200724 : executeUpdate() ㅡ> executeQuery() ..select문이므로 메서드 변경하고. rs.next()로 확인 후 카운트 
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) { 
+				checkLogin = rs.getInt(1); 
+			}
+			 		
+			
+			
 			
 		} finally {
+			if(rs != null) {
+				rs.close();
+			}
 			if(pstmt != null) {
 				pstmt.close();
 			}
