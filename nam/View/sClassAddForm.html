@@ -533,8 +533,8 @@
             makeHtml += '<td>'+CourseList[i].teacher+'</td>';
             makeHtml += '<td>'+CourseList[i].startTime+'</td>';
             makeHtml += '<td>'+CourseList[i].applyPer+' / '+CourseList[i].totalPer+'</td>';
-            makeHtml += '<td><button id="viewInfo" class="" onClick="viewInfo('+i+')">강의정보</button></td>';
-            makeHtml += '<td><button id="insert" class="" onClick="insert('+i+')">신청</button></td>';
+            makeHtml += '<td><img class="userImg" width=30 src="./images/info.png" onClick="viewInfo('+i+')"></td>';
+            makeHtml += '<td><img class="userImg" width=30 src="./images/insert.png" onClick="insert('+i+')"></td>';
             makeHtml += '</tr>';           
 
         }
@@ -581,9 +581,9 @@
             makeHtml += '<td>'+SelectedCourseList[i].name+'</td>';
             makeHtml += '<td>'+SelectedCourseList[i].teacher+'</td>';
             makeHtml += '<td>'+SelectedCourseList[i].startTime+'</td>';
-            makeHtml += '<td>'+SelectedCourseList[i].applyPer+' / '+SelectedCourseList[i].totalPer+'</td>';
-            makeHtml += '<td><button id="viewSelectedInfo" class="" onClick="viewSelectedInfo('+i+')">강의정보</button></td>';
-            makeHtml += '<td><button id="viewDel" class="" onClick="viewDel('+i+')">삭제</button></td></tr>';
+            makeHtml += '<td>'+SelectedCourseList[i].applyPer+' / '+SelectedCourseList[i].totalPer+'</td>';                       
+            makeHtml += '<td><img class="userImg" width=30 src="./images/info.png" onClick="viewSelectedInfo('+i+')"></td>';
+            makeHtml += '<td><img class="userImg" width=30 src="./images/del.png" onClick="viewDel('+i+')"></td></tr>';
             makeHtml += '</tr>';           
 
         }
