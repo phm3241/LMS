@@ -8,10 +8,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import lms.model.Course;
-import lms.model.Student;
 import lms.model.Teacher;
-import lms.model.TempletModel;
 
 public class TeacherDao {
 
@@ -38,7 +35,7 @@ public class TeacherDao {
 		// 처리하고 싶은 sql 쿼리문과 조건을 설정합니다.
 		// 이런 테이블이 있다는 가정하에 작성한 spl문
 		String sql = "INSERT INTO project.teacher (tIdx, pw, name, tel, email, major, job) "
-				+ "	VALUES(?, ?, ?, ?, ?, ?, ?)";
+				+ "	VALUES(?, ?, ?, ?, ?, ?, ?);";
 
 		try {
 
@@ -73,7 +70,7 @@ public class TeacherDao {
 		ResultSet rs;
 
 		try {
-			String sql = "SELECT * FROM project.teacher where tIdx=?";
+			String sql = "SELECT * FROM project.teacher where tIdx=?;";
 
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, teacher.gettIdx());
@@ -95,7 +92,7 @@ public class TeacherDao {
 	}
 
 	// 교수 내정보 수정 : update
-	public int editTeacher(Connection conn, Teacher teacher) throws SQLException {
+	public int editTeacher(Connection conn, int tIdx, String tel, String email) throws SQLException {
 
 		int result = 0;
 
@@ -104,15 +101,15 @@ public class TeacherDao {
 
 		// 처리하고 싶은 sql 쿼리문과 조건을 설정합니다.
 		// 이런 테이블이 있다는 가정하에 작성한 spl문
-		String sql = "UPDATE project.teacher set tel = ?, email = ? where tIdx = ?";
+		String sql = "UPDATE project.teacher set tel = ?, email = ? where tIdx = ?;";
 
 		try {
 
 			// sql문을 실행합니다.
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, teacher.getTel());
-			pstmt.setString(2, teacher.getEmail());
-			pstmt.setInt(3, teacher.gettIdx());
+			pstmt.setString(1, tel);
+			pstmt.setString(2, email);
+			pstmt.setInt(3, tIdx);
 
 			result = pstmt.executeUpdate();
 
@@ -131,7 +128,7 @@ public class TeacherDao {
 
 		int result = 0;
 		PreparedStatement pstmt = null;
-		String sql = "delete from project.teacher where tIdx=?";
+		String sql = "delete from project.teacher where tIdx=?;";
 
 		try {
 			pstmt = conn.prepareStatement(sql);
@@ -156,7 +153,7 @@ public class TeacherDao {
 
 		List<Teacher> teacherList = new ArrayList<Teacher>();
 
-		String sql = "SELECT * FROM project.teacher";
+		String sql = "SELECT * FROM project.teacher;";
 
 		try {
 
@@ -164,14 +161,14 @@ public class TeacherDao {
 			rs = stmt.executeQuery(sql);
 
 			while (rs.next()) {
-				Teacher teacher = new Teacher();
-				teacher.settIdx(rs.getInt("tIdx"));
-				teacher.setPw(rs.getString("pw"));
-				teacher.setName(rs.getString("name"));
-				teacher.setTel(rs.getString("tel"));
-				teacher.setEmail(rs.getString("email"));
-				teacher.setMajor(rs.getString("major"));
-				teacher.setJob(rs.getString("job"));
+				Teacher teacher = new Teacher(
+												rs.getInt("tIdx"),
+												rs.getString("pw"),
+												rs.getString("name"),
+												rs.getString("tel"),
+												rs.getString("email"),
+												rs.getString("major"),
+												rs.getString("job"));
 
 				teacherList.add(teacher);
 			}
@@ -197,7 +194,7 @@ public class TeacherDao {
 
 		try {
 
-			String sql = "SELECT * FROM project.teacher where tIdx=?";
+			String sql = "SELECT * FROM project.teacher where tIdx=?;";
 
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, teacher.gettIdx());
@@ -238,10 +235,14 @@ public class TeacherDao {
 			rs = pstmt.executeQuery();
 
 			if (rs.next()) {
-				teacher = new Teacher();
-
-				teacher.settIdx(rs.getInt("tIdx"));
-				teacher.setPw(rs.getString("pw"));
+				teacher = new Teacher(
+										rs.getInt("tIdx"),
+										rs.getString("pw"),
+										rs.getString("name"),
+										rs.getString("tel"),
+										rs.getString("email"),
+										rs.getString("major"),
+										rs.getString("job"));
 			}
 
 		} finally {
@@ -259,19 +260,27 @@ public class TeacherDao {
 		int checkLogin = 0;
 		
 		PreparedStatement pstmt = null;
-		
+		ResultSet rs = null;
 		
 		try {
 			
-			String sql = "select * from project.teacher where tIdx=? and pw=?;";
+			String sql = "select count(*) from project.teacher where tIdx=? and pw=?;";
 			
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, tIdx);
 			pstmt.setString(2, pw);
 			
-			checkLogin = pstmt.executeUpdate();
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				checkLogin = rs.getInt(1);
+			}
 			
 		} finally {
+			if(rs != null) {
+				rs.close();
+			}
+			
 			if(pstmt != null) {
 				pstmt.close();
 			}

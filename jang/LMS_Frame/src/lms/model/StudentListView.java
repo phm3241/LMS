@@ -6,17 +6,17 @@ import java.util.List;
 public class StudentListView {
 
 	// 학생 목록DTO
-	private List<Course> studentList;
+	private List<Student> studentList;
 
-	public StudentListView(List<Course> studentList) {
+	public StudentListView(List<Student> studentList) {
 		this.studentList = studentList;
 	}
 
-	public List<Course> getStudentList() {
+	public List<Student> getStudentList() {
 		return studentList;
 	}
 
-	public void setStudentList(List<Course> studentList) {
+	public void setStudentList(List<Student> studentList) {
 		this.studentList = studentList;
 	}
 
