@@ -24,21 +24,25 @@ public class LoginCheckServiceImpl implements Service {
 		Connection conn = null;
 		
 		String type = request.getParameter("loginType");
+		System.out.println("loginType :"+ type);
 		int id = Integer.parseInt(request.getParameter("id").trim());
 		String pw = request.getParameter("pw").trim();
 		
 		System.out.println("--loginCheckService 처리확인용--");
-		System.out.println("loginType :"+ type);
 		System.out.println("id :"+ id);
 		System.out.println("pw :"+ pw);
 		
 		
 		try {
 			conn = ConnectionProvider.getConnection();
-			if(type.equals("sLogin")) {
+			if(type.equals("sLogi n")) {
 				sDao = StudentDao.getInstance();
 				resultCnt = sDao.checkLoginStudent(conn, id, pw);
 				System.out.println("학생 로그인체크 결과: "+resultCnt);
+					
+				if(resultCnt==1) {
+					// 로그인 결과가 맞을 떄 ㅡ> 세션 객체 
+					}
 				
 			} else if(type.equals("tLogin")) {
 				tDao = TeacherDao.getInstance();
