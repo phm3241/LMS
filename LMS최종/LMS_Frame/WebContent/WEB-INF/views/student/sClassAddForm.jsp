@@ -703,7 +703,7 @@ a {
     	
     	alert("insert!");
     	var cIdx=CourseList[i].cIdx;
-    	var sIdx="${session.sIdx}";
+    	var sIdx=${info.sIdx};
     	alert(cIdx);
     	alert(sIdx);
     	//저장하는 ajax - 완료됐으면 Y
