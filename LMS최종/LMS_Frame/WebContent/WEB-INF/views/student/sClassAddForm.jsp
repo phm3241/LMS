@@ -106,6 +106,10 @@ a {
 	font-size: 14px;
 	border-bottom: 1px solid rgb(228, 228, 228);
 }
+#myCourseList td {
+	font-size: 14px;
+	border-bottom: 1px solid rgb(228, 228, 228);
+}
 
 #idSchedule {
 	border-color: rgb(228, 228, 228);
@@ -261,7 +265,7 @@ a {
 				</tr>
 			</table>
 
-			<div id="courseList">
+			<div id="myCourseList">
 			
 			</div>
 
@@ -515,7 +519,11 @@ a {
 
 <script>
 
-    
+   window.onload = function(){
+	   
+	   viewMyCourse();
+	   
+   } 
 
     //객체 생성
     function Course(cIdx,name,teacher,content,startTime,totalPer,applyPer,tIdx) {
@@ -536,7 +544,7 @@ a {
 
     var countOfCourseArea = document.getElementById('countOfCourse');
     var courseListArea = document.getElementById('courseList');
-    var SelectedCourseListArea = document.getElementById('SelectedCourseList');
+    var SelectedCourseListArea = document.getElementById('myCourseList');
     var timeTableArea = document.getElementById('timeTable');
     
 
@@ -615,88 +623,60 @@ a {
 
         document.getElementById("idClass").style.border.bottom="1px solid rgb(228, 228, 228)";
     }
+    
+	function viewMyCourse() {      
+    	var sIdx=${info.sIdx};
+    	
+    	// 내 강의목록 불러오기
+    	$.ajax({
+    		url : 'sAddFormMyCourseList.do',
+    		data : {
+    				sIdx:sIdx
+    				},
+    		method: 'get',
+    		success : 
+    			function(data){
+    			
+    			$.each(data, function(key, value){
+     				var cIdx = value.cIdx;
+     				var cName = value.name;
+     				var cTeacher = value.teacher;
+     				var content = value.content;
+     				var cDay = value.day;
+     				var cStartTime = value.startTime;
+     				var cTotalPer = value.totalPer;
+     				var cApplyPer = value.applyPer;
+     				var tIdx = value.tIdx;
+    			
+     				
+				SelectedCourseList.push(new Course(cIdx, cName, cTeacher, content, cStartTime, cTotalPer, cApplyPer, tIdx));
+    				
+     			});
+    				
+		        makeSelectedCourseListTable();
+    			}
+    				
+    		});
+    }
 
 
     function addSelectedCourse(){
-
+    	
+		var makeHtml = '';
     }
 
     function delSelectedCourse(){
         
     }
 
-    function makeSelectedCourseListTable(){        
-        makeSelectedCourseListTableHTML();
-        makeSelectedCourseTimeTableHTML();
-    }
-
-    function makeSelectedCourseListTableHTML(){
-        
-        var makeHtml ='';
-
-        makeHtml += '<table id="idClass" width=100% border="0" cellspacing="0">';
-        makeHtml += '<tr class="bgColorGray"><th>강의<br>번호</th><th>강의명</th><th>교수명</th>';
-        makeHtml += '<th>수업<br>시간</th><th>정원</th>';
-        makeHtml += '<th>강의<br>정보</th><th>신청</th></tr>';
-
-        for (var i = 0; i <= SelectedCourseList.length - 1; i++) {
-
-            makeHtml += '<tr><td>'+SelectedCourseList[i].cIdx+'</td>';
-            makeHtml += '<td>'+SelectedCourseList[i].name+'</td>';
-            makeHtml += '<td>'+SelectedCourseList[i].teacher+'</td>';
-            makeHtml += '<td>'+SelectedCourseList[i].startTime+'</td>';
-            makeHtml += '<td>'+SelectedCourseList[i].applyPer+' / '+SelectedCourseList[i].totalPer+'</td>';
-            makeHtml += '<td><button id="viewSelectedInfo" class="" onClick="viewSelectedInfo('+i+')">강의정보</button></td>';
-            makeHtml += '<td><button id="viewDel" class="" onClick="viewDel('+i+')">삭제</button></td></tr>';
-            makeHtml += '</tr>';           
-
-        }
-
-        makeHtml += '</table>';
-
-        SelectedCourseListArea.innerHTML = makeHtml;
-
-        document.getElementById("idClass").style.border.bottom="1px solid rgb(228, 228, 228)";
-
-        
-
-
-    }
-
-    function makeSelectedCourseTimeTableHTML(){
-
-        var arrTimeTable = [];
-        var makeHtml ='';
-
-        for (var i = 0; i <= 21; i++) {
-            arrTimeTable[i] = '';
-        }
-
-        for (var i = 0; i <= SelectedCourseList.length - 1; i++) {
-            arrTimeTable[SelectedCourseList[i].startTime] = SelectedCourseList[i].name;
-        }
-
-        makeHtml += '<table id="idSchedule" width=100% border=1 cellspacing="0">';
-        makeHtml += '<tr class="bgColorGray"><th width="100"></th><th width="100">월</th><th width="100">화</th><th width="100">수</th><th width="100">목</th><th width="100">금</th></tr>';        
-        
-        makeHtml += '<tr>';
-        makeHtml += '<td>1교시<br>09:00</td><td>'+arrTimeTable[1]+'</td><td>'+arrTimeTable[5]+'</td><td>'+arrTimeTable[9]+'</td><td>'+arrTimeTable[13]+'</td><td>'+arrTimeTable[17]+'</td>';
-        makeHtml += '</tr><tr>';
-        makeHtml += '<td>2교시<br>11:00</td><td>'+arrTimeTable[2]+'</td><td>'+arrTimeTable[6]+'</td><td>'+arrTimeTable[10]+'</td><td>'+arrTimeTable[14]+'</td><td>'+arrTimeTable[18]+'</td>';
-        makeHtml += '</tr><tr>';
-        makeHtml += '<td>3교시<br>13:00</td><td>'+arrTimeTable[3]+'</td><td>'+arrTimeTable[7]+'</td><td>'+arrTimeTable[11]+'</td><td>'+arrTimeTable[15]+'</td><td>'+arrTimeTable[19]+'</td>';
-        makeHtml += '</tr><tr>';
-        makeHtml += '<td>4교시<br>15:00</td><td>'+arrTimeTable[4]+'</td><td>'+arrTimeTable[8]+'</td><td>'+arrTimeTable[12]+'</td><td>'+arrTimeTable[16]+'</td><td>'+arrTimeTable[20]+'</td>';
-        makeHtml += '</table>';
-
-        timeTableArea.innerHTML = makeHtml;
-         
-
-    }
-
+    
     function doSaveImg() {
 		
         
+    }
+    
+    function reload(){
+    	$("#myCourseList").load(window.location.href+ "myCourseList");
     }
  
     function insert(i) {      
@@ -708,12 +688,12 @@ a {
     	alert(sIdx);
     	//저장하는 ajax - 완료됐으면 Y
     	$.ajax({
-    		url : 'sMyPageCourseListCheck.do',
+    		url : 'sAddFormCourseCheck.do',
     		data : {
     				sIdx:sIdx,
-    				cIdx :cIdx
+    				cIdx:cIdx
     				},
-    		method: 'post',
+    		method: 'get',
     		success : 
     			function(data){
     				if(data=="Y"){
@@ -721,12 +701,53 @@ a {
     				}else{
     					alert("수강신청 실패!");
     				}
-				SelectedCourseList.push(CourseList[i]);
-		        makeSelectedCourseListTable();
+				//SelectedCourseList.push(CourseList[i]);
+		       // makeSelectedCourseListTable();
     			}
     				
     		});
+    	
+    	
+    	// 내 강의목록 불러오기
+    	$.ajax({
+    		url : 'sAddFormMyCourseList.do',
+    		data : {
+    				sIdx:sIdx,
+    				cIdx:cIdx
+    				},
+    		method: 'get',
+    		success : 
+    			function(data){
+    			SelectedCourseList = [];
+    			$.each(data, function(key, value){
+     				
+     				console.log(value);
+     				//alert(value.cIdx);
+     				console.log("value.name : "+value.name);
+     				var cIdx = value.cIdx;
+     				var cName = value.name;
+     				var cTeacher = value.teacher;
+     				var content = value.content;
+     				var cDay = value.day;
+     				var cStartTime = value.startTime;
+     				var cTotalPer = value.totalPer;
+     				var cApplyPer = value.applyPer;
+     				var tIdx = value.tIdx;
+    			
+     				
+				SelectedCourseList.push(new Course(cIdx, cName, cTeacher, content, cStartTime, cTotalPer, cApplyPer, tIdx));
+    				
+     			});
+		        makeSelectedCourseListTable();
+		        makeCourseListTableHTML();
+		        reload();
+    			}
+    				
+    		});
+    	
+    	
     }
+    
 
     function doclearList() {
         alert('목록초기화 실행!!');
@@ -840,6 +861,76 @@ a {
     } 
   
 
+    function makeSelectedCourseListTable(){        
+        makeSelectedCourseListTableHTML();
+        makeSelectedCourseTimeTableHTML();
+    }
+
+    function makeSelectedCourseListTableHTML(){
+        
+        var makeHtml ='';
+
+        makeHtml += '<table id="idClass" width=100% border="0" cellspacing="0">';
+        makeHtml += '<tr class="bgColorGray"><th>강의<br>번호</th><th>강의명</th><th>교수명</th>';
+        makeHtml += '<th>수업<br>시간</th><th>정원</th>';
+        makeHtml += '<th>강의<br>정보</th><th>신청</th></tr>';
+
+        for (var i = 0; i <= SelectedCourseList.length - 1; i++) {
+
+            makeHtml += '<tr><td>'+SelectedCourseList[i].cIdx+'</td>';
+            makeHtml += '<td>'+SelectedCourseList[i].name+'</td>';
+            makeHtml += '<td>'+SelectedCourseList[i].teacher+'</td>';
+            makeHtml += '<td>'+SelectedCourseList[i].startTime+'</td>';
+            makeHtml += '<td>'+SelectedCourseList[i].applyPer+' / '+SelectedCourseList[i].totalPer+'</td>';
+            makeHtml += '<td><button id="viewSelectedInfo" class="" onClick="viewSelectedInfo('+i+')">강의정보</button></td>';
+            makeHtml += '<td><button id="viewDel" class="" onClick="viewDel('+i+')">삭제</button></td></tr>';
+            makeHtml += '</tr>';           
+
+        }
+
+        makeHtml += '</table>';
+
+        SelectedCourseListArea.innerHTML = makeHtml;
+
+        document.getElementById("myCourseList").style.border.bottom="1px solid rgb(228, 228, 228)";
+
+        
+
+
+    }
+
+    function makeSelectedCourseTimeTableHTML(){
+
+        var arrTimeTable = [];
+        var makeHtml ='';
+
+        for (var i = 0; i <= 21; i++) {
+            arrTimeTable[i] = '';
+        }
+
+        for (var i = 0; i <= SelectedCourseList.length - 1; i++) {
+            arrTimeTable[SelectedCourseList[i].startTime] = SelectedCourseList[i].name;
+        }
+
+        makeHtml += '<table id="idSchedule" width=100% border=1 cellspacing="0">';
+        makeHtml += '<tr class="bgColorGray"><th width="100"></th><th width="100">월</th><th width="100">화</th><th width="100">수</th><th width="100">목</th><th width="100">금</th></tr>';        
+        
+        makeHtml += '<tr>';
+        makeHtml += '<td>1교시<br>09:00</td><td>'+arrTimeTable[1]+'</td><td>'+arrTimeTable[5]+'</td><td>'+arrTimeTable[9]+'</td><td>'+arrTimeTable[13]+'</td><td>'+arrTimeTable[17]+'</td>';
+        makeHtml += '</tr><tr>';
+        makeHtml += '<td>2교시<br>11:00</td><td>'+arrTimeTable[2]+'</td><td>'+arrTimeTable[6]+'</td><td>'+arrTimeTable[10]+'</td><td>'+arrTimeTable[14]+'</td><td>'+arrTimeTable[18]+'</td>';
+        makeHtml += '</tr><tr>';
+        makeHtml += '<td>3교시<br>13:00</td><td>'+arrTimeTable[3]+'</td><td>'+arrTimeTable[7]+'</td><td>'+arrTimeTable[11]+'</td><td>'+arrTimeTable[15]+'</td><td>'+arrTimeTable[19]+'</td>';
+        makeHtml += '</tr><tr>';
+        makeHtml += '<td>4교시<br>15:00</td><td>'+arrTimeTable[4]+'</td><td>'+arrTimeTable[8]+'</td><td>'+arrTimeTable[12]+'</td><td>'+arrTimeTable[16]+'</td><td>'+arrTimeTable[20]+'</td>';
+        makeHtml += '</table>';
+
+        timeTableArea.innerHTML = makeHtml;
+         
+
+    }
+
+    
     
 
     function doShareKa() {     
@@ -847,7 +938,6 @@ a {
 
 
     }
-
 
 
 

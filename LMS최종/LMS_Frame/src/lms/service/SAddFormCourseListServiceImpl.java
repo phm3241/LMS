@@ -2,10 +2,12 @@ package lms.service;
 
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.google.gson.Gson;
 
@@ -29,8 +31,10 @@ public class SAddFormCourseListServiceImpl implements Service {
 		
 		CourseListView cListView=null;
 		Connection conn= null;
+		
 		int resultCnt = 0;
 		String result = "N";
+		
 		List<Course> courseList = null;
 		String listJson = null;
 		

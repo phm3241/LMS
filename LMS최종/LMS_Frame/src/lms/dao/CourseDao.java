@@ -167,7 +167,7 @@ public class CourseDao {
 
 		try {
 			// 학번으로 내가 등록한 강의 리스트 출력
-			String sql = "SELECT * FROM project.myCourse where sIdx=?";
+			String sql = "SELECT * FROM project.myCourse where sIdx=?;";
 
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, student.getsIdx());
@@ -220,9 +220,9 @@ public class CourseDao {
 
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-
+		
 		List<Course> selectMyCourseBysIdx = new ArrayList<Course>();
-
+		
 		String sql = "SELECT myCourse.*, course.* FROM myCourse"
 				+ " LEFT JOIN course on myCourse.cIdx = course.cIdx where myCourse.sIdx=?;";
 
@@ -230,7 +230,9 @@ public class CourseDao {
 
 			pstmt = conn.prepareStatement(sql);
 
+			pstmt.setInt(1, sIdx);
 			rs = pstmt.executeQuery();
+			
 
 			while (rs.next()) {
 				Course course = new Course();

@@ -2,11 +2,14 @@ package lms.service;
 
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
+import com.google.gson.Gson;
 
 import dbcp.ConnectionProvider;
 import lms.dao.CourseDao;
@@ -16,7 +19,7 @@ import lms.model.MyCourse;
 //import lms.model.SMyCourseListView;
 import lms.model.Student;
 
-public class SCourseSaveCheckServiceImpl implements Service {
+public class SAddFormMyCourseListServiceImpl implements Service {
 
 	CourseDao dao;
 	Course course;
@@ -25,36 +28,39 @@ public class SCourseSaveCheckServiceImpl implements Service {
 	
 	@Override
 	public String getViewPage(HttpServletRequest request, HttpServletResponse response) {
-
-		//HttpSession session = request.getSession(false);
-		//student = (Student) session.getAttribute("info");
-		
-		//int sIdx = student.getsIdx();
-		
-		//System.out.println("sidx : "+sIdx);
-		
-		int sIdx = Integer.parseInt(request.getParameter("sIdx"));
-		int cIdx = Integer.parseInt(request.getParameter("cIdx"));
-		System.out.println("cidx : "+cIdx);
-		
 		
 		CourseListView cListView=null;
 		Connection conn= null;
+		
 		int resultCnt = 0;
 		String result = "N";
-		List<Course> courseList = null;
+		HttpSession session = request.getSession(false);
+		student = (Student) session.getAttribute("info");
 		
-		myCourse = new MyCourse(sIdx, cIdx);
-		
+		//int sIdx = student.getsIdx();
+		int sIdx = Integer.parseInt(request.getParameter("sIdx"));
+		List<Course> myList = new ArrayList<>();
+		String myListJson = null;
+		System.out.println("sIdx :"+sIdx);
 		try {
+			
 			conn=ConnectionProvider.getConnection();
 			dao=CourseDao.getInstance();
-
-			resultCnt=dao.insertMyCourse(conn, sIdx, cIdx);
+			myList = dao.selectMyCourseBysIdx(conn, sIdx);
+			System.out.println("inner sIdx :"+sIdx);
 			
-			if(resultCnt>0) {
+			
+			if(myList==null) {
 				
-				result="Y";
+				System.out.println("myList null!");
+			}else {
+			
+			
+			Gson gson = new Gson();
+			
+			// Java Object -> JSON
+			myListJson = gson.toJson(myList);
+			
 			}
 			
 		} catch (SQLException e) {
@@ -62,10 +68,11 @@ public class SCourseSaveCheckServiceImpl implements Service {
 			e.printStackTrace();
 		}
 		
-		request.setAttribute("saveResult", result);
+		request.setAttribute("myList", myListJson);
+		System.out.println("myListJson : "+myListJson);
 		
 		
-		return "/WEB-INF/views/student/sSaveResult.jsp";
+		return "/WEB-INF/views/student/sAddFormMyCourseList.jsp";
 	}
 
 }
