@@ -23,10 +23,11 @@ public class EditFormServiceImpl implements Service {
 	
 	@Override
 	public String getViewPage(HttpServletRequest request, HttpServletResponse response) {
+		
+		
 		// session에서 로그인 타입과 객체 불러오기
 		HttpSession session = request.getSession(false);
 		String type = (String) session.getAttribute("loginType");
-			// student 객체에서 sIdx 가져오기
 		
 		// form에서 입력한 전화번호와 이메일 가져오기
 		String upw = request.getParameter("pw");

@@ -26,7 +26,6 @@ public class TeditServiceImpl implements Service {
 
 		// form에서 입력한 전화번호와 이메일 가져오기
 		String edit = request.getParameter("edit");	// name = "edit" 버튼
-		int idx = Integer.parseInt("idx");
 		String tel = request.getParameter("tel");
 		String email = request.getParameter("email");
 		
@@ -39,7 +38,7 @@ public class TeditServiceImpl implements Service {
 			sDao = StudentDao.getInstance();
 			tDao = TeacherDao.getInstance();
 			
-			if(edit.("sLogin")) {
+			if(type.equals("sLogin")) {
 				student = (Student) session.getAttribute("info");
 				sIdx = student.getsIdx();
 				sDao.editStudent(conn, sIdx, tel, email);

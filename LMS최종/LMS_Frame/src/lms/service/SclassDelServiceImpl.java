@@ -27,12 +27,13 @@ public class SclassDelServiceImpl implements Service {
 		HttpSession session = request.getSession(false);
 		student = (Student) session.getAttribute("info");
 		int cIdx = Integer.parseInt(request.getParameter("cIdx"));
+		int sIdx = Integer.parseInt(request.getParameter("sIdx"));
 		int resultCnt = 0;
 		
 		try {
 			conn = ConnectionProvider.getConnection();
 			
-			cDao.deleteMyCourse(conn, cIdx, student);
+			cDao.deleteMyCourse(conn, cIdx, sIdx);
 			
 		} catch (SQLException e) {
 			e.printStackTrace();

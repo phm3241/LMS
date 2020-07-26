@@ -26,6 +26,7 @@ public class CdeleteServiceImpl implements Service {
 		Student student = null;
 		String path = null;
 		int cIdx = Integer.parseInt(request.getParameter("cIdx"));
+		int sIdx = Integer.parseInt(request.getParameter("sIdx"));
 		
 		try {
 			conn = ConnectionProvider.getConnection();
@@ -36,7 +37,7 @@ public class CdeleteServiceImpl implements Service {
 				path = "/WEB-INF/views/teacher/tMypage.jsp";
 			} else {
 				student = (Student)session.getAttribute("info");
-				resultCnt = dao.deleteMyCourse(conn, cIdx, student);
+				resultCnt = dao.deleteMyCourse(conn, cIdx, sIdx);
 				path = "/WEB-INF/views/student/sClassAddForm.jsp";
 			}
 			
