@@ -495,10 +495,10 @@ a {
 	//**강의목록 전체 - 수강신청페이지
     function makeCourseListTableDATA() {
 		
-		alert("전체목록!");
+		//alert("전체목록!");
 		
     	 $.getJSON('sAddFormCourseList.do', function(data){
-    		 alert("e들어옴");
+    		 //alert("e들어옴");
  			//data와 각각 어떻게 처리할지 함수 정의
  			$.each(data, function(key, value){
  				
@@ -710,30 +710,7 @@ a {
         document.getElementById('delArea').style.display = 'none';
     }
     
-    function viewDel(i) {     
-        document.getElementById('delArea').style.display = 'block';
-        
-        var delAreaInner = document.getElementById('delAreaInner');                                                    
-        var makeHtml = '';
-        makeHtml += '<h1>[ 강의정보 ]</h1>';
-        makeHtml += '<br>강의번호 : '+SelectedCourseList[i].cIdx;
-        makeHtml += '<br>강의명 : '+SelectedCourseList[i].name;
-        makeHtml += '<br>교수 : '+SelectedCourseList[i].teacher;
-        makeHtml += '<br>상세소개 : '+SelectedCourseList[i].content;
-        makeHtml += '<br>수업시간 : '+SelectedCourseList[i].startTime;
-        makeHtml += '<br>정원 : '+SelectedCourseList[i].applyPer+' / '+SelectedCourseList[i].totalPer;
-        makeHtml += '<br><br><button onClick="closeDel()">취소</button>';
-        makeHtml += '<button id="del" class="" onClick="doDel('+i+')">삭제</button>';
-        delAreaInner.innerHTML = makeHtml;
-    }
-    function doDel(i) {     
-        SelectedCourseList.splice(i,1);
-        makeSelectedCourseListTable();
-        
-        document.getElementById('delArea').style.display = 'none';
-        // form.submit();
-        
-    }
+
     function closeSaveImg() {
         document.getElementById('saveImgArea').style.display = 'none';
     }
@@ -796,6 +773,55 @@ a {
         makeHtml += '</table>';
         timeTableArea.innerHTML = makeHtml;
          
+    }
+    
+    function viewDel(i) {     
+        document.getElementById('delArea').style.display = 'block';
+        
+        var delAreaInner = document.getElementById('delAreaInner');                                                    
+        var makeHtml = '';
+        makeHtml += '<h1>[ 강의정보 ]</h1>';
+        makeHtml += '<br>강의번호 : '+SelectedCourseList[i].cIdx;
+        makeHtml += '<br>강의명 : '+SelectedCourseList[i].name;
+        makeHtml += '<br>교수 : '+SelectedCourseList[i].teacher;
+        makeHtml += '<br>상세소개 : '+SelectedCourseList[i].content;
+        makeHtml += '<br>수업시간 : '+SelectedCourseList[i].startTime;
+        makeHtml += '<br>정원 : '+SelectedCourseList[i].applyPer+' / '+SelectedCourseList[i].totalPer;
+        makeHtml += '<br><br><button onClick="closeDel()">취소</button>';
+        makeHtml += '<button id="del" class="" onClick="doDel('+i+')">삭제</button>';
+        delAreaInner.innerHTML = makeHtml;
+    }
+    
+    function doDel(i) {     
+    	
+    	var cIdx=SelectedCourseList[i].cIdx;
+    	var sIdx=${info.sIdx};
+    	//저장하는 ajax - 완료됐으면 Y
+    	$.ajax({
+    		url : 'sAddFormCourseDelCheck.do',
+    		data : {
+    				sIdx:sIdx,
+    				cIdx:cIdx
+    				},
+    		method: 'get',
+    		success : 
+    			function(data){
+    				if(data=="Y"){
+    					alert("정상적으로 삭제가 되었습니다.");
+    				}else{
+    					alert("삭제 실패!");
+    				}
+				//SelectedCourseList.push(CourseList[i]);
+		       // makeSelectedCourseListTable();
+    			}
+    				
+    		});
+    	
+        document.getElementById('delArea').style.display = 'none';
+        SelectedCourseList.splice(i,1);
+        makeSelectedCourseListTable();
+        // form.submit();
+        
     }
     
     

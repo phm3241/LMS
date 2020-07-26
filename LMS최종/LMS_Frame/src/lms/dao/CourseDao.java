@@ -263,7 +263,8 @@ public class CourseDao {
 	}
 
 	// 수강신청한 강의 취소 : myCourse 조회 => delete ?
-	public int deleteMyCourse(Connection conn, int cIdx, Student student) throws SQLException {
+	// 0726 파라미터 수정 Connection, int, Student → Connection, int, int
+	public int deleteMyCourse(Connection conn, int cIdx, int sIdx) throws SQLException {
 
 		int result = 0;
 
@@ -271,10 +272,13 @@ public class CourseDao {
 
 		try {
 			// 학번으로 내가 등록한 강의 리스트 출력
-			String sql = "DELETE FROM project.myCourse where sIdx=? and cIdx=?";
+			String sql = "DELETE FROM project.myCourse where sIdx=? and cIdx=?;";
 
+			System.out.println("dao - sidx는 : "+sIdx);
+			System.out.println("dao - cIdx는 : "+cIdx);
+			
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, student.getsIdx());
+			pstmt.setInt(1, sIdx);
 			pstmt.setInt(2, cIdx);
 
 			result = pstmt.executeUpdate();
@@ -285,6 +289,7 @@ public class CourseDao {
 			}
 		}
 
+		System.out.println("dao - delmycourse의 result : "+result);
 		return result;
 
 	}
