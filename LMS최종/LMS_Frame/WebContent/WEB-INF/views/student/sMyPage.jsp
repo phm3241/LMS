@@ -576,15 +576,16 @@ a {
 	var SelectedCourseListArea = document.getElementById('myCourseList');
 	var timeTableArea = document.getElementById('timeTable');
 
-	
+	//0726 윤원
 	getMyCourseListTable();
 	
+	//0726 윤원
 	function getMyCourseListTable(){
 		makeMyCourseListDATA();
 		makeMyCourseListHTML();
 		
 	}
-	
+	//0726 윤원
 	function makeMyCourseListDATA(){
 		
 		var sIdx=${info.sIdx};
@@ -622,6 +623,7 @@ a {
 		
 	}
 	
+	//0726 윤원
 	function makeMyCourseListHTML(){
 		
 		 var makeHtml ='';
