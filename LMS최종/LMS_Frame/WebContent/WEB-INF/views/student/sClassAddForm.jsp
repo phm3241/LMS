@@ -15,32 +15,27 @@ th {
 	text-align: center;
 	/* font-weight : 900; */
 }
-
 td {
 	text-align: center;
 }
-
 input {
 	border: 2px solid;
 	height: 20px;
 	width: 150px;
 	border-color: rgb(188, 188, 188);
 }
-
 button {
 	width: 80px;
 	height: 30px;
 	text-align: center;
 	font-size: 14px;
 }
-
 .btnTmyPage {
 	width: 150px;
 	height: 30px;
 	text-align: center;
 	font-size: 14px;
 }
-
 .btnSearch {
 	margin-left: 5px;
 	margin-right: -2px;
@@ -49,24 +44,19 @@ button {
 	text-align: center;
 	font-size: 14px;
 }
-
 .tdRight {
 	text-align: right;
 }
-
 .alignLeft {
 	text-align: left;
 }
-
 .alignRight {
 	text-align: right;
 }
-
 .bold {
 	font-size: 25px;
 	font-weight: 900;
 }
-
 a {
 	text-decoration: none;
 	color: white;
@@ -74,14 +64,12 @@ a {
 	font-weight: 500;
 	margin: 3px 3px 3px 3px;
 }
-
 .titleTable {
 	color: white;
 	font-size: 20px;
 	font-weight: 500;
 	margin: 3px 3px 3px 3px;
 }
-
 .btnStyle {
 	border-radius: 10px;
 	font-size: 14px;
@@ -90,18 +78,15 @@ a {
 	/* background-color: rgba(0, 0, 255, 0.7);
             border-color:  rgba(0, 0, 255, 1);             */
 }
-
 .btnStyle:hover {
 	color: black;
 	background-color: white;
 	border-color: gray;
 }
-
 .userImg {
 	border-radius: 10px;
 	border: 7px solid white;
 }
-
 #idClass td {
 	font-size: 14px;
 	border-bottom: 1px solid rgb(228, 228, 228);
@@ -110,16 +95,13 @@ a {
 	font-size: 14px;
 	border-bottom: 1px solid rgb(228, 228, 228);
 }
-
 #idSchedule {
 	border-color: rgb(228, 228, 228);
 }
-
 #idSchedule td {
 	font-size: 14px;
 	border-bottom: 1px solid rgb(228, 228, 228);
 }
-
 #infoArea {
 	top: 100px;
 	left: 50%;
@@ -133,14 +115,12 @@ a {
 	text-align: center;
 	font-size: 12pt;
 }
-
 #infoAreaInner {
 	margin: 10px 10px 10px 10px;
 	background-color: white;
 	text-align: center;
 	font-size: 10pt;
 }
-
 #delArea {
 	top: 100px;
 	left: 50%;
@@ -154,14 +134,12 @@ a {
 	text-align: center;
 	font-size: 12pt;
 }
-
 #delAreaInner {
 	margin: 10px 10px 10px 10px;
 	background-color: white;
 	text-align: center;
 	font-size: 10pt;
 }
-
 #saveImgArea {
 	top: 100px;
 	left: 50%;
@@ -175,14 +153,12 @@ a {
 	text-align: center;
 	font-size: 12pt;
 }
-
 #saveImgAreaInner {
 	margin: 10px 10px 10px 10px;
 	background-color: white;
 	text-align: center;
 	font-size: 10pt;
 }
-
 #shareKaArea {
 	top: 100px;
 	left: 50%;
@@ -196,18 +172,15 @@ a {
 	text-align: center;
 	font-size: 12pt;
 }
-
 #shareKaAreaInner {
 	margin: 10px 10px 10px 10px;
 	background-color: white;
 	text-align: center;
 	font-size: 10pt;
 }
-
 .bgColorGray {
 	background-color: rgb(228, 228, 228);
 }
-
 .bgColorHeader {
 	background-color: rgb(26, 188, 156);
 }
@@ -264,13 +237,10 @@ a {
 					</td>
 				</tr>
 			</table>
-
 			<div id="myCourseList">
 			
 			</div>
-
 			<br> <br> <br>
-
 			<table width=100% border=0>
 				<tr>
 					<td class="alignLeft bold">일정표</td>
@@ -280,10 +250,7 @@ a {
 					</td>
 				</tr>
 			</table>
-
 			<table id="idSchedule" width=100% border=1 cellspacing="0">
-
-
 				<tr class="bgColorGray">
 					<th width="100"></th>
 					<th>월</th>
@@ -365,21 +332,11 @@ a {
 					<td></td>
 					<td></td>
 			</table>
-
-
-
-
 		</div>
-
-
-
 	</div>
-
 	<div id="infoArea">
 		<div id="infoAreaInner">
-
 			<form>
-
 				강의정보
 				<table width=100% border=0>
 					<tr>
@@ -431,13 +388,9 @@ a {
 			</form>
 		</div>
 	</div>
-
-
 	<div id="delArea">
 		<div id="delAreaInner">
-
 			<form>
-
 				삭제
 				<table width=100% border=0>
 					<tr>
@@ -491,40 +444,25 @@ a {
 			</form>
 		</div>
 	</div>
-
 	<div id="saveImgArea">
 		<div id="saveImgAreaInner">
-
-
-
 			<button class="btnTmyPage" onClick="closeSaveImg()">취소</button>
 			<button class="btnTmyPage" onClick="doSaveImg()">이미지저장</button>
-
 		</div>
 	</div>
-
-
-
 	<div id="shareKaArea">
 		<div id="shareKaAreaInner">
-
-
 			<button class="btnTmyPage" onClick="closeShareKa()">취소</button>
 			<button class="btnTmyPage" onClick="doShareKa()">카카오톡공유</button>
-
 		</div>
 	</div>
-
 </body>
-
 <script>
-
    window.onload = function(){
 	   
 	   viewMyCourse();
 	   
    } 
-
     //객체 생성
     function Course(cIdx,name,teacher,content,startTime,totalPer,applyPer,tIdx) {
            
@@ -538,23 +476,18 @@ a {
         this.tIdx = tIdx;
         
     }
-
     var CourseList = [];
     var SelectedCourseList = [];
-
     var countOfCourseArea = document.getElementById('countOfCourse');
     var courseListArea = document.getElementById('courseList');
     var SelectedCourseListArea = document.getElementById('myCourseList');
     var timeTableArea = document.getElementById('timeTable');
     
-
     makeCourseListTable();
-
     
 	//var sIdx=${session.sIdx};
 	//**
     function makeCourseListTable() {
-
         makeCourseListTableDATA();
         makeCourseListTableHTML();
     }
@@ -591,21 +524,16 @@ a {
  			
  		});
     	 
-    	 
 		
     }
     
     function makeCourseListTableHTML() {
-
         var makeHtml ='';
-
         makeHtml += '<table id="idClass" width=100% border="0" cellspacing="0">';
         makeHtml += '<tr class="bgColorGray"><th>강의<br>번호</th><th>강의명</th><th>교수명</th>';
         makeHtml += '<th>수업<br>시간</th><th>정원</th>';
         makeHtml += '<th>강의<br>정보</th><th>신청</th></tr>';
-
         for (var i = 0; i < CourseList.length; i++) {
-
             makeHtml += '<tr><td>'+CourseList[i].cIdx+'</td>';
             makeHtml += '<td>'+CourseList[i].name+'</td>';
             makeHtml += '<td>'+CourseList[i].teacher+'</td>';
@@ -614,13 +542,9 @@ a {
             makeHtml += '<td><button id="viewInfo" class="" onClick="viewInfo('+i+')">강의정보</button></td>';
             makeHtml += '<td><button id="insert" class="" onClick="insert('+i+')">신청</button></td>';
             makeHtml += '</tr>';           
-
         }
-
         makeHtml += '</table>';
-
         courseListArea.innerHTML = makeHtml;
-
         document.getElementById("idClass").style.border.bottom="1px solid rgb(228, 228, 228)";
     }
     
@@ -658,17 +582,13 @@ a {
     				
     		});
     }
-
-
     function addSelectedCourse(){
     	
 		var makeHtml = '';
     }
-
     function delSelectedCourse(){
         
     }
-
     
     function doSaveImg() {
 		
@@ -739,7 +659,8 @@ a {
     				
      			});
 		        makeSelectedCourseListTable();
-		        makeCourseListTableHTML();
+		        //makeCourseListTableHTML();
+		        makeCourseListTable();
 		        reload();
     			}
     				
@@ -748,22 +669,17 @@ a {
     	
     }
     
-
     function doclearList() {
         alert('목록초기화 실행!!');
     }
-
-
     function closeInfo() {
             document.getElementById('infoArea').style.display = 'none';
-
     }
     
     function viewInfo(i) {     
         document.getElementById('infoArea').style.display = 'block';
         var infoAreaInner = document.getElementById('infoAreaInner');
         var makeHtml = '';
-
         makeHtml += '<h1>[ 강의정보 ]</h1>';
         makeHtml += '<br>강의번호 : '+CourseList[i].cIdx;
         makeHtml += '<br>강의명 : '+CourseList[i].name;
@@ -772,17 +688,12 @@ a {
         makeHtml += '<br>수업시간 : '+CourseList[i].startTime;
         makeHtml += '<br>정원 : '+CourseList[i].applyPer+' / '+CourseList[i].totalPer;
         makeHtml += '<br><br><button class="" onClick="closeInfo()">닫기</button>';
-
-
         infoAreaInner.innerHTML = makeHtml;
-
     }
-
     function viewSelectedInfo(i) {     
         document.getElementById('infoArea').style.display = 'block';
         var infoAreaInner = document.getElementById('infoAreaInner');
         var makeHtml = '';
-
         makeHtml += '<h1>[ 강의정보 ]</h1>';
         makeHtml += '<br>강의번호 : '+SelectedCourseList[i].cIdx;
         makeHtml += '<br>강의명 : '+SelectedCourseList[i].name;
@@ -791,18 +702,12 @@ a {
         makeHtml += '<br>수업시간 : '+SelectedCourseList[i].startTime;
         makeHtml += '<br>정원 : '+SelectedCourseList[i].applyPer+' / '+SelectedCourseList[i].totalPer;
         makeHtml += '<br><br><button class="" onClick="closeInfo()">닫기</button>';
-
-
         infoAreaInner.innerHTML = makeHtml;
-
     }
-
     
    
-
     function closeDel() {
         document.getElementById('delArea').style.display = 'none';
-
     }
     
     function viewDel(i) {     
@@ -810,7 +715,6 @@ a {
         
         var delAreaInner = document.getElementById('delAreaInner');                                                    
         var makeHtml = '';
-
         makeHtml += '<h1>[ 강의정보 ]</h1>';
         makeHtml += '<br>강의번호 : '+SelectedCourseList[i].cIdx;
         makeHtml += '<br>강의명 : '+SelectedCourseList[i].name;
@@ -820,63 +724,41 @@ a {
         makeHtml += '<br>정원 : '+SelectedCourseList[i].applyPer+' / '+SelectedCourseList[i].totalPer;
         makeHtml += '<br><br><button onClick="closeDel()">취소</button>';
         makeHtml += '<button id="del" class="" onClick="doDel('+i+')">삭제</button>';
-
-
         delAreaInner.innerHTML = makeHtml;
-
-
     }
-
     function doDel(i) {     
-
         SelectedCourseList.splice(i,1);
         makeSelectedCourseListTable();
-
         
         document.getElementById('delArea').style.display = 'none';
         // form.submit();
         
-
     }
-
-
     function closeSaveImg() {
         document.getElementById('saveImgArea').style.display = 'none';
-
     }
-
     function viewSaveImg() {     
         document.getElementById('saveImgArea').style.display = 'block';
-
     }
-
     function closeShareKa() {
         document.getElementById('shareKaArea').style.display = 'none';
-
     }
-
     function viewShareKa() {     
         document.getElementById('shareKaArea').style.display = 'block';
-
     } 
   
-
     function makeSelectedCourseListTable(){        
         makeSelectedCourseListTableHTML();
         makeSelectedCourseTimeTableHTML();
     }
-
     function makeSelectedCourseListTableHTML(){
         
         var makeHtml ='';
-
         makeHtml += '<table id="idClass" width=100% border="0" cellspacing="0">';
         makeHtml += '<tr class="bgColorGray"><th>강의<br>번호</th><th>강의명</th><th>교수명</th>';
         makeHtml += '<th>수업<br>시간</th><th>정원</th>';
         makeHtml += '<th>강의<br>정보</th><th>신청</th></tr>';
-
         for (var i = 0; i <= SelectedCourseList.length - 1; i++) {
-
             makeHtml += '<tr><td>'+SelectedCourseList[i].cIdx+'</td>';
             makeHtml += '<td>'+SelectedCourseList[i].name+'</td>';
             makeHtml += '<td>'+SelectedCourseList[i].teacher+'</td>';
@@ -885,33 +767,21 @@ a {
             makeHtml += '<td><button id="viewSelectedInfo" class="" onClick="viewSelectedInfo('+i+')">강의정보</button></td>';
             makeHtml += '<td><button id="viewDel" class="" onClick="viewDel('+i+')">삭제</button></td></tr>';
             makeHtml += '</tr>';           
-
         }
-
         makeHtml += '</table>';
-
         SelectedCourseListArea.innerHTML = makeHtml;
-
         document.getElementById("myCourseList").style.border.bottom="1px solid rgb(228, 228, 228)";
-
         
-
-
     }
-
     function makeSelectedCourseTimeTableHTML(){
-
         var arrTimeTable = [];
         var makeHtml ='';
-
         for (var i = 0; i <= 21; i++) {
             arrTimeTable[i] = '';
         }
-
         for (var i = 0; i <= SelectedCourseList.length - 1; i++) {
             arrTimeTable[SelectedCourseList[i].startTime] = SelectedCourseList[i].name;
         }
-
         makeHtml += '<table id="idSchedule" width=100% border=1 cellspacing="0">';
         makeHtml += '<tr class="bgColorGray"><th width="100"></th><th width="100">월</th><th width="100">화</th><th width="100">수</th><th width="100">목</th><th width="100">금</th></tr>';        
         
@@ -924,27 +794,13 @@ a {
         makeHtml += '</tr><tr>';
         makeHtml += '<td>4교시<br>15:00</td><td>'+arrTimeTable[4]+'</td><td>'+arrTimeTable[8]+'</td><td>'+arrTimeTable[12]+'</td><td>'+arrTimeTable[16]+'</td><td>'+arrTimeTable[20]+'</td>';
         makeHtml += '</table>';
-
         timeTableArea.innerHTML = makeHtml;
          
-
     }
-
     
     
-
     function doShareKa() {     
-
-
-
     }
-
-
-
-
     
-
 </script>
-
 </html>
-

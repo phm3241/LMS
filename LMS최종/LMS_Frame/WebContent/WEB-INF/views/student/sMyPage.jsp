@@ -208,7 +208,7 @@ a {
 	background-color: rgb(26, 188, 156);
 }
 </style>
-<script></script>
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 </head>
 
 <body>
@@ -250,7 +250,9 @@ a {
 				</tr>
 			</table>
 
-			<table id="idClass" width=100% border=0 cellspacing="0">
+			<div id="myCourseList">
+
+			<!-- <table id="idClass" width=100% border=0 cellspacing="0">
 				<tr class="bgColorGray">
 					<th>강의<br>번호
 					</th>
@@ -298,7 +300,9 @@ a {
 					<td><button id="viewDel" class="" onClick="viewDel()">삭제</button></td>
 				</tr>
 			</table>
-
+ -->
+			</div>
+			
 			<br>
 			<br>
 			<br>
@@ -550,6 +554,100 @@ a {
 </body>
 
 <script>
+
+	//객체 생성
+	function Course(cIdx,name,teacher,content,startTime,totalPer,applyPer,tIdx) {
+	       
+	    this.cIdx = cIdx;
+	    this.name = name;
+	    this.teacher = teacher;
+	    this.content = content;
+	    this.startTime = startTime; // 1~20
+	    this.totalPer = totalPer;
+	    this.applyPer = applyPer;
+	    this.tIdx = tIdx;
+	    
+	}
+	
+	var CourseList = [];
+	var SelectedCourseList = [];
+	var countOfCourseArea = document.getElementById('countOfCourse');
+	var courseListArea = document.getElementById('courseList');
+	var SelectedCourseListArea = document.getElementById('myCourseList');
+	var timeTableArea = document.getElementById('timeTable');
+
+	
+	getMyCourseListTable();
+	
+	function getMyCourseListTable(){
+		makeMyCourseListDATA();
+		makeMyCourseListHTML();
+		
+	}
+	
+	function makeMyCourseListDATA(){
+		
+		var sIdx=${info.sIdx};
+		
+		$.ajax({
+			
+				url: 'sAddFormMyCourseList.do',
+				data: {
+					sIdx:sIdx
+				},
+				method: 'get',
+				success:
+					function(data){
+					$.each(data, function(key,value){
+						var cIdx = value.cIdx;
+	     				var cName = value.name;
+	     				var cTeacher = value.teacher;
+	     				var content = value.content;
+	     				var cDay = value.day;
+	     				var cStartTime = value.startTime;
+	     				var cTotalPer = value.totalPer;
+	     				var cApplyPer = value.applyPer;
+	     				var tIdx = value.tIdx;
+	     				
+	    				SelectedCourseList.push(new Course(cIdx, cName, cTeacher, content, cStartTime, cTotalPer, cApplyPer, tIdx));
+
+						
+					});
+					
+					makeMyCourseListHTML();
+					
+				}
+			
+		});
+		
+	}
+	
+	function makeMyCourseListHTML(){
+		
+		 var makeHtml ='';
+	        makeHtml += '<table id="idClass" width=100% border="0" cellspacing="0">';
+	        makeHtml += '<tr class="bgColorGray"><th>강의<br>번호</th><th>강의명</th><th>교수명</th>';
+	        makeHtml += '<th>수업<br>시간</th><th>정원</th>';
+	        makeHtml += '<th>강의<br>정보</th><th>신청</th></tr>';
+	        for (var i = 0; i < SelectedCourseList.length; i++) {
+	            makeHtml += '<tr><td>'+SelectedCourseList[i].cIdx+'</td>';
+	            makeHtml += '<td>'+SelectedCourseList[i].name+'</td>';
+	            makeHtml += '<td>'+SelectedCourseList[i].teacher+'</td>';
+	            makeHtml += '<td>'+SelectedCourseList[i].startTime+'</td>';
+	            makeHtml += '<td>'+SelectedCourseList[i].applyPer+' / '+SelectedCourseList[i].totalPer+'</td>';
+	            makeHtml += '<td><button id="viewInfo" class="" onClick="viewInfo('+i+')">강의정보</button></td>';
+	            makeHtml += '<td><button id="viewDel" class="" onClick="viewDel('+i+')">삭제</button></td>';
+	            makeHtml += '</tr>';           
+	        }
+	        makeHtml += '</table>';
+	        SelectedCourseListArea.innerHTML = makeHtml;
+	        document.getElementById("idClass").style.border.bottom="1px solid rgb(228, 228, 228)";
+	        
+	        
+	}
+	
+	
+
 	function doclearList() {
 		alert('목록초기화 실행!!');
 	}
