@@ -62,15 +62,25 @@ public class InfoEditServiceImpl implements Service {
 				request.setAttribute("result", result);
 				
 				path = "/WEB-INF/views/student/sInfo.jsp";
-			} else {
+			} else if(type.equals("sLogin") && !(pw1.equals(pw2))){
+				
 				// 비밀번호가 불일치할 때
 				path = "/WEB-INF/views/student/sInfo.jsp";
-			}
-			
-		if(type.equals("tLogin")) {
+			} else if(type.equals("tLogin") && (pw1.equals(pw2))) {
 				teacher = (Teacher) session.getAttribute("info");
 				tIdx = teacher.gettIdx();
-				tDao.editTeacher(conn, tIdx, tel, email);
+				result = tDao.editTeacher(conn, tIdx, tel, email);
+				
+				System.out.println("result : " + result);
+				
+				request.setAttribute("chgTel", tel);
+				request.setAttribute("chgEmail", email);
+				request.setAttribute("result", result);
+				
+				path = "/WEB-INF/views/teacher/tInfo.jsp";
+			} else if (type.equals("tLogin") && !(pw1.equals(pw2))){
+				
+				// 비밀번호가 불일치할 때
 				path = "/WEB-INF/views/teacher/tInfo.jsp";
 			}
 		} catch (SQLException e) {

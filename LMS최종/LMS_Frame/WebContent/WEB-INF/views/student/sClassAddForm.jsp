@@ -250,88 +250,10 @@ a {
 					</td>
 				</tr>
 			</table>
-			<table id="idSchedule" width=100% border=1 cellspacing="0">
-				<tr class="bgColorGray">
-					<th width="100"></th>
-					<th>월</th>
-					<th>화</th>
-					<th>수</th>
-					<th>목</th>
-					<th>금</th>
-				</tr>
-				<tr class="">
-					<td>0교시<br>08:00
-					</td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-				<tr class="">
-					<td>1교시<br>08:00
-					</td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-				<tr class="">
-					<td>2교시<br>08:00
-					</td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-				<tr class="">
-					<td>3교시<br>08:00
-					</td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-				<tr class="">
-					<td>4교시<br>08:00
-					</td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-				<tr class="">
-					<td>5교시<br>08:00
-					</td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-				<tr class="">
-					<td>6교시<br>08:00
-					</td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-				<tr class="">
-					<td>7교시<br>08:00
-					</td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-				<tr class="">
-					<td>8교시<br>08:00
-					</td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-			</table>
+			
+			<div id="timeTable">
+			</div>
+		
 		</div>
 	</div>
 	<div id="infoArea">
@@ -452,7 +374,6 @@ a {
 	</div>
 	<div id="shareKaArea">
 		<div id="shareKaAreaInner">
-			<button class="btnTmyPage" onClick="closeShareKa()">취소</button>
 			<button class="btnTmyPage" onClick="doShareKa()">카카오톡공유</button>
 		</div>
 	</div>
@@ -596,78 +517,12 @@ a {
     }
     
     function reload(){
-    	$("#myCourseList").load(window.location.href+ "myCourseList");
+    	//$("#myCourseList").load(window.location.href+ "myCourseList");
+    	//location.href=window.location.href;
+    	viewMyCourse();
     }
  
-    function insert(i) {      
-    	
-    	alert("insert!");
-    	var cIdx=CourseList[i].cIdx;
-    	var sIdx=${info.sIdx};
-    	alert(cIdx);
-    	alert(sIdx);
-    	//저장하는 ajax - 완료됐으면 Y
-    	$.ajax({
-    		url : 'sAddFormCourseCheck.do',
-    		data : {
-    				sIdx:sIdx,
-    				cIdx:cIdx
-    				},
-    		method: 'get',
-    		success : 
-    			function(data){
-    				if(data=="Y"){
-    					alert("정상적으로 수강이 신청되었습니다.");
-    				}else{
-    					alert("수강신청 실패!");
-    				}
-				//SelectedCourseList.push(CourseList[i]);
-		       // makeSelectedCourseListTable();
-    			}
-    				
-    		});
-    	
-    	
-    	// 내 강의목록 불러오기
-    	$.ajax({
-    		url : 'sAddFormMyCourseList.do',
-    		data : {
-    				sIdx:sIdx,
-    				cIdx:cIdx
-    				},
-    		method: 'get',
-    		success : 
-    			function(data){
-    			SelectedCourseList = [];
-    			$.each(data, function(key, value){
-     				
-     				console.log(value);
-     				//alert(value.cIdx);
-     				console.log("value.name : "+value.name);
-     				var cIdx = value.cIdx;
-     				var cName = value.name;
-     				var cTeacher = value.teacher;
-     				var content = value.content;
-     				var cDay = value.day;
-     				var cStartTime = value.startTime;
-     				var cTotalPer = value.totalPer;
-     				var cApplyPer = value.applyPer;
-     				var tIdx = value.tIdx;
-    			
-     				
-				SelectedCourseList.push(new Course(cIdx, cName, cTeacher, content, cStartTime, cTotalPer, cApplyPer, tIdx));
-    				
-     			});
-		        makeSelectedCourseListTable();
-		        //makeCourseListTableHTML();
-		        makeCourseListTable();
-		        reload();
-    			}
-    				
-    		});
-    	
-    	
-    }
+    
     
     function doclearList() {
         alert('목록초기화 실행!!');
@@ -750,6 +605,8 @@ a {
         document.getElementById("myCourseList").style.border.bottom="1px solid rgb(228, 228, 228)";
         
     }
+    
+    //내 강의 시간표 (일정표)
     function makeSelectedCourseTimeTableHTML(){
         var arrTimeTable = [];
         var makeHtml ='';
@@ -757,7 +614,8 @@ a {
             arrTimeTable[i] = '';
         }
         for (var i = 0; i <= SelectedCourseList.length - 1; i++) {
-            arrTimeTable[SelectedCourseList[i].startTime] = SelectedCourseList[i].name;
+	            arrTimeTable[SelectedCourseList[i].startTime] = SelectedCourseList[i].name;
+        
         }
         makeHtml += '<table id="idSchedule" width=100% border=1 cellspacing="0">';
         makeHtml += '<tr class="bgColorGray"><th width="100"></th><th width="100">월</th><th width="100">화</th><th width="100">수</th><th width="100">목</th><th width="100">금</th></tr>';        
@@ -817,6 +675,7 @@ a {
     				
     		});
     	
+    	
         document.getElementById('delArea').style.display = 'none';
         SelectedCourseList.splice(i,1);
         makeSelectedCourseListTable();
@@ -824,9 +683,89 @@ a {
         
     }
     
+function insert(i) {      
+    	
+    	alert("insert!");
+    	var cIdx=CourseList[i].cIdx;
+    	var sIdx=${info.sIdx};
+    	alert(cIdx);
+    	alert(sIdx);
+    	//저장하는 ajax - 완료됐으면 Y
+    	$.ajax({
+    		url : 'sAddFormCourseCheck.do',
+    		data : {
+    				sIdx:sIdx,
+    				cIdx:cIdx
+    				},
+    		method: 'get',
+    		success : 
+    			function(data){
+    				if(data=="Y"){
+    					alert("정상적으로 수강이 신청되었습니다.");
+    				}else{
+    					alert("수강신청 실패!");
+    				}
+				//SelectedCourseList.push(CourseList[i]);
+		       // makeSelectedCourseListTable();
+    			}
+    				
+    		});
+    	
+    	SelectedCourseList.push(CourseList[i]);
+    	
+    	makeSelectedCourseListTable();
+    	
+    	//SelectedCourseList = [];
+    	//viewMyCourse();
+    	// 내 강의목록 불러오기
+    	/*
+    	$.ajax({
+    		url : 'sAddFormMyCourseList.do',
+    		data : {
+    				sIdx:sIdx,
+    				cIdx:cIdx
+    				},
+    		method: 'get',
+    		success : 
+    			function(data){
+    			SelectedCourseList = [];
+    			$.each(data, function(key, value){
+     				
+     				console.log(value);
+     				//alert(value.cIdx);
+     				console.log("value.name : "+value.name);
+     				var cIdx = value.cIdx;
+     				var cName = value.name;
+     				var cTeacher = value.teacher;
+     				var content = value.content;
+     				var cDay = value.day;
+     				var cStartTime = value.startTime;
+     				var cTotalPer = value.totalPer;
+     				var cApplyPer = value.applyPer;
+     				var tIdx = value.tIdx;
+    			
+     				
+				SelectedCourseList.push(new Course(cIdx, cName, cTeacher, content, cStartTime, cTotalPer, cApplyPer, tIdx));
+    				
+     			});
+		        makeSelectedCourseListTable();
+		        //makeCourseListTableHTML();
+		        //makeCourseListTable();
+		        
+		        //reload();
+    			}
+    				
+    		});
+    	*/
+    	
+    	
+    }
+    
+    
     
     function doShareKa() {     
     }
+    
     
 </script>
 </html>

@@ -156,60 +156,77 @@
 	    
         <div id="contentsAll"> -->
     
-            <form>
+		<div id="contentsAll">
+			<form id="infoEditForm" action="infoEdit.do" method="post">
+				<table width=100% border=0>
+					<tr>
+						<td width=50% class="alignRight">학과</td>
+						<td width=45% class="alignLeft">${info.major}</td>
+					</tr>
+					<tr>
+						<td class="alignRight">교번</td>
+						<td class="alignLeft">${info.tIdx}</td>
+					</tr>
+					<tr>
+						<td class="alignRight">직급</td>
+						<td class="alignLeft">${info.job}</td>
+					</tr>
+					<tr>
+						<td class="alignRight">이름</td>
+						<td class="alignLeft">${info.name}</td>
+					</tr>
+					<tr>
+						<td class="alignLeft"><input type="hidden" id="pw1" name="pw1" value="${info.pw}"></td>
+					</tr>
+					<tr>
+						<td class="alignRight">비밀번호 확인</td>
+						<td class="alignLeft"><input type="password" id="pw2" name="pw2"><button id="chkPw" name="pw2" onClick="checkPw()">확인</button></td>
+					</tr>
+				 <c:if test="${empty result or result == 0}">
+					<tr>
+						<td class="alignRight">핸드폰</td>
+						<td class="alignLeft">${info.tel}</td>
+					</tr>
+					<tr>
+						<td class="alignRight">이메일</td>
+						<td class="alignLeft">${info.email}</td>
+					</tr>
+				 </c:if>
+				 <c:if test="${not empty result && result eq 1}">
+				 	<tr>
+						<td class="alignRight">핸드폰</td>
+						<td class="alignLeft">${chgTel}</td>
+					</tr>
+					<tr>
+						<td class="alignRight">이메일</td>
+						<td class="alignLeft">${chgEmail}</td>
+					</tr>	
+				 </c:if>
+					<tr>
+						<td class="alignRight">수정할 전화번호</td>
+						<td class="alignLeft"><input type="text" id="tel" name="tel"></td>
+					</tr>
+					<tr>
+						<td class="alignRight">수정할 이메일</td>
+						<td class="alignLeft"><input type="text" id="email" name="email"></td>
+					</tr>
+					<tr>
+						<td colspan="2">
+						<input type="submit" id="modify" class="" value="수정"></td>
+					</tr>
+			</table>
+		</form>
+			
 
-      
-                <table width=100% border=0>
-                    <tr><td width=50% class="alignRight">학과</td>
-                        <td width=45% class="alignLeft">컴퓨터학과</td></tr>
-                    <tr><td class="alignRight">교번</td>
-                        <td class="alignLeft">20083320</td></tr>
-                    <tr><td class="alignRight">직급</td>
-                        <td class="alignLeft">주강사</td></tr>
-                    <tr><td class="alignRight">이름</td>
-                        <td class="alignLeft">박혜미</td></tr>
-                    <tr><td class="alignRight">비밀번호</td>
-                        <td class="alignLeft"><input type="password" id="pw1"></td></tr>
-                    <tr><td class="alignRight">비밀번호 확인</td>
-                        <td class="alignLeft"><input type="password" id="pw2"></td></tr>
-                    <tr><td class="alignRight">핸드폰</td>
-                        <td class="alignLeft"><input type="text" id="phone" value="010-1234-1234"></td></tr>
-                    <tr><td class="alignRight">이메일</td>
-                        <td class="alignLeft"><input type="text" id="email" value="1234@naver.com"></td></tr>
-                    
-                    <tr><td colspan="2">
-                        
-                        <button type="submit" id="modify" class="" onClick="doModify(this.form)">수정</button>
-                        </td></tr>
-                </table>
-            </form>
-        
 
-        </div>        
-        
-    </div>
+		</div>
 
+	</div>
   
 
 </body>
 
 <script>
-    function doModify(form) {     
-
-
-
-
-        
-        form.submit();
-        
-
-    }
-    
-
-  
-
-
-
 </script>
 
 </html>
