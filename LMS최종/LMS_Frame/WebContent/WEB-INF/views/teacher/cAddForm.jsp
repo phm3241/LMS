@@ -8,7 +8,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LMS</title>
-    <link href="../css/lms.css" rel="stylesheet">
+    <link href="${pageContext.request.contextPath}/css/lms.css" rel="stylesheet">
     <style>     
 
 

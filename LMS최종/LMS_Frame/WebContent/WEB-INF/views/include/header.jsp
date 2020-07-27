@@ -6,10 +6,10 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <div id="header" class="bgColorHeader">
-	<div id="logout" display="inline">
-		<button type="button" class="btnLogoutImg" id="btnLogoutImg">
-			<img class="logoutImg" width=100
-				src="<%=request.getContextPath()%>/views/images/logout.png">
+	<div id="logout" style="display: inline;">
+		<button type="button" class="btnLogoutImg" id="btnLogoutImg" style="background-color: green;">
+			<img class="logoutImg" width=25px
+				src="${pageContext.request.contextPath}/images/logout.png">
 		</button>
 	</div>
 	<div>
@@ -17,7 +17,7 @@
 			<tr>
 				<td rowspan=2 class="alignRight" width=15% valign="bottom"><img
 					class="userImg" width=50
-					src="<%=request.getContextPath()%>/images/userImg.png"></td>
+					src="${pageContext.request.contextPath}/images/userImg.png"></td>
 				<!-- 로그인번호가 관리자이면, -->
 				<c:if test="${loginType eq 'aLogin'}">
 					<td class="alignLeft">${info.id}</td>
