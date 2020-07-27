@@ -15,11 +15,11 @@ public class SclassDelServiceImpl implements Service {
 
 	// 자신이 사용할 Dao/Model/Service resurve 파일 번호를 항상 공유해주세용!
 	CourseDao cDao;
+	Student student;
 	
 	@Override
 	public String getViewPage(HttpServletRequest request, HttpServletResponse response) {
 		
-		Student student = null;
 		Connection conn = null;
 		
 		// 모든 강의 목록 list로 던져주기

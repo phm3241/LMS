@@ -2,7 +2,6 @@ package lms.service;
 
 import java.sql.Connection;
 import java.sql.SQLException;
-import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -10,37 +9,38 @@ import javax.servlet.http.HttpServletResponse;
 import dbcp.ConnectionProvider;
 import lms.dao.TeacherDao;
 import lms.model.Teacher;
-import lms.model.TeacherListView;
 
-public class TlistServiceImpl implements Service {
+public class TsearchServiceImpl implements Service {
 
 	TeacherDao dao;
+	Teacher teacher;
 
 	@Override
 	public String getViewPage(HttpServletRequest request, HttpServletResponse response) {
 
-		TeacherListView tListView = null;
-
 		Connection conn = null;
+		int tIdx = Integer.parseInt(request.getParameter("tIdx"));
 
 		try {
 			conn = ConnectionProvider.getConnection();
 			dao = TeacherDao.getInstance();
-
 			
-			List<Teacher> teacherList = null;
-			
-			teacherList = dao.teacherList(conn);
-			
-			tListView = new TeacherListView(teacherList);
+			teacher = dao.selectTeacherByIdx(conn, tIdx);
 
 
 		} catch (SQLException e) {
-			System.out.println("SQL 오류 발생");
 			e.printStackTrace();
+		} finally {
+			if(conn != null) {
+				try {
+					conn.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
 		}
 
-		request.setAttribute("tListView", tListView);
+		request.setAttribute("teacher", teacher);
 
 		return "/WEB-INF/views/admin/tList.jsp";
 	}
