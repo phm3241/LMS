@@ -24,7 +24,7 @@
 				</c:if>
 				<!-- 로그인번호가 학생. 교수이면, -->
 				<c:if test="${loginType eq 'tLogin'}">
-					<td class="alignLeft">${info.tIdx}${info.name}</td>
+					<td class="alignLeft">${info.tIdx} ${info.name}</td>
 				</c:if>
 				<!-- 로그인번호가 학생이면, -->
 				<c:if test="${loginType eq 'sLogin'}">
@@ -38,11 +38,11 @@
 				</c:if>
 				<!-- 로그인번호가 교수이면, -->
 				<c:if test="${loginType eq 'tLogin'}">
-					<td class="alignLeft">${info.major}${info.job}</td>
+					<td class="alignLeft">${info.major} ${info.job}</td>
 				</c:if>
 				<!-- 로그인번호가 학생이면, -->
 				<c:if test="${loginType eq 'sLogin'}">
-					<td class="alignLeft">${info.major}${info.grade}</td>
+					<td class="alignLeft">${info.major} ${info.grade}</td>
 				</c:if>
 			</tr>
 		</table>
