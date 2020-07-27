@@ -223,8 +223,7 @@ a {
 						<td>${teacher.tel}</td>
 						<td>${teacher.email}</td>
 						<td><button id="viewModify" class="" onClick="viewModify()">수정</button></td>
-						<td><a href = "javascript:doDel(${teacher.tIdx})">삭제</a></td>
-						<!-- <td><button id="viewDel" class="" onClick="viewDel()">삭제</button></td> -->
+						<td><button id="doDel" class="" onClick="doDel(${teacher.tIdx})">삭제</button></td>
 					</tr>
 				</c:forEach>
 			</table>
