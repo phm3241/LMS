@@ -4,9 +4,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="UTF-8">
-	<title>LMS</title>
-	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<meta charset="UTF-8">
+<title>LMS</title>
+<link rel="stylesheet" href="../css/lms.css">
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <style>
 
 
@@ -135,7 +136,6 @@
 
 
 </style>
-<link rel="stylesheet" href="./css/lms.css">
 </head>
 
 <body>
@@ -152,7 +152,7 @@
 
 				<form id="loginForm" action="login.do" method="post">
 					<table width=100% border=0 class="loginTable" cellspacing="0">
-						<tr><td class="alignLeft" colspan="2"><img width=70 src="./images/logo.png"></td></tr>
+						<tr><td class="alignLeft" colspan="2"><img width=70 src="../images/logo.png"></td></tr>
 						<tr><td colspan="2"><h1 class="subtitle">로그인</h1></td></tr>
 						<tr>
 							<td colspan="2" class="fontInnerTable">
@@ -162,11 +162,11 @@
 							</td>
 						</tr>
 						<tr>
-							<td class="alignRight" width=25%><img class="loginImg" height="35px" src="./images/loginId.png"></td>
+							<td class="alignRight" width=25%><img class="loginImg" height="35px" src="../images/loginId.png"></td>
 							<td class="alignLeft"><input type="text" class="input" name="id" id="id" placeholder="학번 또는 교번을 입력해주세요" required></td>
 						</tr>
 						<tr>
-							<td class="alignRight"><img class="loginImg" height="35px" src="./images/loginId.png"></td>
+							<td class="alignRight"><img class="loginImg" height="35px" src="../images/loginId.png"></td>
 							<td class="alignLeft"><input type="password" name="pw"  id="pw" class="input" >
 							<span id="loginCheck"></span>
 							</td>

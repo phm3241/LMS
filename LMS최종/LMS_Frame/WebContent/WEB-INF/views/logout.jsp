@@ -1,11 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>    
 
 <!DOCTYPE html>
 <html>
 <head>
 	<meta charset="UTF-8">
 	<title>LMS</title>
+	<link href="../css/lms.css" rel="stylesheet">
 	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <style>
 
@@ -151,11 +153,11 @@
 
 				<form id="loginForm" action="login.do" method="post">
 					<table width=100% border=0 class="loginTable" cellspacing="0">
-						<tr><td class="alignLeft" colspan="2"><img width=70 src="./images/logo.png"></td></tr>
+						<tr><td class="alignLeft" colspan="2"><img width=70 src="../images/logo.png"></td></tr>
 						<tr><td colspan="2"><h1 class="subtitle">로그아웃</h1></td></tr>
 						
 						<tr>
-							<td class="alignRight" width=25%><img class="loginImg" height="35px" src="./images/loginId.png"></td>
+							<td class="alignRight" width=25%><img class="loginImg" height="35px" src="../images/loginId.png"></td>
 							<!-- 로그인번호가 관리자이면, -->
 							<c:if test="${loginType eq 'aLogin'}">
 								<td class="alignLeft">${info.id}</td>

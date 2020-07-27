@@ -9,7 +9,7 @@
 	<div id="logout" display="inline">
 		<button type="button" class="btnLogoutImg" id="btnLogoutImg">
 			<img class="logoutImg" width=100
-				src="<%=request.getContextPath()%>/images/logout.png">
+				src="../images/logout.png">
 		</button>
 	</div>
 	<div>
@@ -17,7 +17,7 @@
 			<tr>
 				<td rowspan=2 class="alignRight" width=15% valign="bottom"><img
 					class="userImg" width=50
-					src="<%=request.getContextPath()%>/images/userImg.png"></td>
+					src="../images/userImg.png"></td>
 				<!-- 로그인번호가 관리자이면, -->
 				<c:if test="${loginType eq 'aLogin'}">
 					<td class="alignLeft">${info.id}</td>
