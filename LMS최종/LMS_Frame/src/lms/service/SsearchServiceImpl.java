@@ -8,30 +8,26 @@ import javax.servlet.http.HttpServletResponse;
 
 import dbcp.ConnectionProvider;
 import lms.dao.StudentDao;
+import lms.model.Student;
 
-public class SdeleteServiceImpl implements Service {
 
-	// Service 클래스 이용에 대한 예제 클래스입니다.
+public class SsearchServiceImpl implements Service {
+
 	StudentDao dao;
-	
+	Student student;
+
 	@Override
 	public String getViewPage(HttpServletRequest request, HttpServletResponse response) {
-		
-		// form에서 학생 정보가져오기
-		int sIdx = Integer.parseInt(request.getParameter("sIdx"));
-		
-		// 변수 초기화
-		int resultCnt = 0;
-		Connection conn = null;
-		
-		try {
 
+		Connection conn = null;
+		int sIdx = Integer.parseInt(request.getParameter("search"));	// name = "search" 라는 input box
+
+		try {
 			conn = ConnectionProvider.getConnection();
 			dao = StudentDao.getInstance();
 			
-			resultCnt = dao.deleteStudent(conn, sIdx);
+			student = dao.selectStudentByIdx(conn, sIdx);
 
-			request.setAttribute("resultCnt", resultCnt);
 
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -44,9 +40,10 @@ public class SdeleteServiceImpl implements Service {
 				}
 			}
 		}
-		
 
-		return "/WEB-INF/views/admin/tList.jsp";
+		request.setAttribute("student", student);
+
+		return "/WEB-INF/views/admin/sList.jsp";
 	}
 
 }
