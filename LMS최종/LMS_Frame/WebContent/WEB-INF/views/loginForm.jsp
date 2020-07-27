@@ -135,7 +135,7 @@
 
 
 </style>
-<link rel="stylesheet" href="./css/lms.css">
+<link rel="stylesheet" href="../css/lms.css">
 </head>
 
 <body>
