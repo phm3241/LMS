@@ -157,9 +157,9 @@ a {
 					</tr>
 					<tr>
 						<td class="alignRight">비밀번호 확인</td>
-						<td class="alignLeft"><input type="password" id="pw2" name="pw2"><button id="chkPw" name="pw2" onClick="checkPw()">비밀번호 확인</button></td>
+						<td class="alignLeft"><input type="password" id="pw2" name="pw2"><button id="chkPw" name="pw2" onClick="checkPw()">확인</button></td>
 					</tr>
-				<%-- <c:if test="${info.pw eq }"> 비밀번호 확인 실패 시--%> 
+				 <c:if test="${empty result or result == 0}">
 					<tr>
 						<td class="alignRight">핸드폰</td>
 						<td class="alignLeft">${info.tel}</td>
@@ -168,9 +168,17 @@ a {
 						<td class="alignRight">이메일</td>
 						<td class="alignLeft">${info.email}</td>
 					</tr>
-				<%-- </c:if> --%>
-				<c:if test="${info.pw eq info.pw}">
-					
+				 </c:if>
+				 <c:if test="${not empty result && result eq 1}">
+				 	<tr>
+						<td class="alignRight">핸드폰</td>
+						<td class="alignLeft">${chgTel}</td>
+					</tr>
+					<tr>
+						<td class="alignRight">이메일</td>
+						<td class="alignLeft">${chgEmail}</td>
+					</tr>	
+				 </c:if>
 					<tr>
 						<td class="alignRight">수정할 전화번호</td>
 						<td class="alignLeft"><input type="text" id="tel" name="tel"></td>
@@ -183,8 +191,6 @@ a {
 						<td colspan="2">
 						<input type="submit" id="modify" class="" value="수정"></td>
 					</tr>
-					
-				</c:if>
 			</table>
 		</form>
 			
@@ -200,23 +206,6 @@ a {
 
 <script>
 	
-	$(document).ready(function(){
-	
-		var sessionPw = "<%= session.getAttribute("pw") %>"
-		
-		if 
-		
-		
-		function doModify(form) {
-
-			form.submit();
-
-		}
-
-		
-		
-	});
-		
 	
 </script>
 

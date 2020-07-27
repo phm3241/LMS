@@ -13,7 +13,7 @@ import lms.dao.TeacherDao;
 import lms.model.Student;
 import lms.model.Teacher;
 
-public class EditFormServiceImpl implements Service {
+public class delete_EditFormServiceImpl implements Service {
 
 	// 자신이 사용할 Dao/Model/Service resurve 파일 번호를 항상 공유해주세용!
 	Student student;

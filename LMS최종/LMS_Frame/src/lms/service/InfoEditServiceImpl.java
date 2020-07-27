@@ -31,27 +31,43 @@ public class InfoEditServiceImpl implements Service {
 		// form에서 입력한 전화번호와 이메일 가져오기
 		String tel = request.getParameter("tel");
 		String email = request.getParameter("email");
+		String pw1 = request.getParameter("pw1");
+		String pw2 = request.getParameter("pw2");
 		
+		System.out.println("로그인 타입 : " + type);
 		System.out.println("수정할 전화번호 : " + tel+ " / 수정할 이메일 주소 : " + email);
+		System.out.println("비밀번호 : " + pw1+ " / 체크 비밀번호 : " + pw2);
 		
 		// 변수 초기화
 		String path = null;
 		Connection conn = null;
 		int sIdx = 0;
 		int tIdx = 0;
+		int result = 0;
 		
 		try {
 			conn = ConnectionProvider.getConnection();
 			sDao = StudentDao.getInstance();
 			tDao = TeacherDao.getInstance();
 			
-			if(type.equals("sLogin")) {
+			if(type.equals("sLogin") && (pw1.equals(pw2))) {
 				student = (Student) session.getAttribute("info");
 				sIdx = student.getsIdx();
-				sDao.editStudent(conn, sIdx, tel, email);
+				result = sDao.editStudent(conn, sIdx, tel, email);
+				System.out.println("result : " + result);
+				
+				
+				request.setAttribute("chgTel", tel);
+				request.setAttribute("chgEmail", email);
+				request.setAttribute("result", result);
 				
 				path = "/WEB-INF/views/student/sInfo.jsp";
-			} else if(type.equals("tLogin")) {
+			} else {
+				// 비밀번호가 불일치할 때
+				path = "/WEB-INF/views/student/sInfo.jsp";
+			}
+			
+		if(type.equals("tLogin")) {
 				teacher = (Teacher) session.getAttribute("info");
 				tIdx = teacher.gettIdx();
 				tDao.editTeacher(conn, tIdx, tel, email);
