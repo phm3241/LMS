@@ -127,7 +127,7 @@ public class StudentDao {
 	}
 
 	// 학생 내정보 삭제 : delete
-	public int deleteStudent(Connection conn, Student student) throws SQLException {
+	public int deleteStudent(Connection conn, int sIdx) throws SQLException {
 
 		int result = 0;
 		PreparedStatement pstmt = null;
@@ -135,7 +135,7 @@ public class StudentDao {
 
 		try {
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, student.getsIdx());
+			pstmt.setInt(1, sIdx);
 
 			result = pstmt.executeUpdate();
 

@@ -183,19 +183,6 @@ a {
 
 		<%@ include file="/WEB-INF/views/include/header.jsp"%>
 
-		<!-- <div id="header" class="bgColorHeader">
-            
-            <table class="titleTable" width=100% border=0 cellspacing=0>
-                <tr><td rowspan=2 class="alignRight" width=15% valign="bottom"><img class="userImg" width=50 src="./images/userImg.png"></td>
-                    <td  class="alignLeft"> 2008123456114</td></tr>
-                <tr><td class="alignLeft"> 관리자</td></tr>
-            </table> 
-            <table class="titleTable" width=100% border=0 cellspacing=0>
-                <tr><td><a href="cList.html">강의</a></td>
-                    <td><a href="tList.html">강사</a></td>
-                    <td><a href="sList.html">[학생]</a></td></tr>                
-            </table> 
-        </div> -->
 
 		<div id="contentsAll">
 
@@ -237,7 +224,8 @@ a {
 					<td>${student.tel}</td>
 					<td>${student.email}</td>
 					<td><button id="viewModify" class="" onClick="viewModify()">수정</button></td>
-					<td><button id="viewDel" class="" onClick="viewDel()">삭제</button></td>
+					<td><a href = "javascript:doDel(${student.sIdx})">삭제</a></td>
+					<!-- <td><button id="doDel" class="" onClick="doDel()">삭제</button></td> -->
 				</tr>
 				</c:forEach> 
 			</table>
@@ -477,13 +465,15 @@ a {
 
     }
 
-    function doDel(form) {     
+    function doDel(sIdx) {     
+
+		if(confirm('선택하신 회원 정보를 삭제하시겠습니까?')){
+			location.href = 'sDelete.do?sIdx='+sIdx;
+		}
 
 
-
-
-        document.getElementById('delArea').style.display = 'none';
-        form.submit();
+/*         document.getElementById('delArea').style.display = 'none';
+        form.submit(); */
         
 
     }
