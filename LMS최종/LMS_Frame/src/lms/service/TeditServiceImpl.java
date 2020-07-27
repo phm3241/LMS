@@ -20,7 +20,7 @@ public class TeditServiceImpl implements Service {
 	public String getViewPage(HttpServletRequest request, HttpServletResponse response) {
 		
 		// form에서 입력한 전화번호와 이메일 가져오기
-		int tIdx = Integer.parseInt(request.getParameter("tIdx"));	// name = "edit" 버튼
+		int tIdx = Integer.parseInt(request.getParameter("tIdx"));	// name = "edit" 버튼을 누르면 table list에 있던 tIdx를 불러온다
 		String tel = request.getParameter("tel");
 		String email = request.getParameter("email");
 		
