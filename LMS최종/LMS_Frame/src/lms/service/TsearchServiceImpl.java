@@ -19,7 +19,7 @@ public class TsearchServiceImpl implements Service {
 	public String getViewPage(HttpServletRequest request, HttpServletResponse response) {
 
 		Connection conn = null;
-		int tIdx = Integer.parseInt(request.getParameter("tIdx"));
+		int tIdx = Integer.parseInt(request.getParameter("search"));
 
 		try {
 			conn = ConnectionProvider.getConnection();

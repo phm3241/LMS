@@ -242,7 +242,7 @@
 
 
         .bgColorHeader {
-            background-color:rgb(41, 128, 185);
+            background-color:rgb(26, 188, 156);
         }
         
 
@@ -256,26 +256,29 @@
 <body>
 
 <div id="container">
-        <div id="header" class="bgColorHeader">
+    <div id="header" class="bgColorHeader">
             
-            <table class="titleTable" width=100% border=0 cellspacing=0>
-                <tr><td rowspan=2 class="alignRight" width=15% valign="bottom"><img class="userImg" width=50 src="./images/userImg.png"></td>
-                    <td  class="alignLeft"> 2008123456114</td></tr>
-                <tr><td class="alignLeft">  컴퓨터학과 주강사</td></tr>
-            </table> 
-            <table class="titleTable" width=100% border=0 cellspacing=0>
-                <tr><td><a href="cAddForm.html">강의등록</a></td>
-                    <td><a href="tMyPage.html">[나의 강의실]</a></td>
-                    <td><a href="tInfo.html">내정보</a></td></tr>                
-            </table> 
-        </div>
+        <table class="titleTable" width=100% border=0 cellspacing=0>
+            <tr><td rowspan=2 class="alignRight" width=15% valign="bottom"><img class="userImg" width=50 src="./images/userImg.png"></td>
+                <td  class="alignLeft"> 2008123456114</td></tr>
+            <tr><td class="alignLeft">  컴퓨터공학과 2학년</td></tr>
+        </table> 
+        <table class="titleTable" width=100% border=0 cellspacing=0>
+            <tr><td><a href="sClassAddForm.html">수강신청</a></td>
+                <td><a href="sMyPage.html">[나의 강의실]</a></td>
+                <td><a href="sInfo.html">내정보</a></td></tr>                
+        </table> 
+    </div>
 	    
         <div id="contentsAll">
 
         
         <table width=100% border=0>            
-            <tr><td class="alignLeft bold">수업 목록</td>
-                <td class="tdRight"></td></tr>
+            <tr><td class="alignLeft bold">수강신청 목록</td>
+                <td class="tdRight">
+                    수강과목 : 4/5
+                    <button id="clearList"" class="btnTmyPage" onClick="doclearList()">목록 초기화</button>
+                </td></tr>
         </table>
         
         <table id="idClass" width=100% border=0 cellspacing="0">
@@ -303,7 +306,8 @@
 
         <table width=100% border=0>            
             <tr><td class="alignLeft bold">일정표</td>
-                <td class="tdRight">                
+                <td class="tdRight">
+                <button id="saveImg" class="btnTmyPage" onClick="viewSaveImg()">이미지저장</button>                
                 <button id="shareKa" class="btnTmyPage" onClick="viewShareKa()">카카오톡공유</button>
                 </td></tr>
         </table>
@@ -440,6 +444,11 @@
 </body>
 
 <script>
+
+
+    function doclearList() {
+        alert('목록초기화 실행!!');
+    }
 
     function closeInfo() {
             document.getElementById('infoArea').style.display = 'none';
