@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import dbcp.ConnectionProvider;
 import lms.dao.StudentDao;
+import lms.model.Student;
 
 public class SdeleteServiceImpl implements Service {
 
@@ -17,22 +18,27 @@ public class SdeleteServiceImpl implements Service {
 	@Override
 	public String getViewPage(HttpServletRequest request, HttpServletResponse response) {
 		
-		// form에서 학생 정보가져오기
-		int sIdx = Integer.parseInt(request.getParameter("sIdx"));
+		String msg = "";
 		
-		// 변수 초기화
-		int resultCnt = 0;
 		Connection conn = null;
 		
 		try {
 
+			int sIdx = Integer.parseInt(request.getParameter("sIdx"));
+			
 			conn = ConnectionProvider.getConnection();
 			dao = StudentDao.getInstance();
 			
-			resultCnt = dao.deleteStudent(conn, sIdx);
+			int resultCnt = dao.deleteStudent(conn, sIdx);
 
-			request.setAttribute("resultCnt", resultCnt);
-
+			switch(resultCnt) {
+			case 0:
+				msg="요청하신 데이터가 존재하지 않습니다.";
+			case 1:
+				msg="정상적으로 삭제되었습니다.";
+			}
+			
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -44,9 +50,9 @@ public class SdeleteServiceImpl implements Service {
 				}
 			}
 		}
-		
+		request.setAttribute("msg", msg);
 
-		return "/WEB-INF/views/admin/tList.jsp";
+		return "/WEB-INF/views/admin/sList.jsp";
 	}
 
 }
