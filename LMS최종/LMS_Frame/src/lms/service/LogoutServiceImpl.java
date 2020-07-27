@@ -9,22 +9,11 @@ public class LogoutServiceImpl implements Service {
 	// 자신이 사용할 Dao/Model/Service resurve 파일 번호를 항상 공유해주세용!
 	@Override
 	public String getViewPage(HttpServletRequest request, HttpServletResponse response) {
-		// String type = cookieBox.getValue("type");
-	
-<<<<<<< HEAD
+		
 		HttpSession session = request.getSession(false);
 		session.invalidate();
 		
 		return "/WEB-INF/views/logoutForm.jsp";
-=======
-		HttpSession session = request.getSession();
-		String type = (String) session.getAttribute("loginType");
-		String info = (String) session.getAttribute("info");
-		
-		session.invalidate();
-		
-		return "/WEB-INF/views/loginForm.jsp";
->>>>>>> 6b945d30c633141e36869c2df4de8a12ac27003f
 	}
 
 }
