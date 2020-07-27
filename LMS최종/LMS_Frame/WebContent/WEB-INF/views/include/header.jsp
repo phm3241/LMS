@@ -6,10 +6,14 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <div id="header" class="bgColorHeader">
+	<div id="logout" display="inline">
+		<img class="logoutImg" width=100 src="../images/logout.png">
+	</div>
 	<table class="titleTable" width=100% border=0 cellspacing=0>
 		<tr>
-			<td rowspan=2 class="alignRight" width=15% valign="bottom"><img
-				class="userImg" width=50 src="./images/userImg.png"></td>
+			<td rowspan=2 class="alignRight" width=15% valign="bottom">
+				<img class="userImg" width=50 src="../images/userImg.png">
+			</td>
 			<!-- 로그인번호가 관리자이면, -->
 			<c:if test="${loginType eq 'aLogin'}">
 				<td class="alignLeft">${info.id}</td>
