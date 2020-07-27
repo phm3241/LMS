@@ -8,23 +8,24 @@ import javax.servlet.http.HttpServletResponse;
 
 import dbcp.ConnectionProvider;
 import lms.dao.TeacherDao;
+import lms.model.Teacher;
 
 public class TsearchServiceImpl implements Service {
 
 	TeacherDao dao;
+	Teacher teacher;
 
 	@Override
 	public String getViewPage(HttpServletRequest request, HttpServletResponse response) {
 
 		Connection conn = null;
-		int resultCnt = 0;
 		int tIdx = Integer.parseInt(request.getParameter("tIdx"));
 
 		try {
 			conn = ConnectionProvider.getConnection();
 			dao = TeacherDao.getInstance();
 			
-			resultCnt = dao.deleteTeacher(conn, tIdx);
+			teacher = dao.selectTeacherByIdx(conn, tIdx);
 
 
 		} catch (SQLException e) {
@@ -39,7 +40,7 @@ public class TsearchServiceImpl implements Service {
 			}
 		}
 
-		request.setAttribute("reultCnt", resultCnt);
+		request.setAttribute("teacher", teacher);
 
 		return "/WEB-INF/views/admin/tList.jsp";
 	}
