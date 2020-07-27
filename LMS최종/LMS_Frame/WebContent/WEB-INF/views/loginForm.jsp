@@ -135,7 +135,11 @@
 
 
 </style>
+<<<<<<< HEAD
 <link rel="stylesheet" href="../css/lms.css">
+=======
+	<link rel="stylesheet" href="../css/lms.css">
+>>>>>>> 8cf7a718918b31339ac88354e63eb842e8342c97
 </head>
 
 <body>
@@ -209,7 +213,7 @@
 			
 			/////////////////////////////////////////////////////////
 			// var flag =false;  // 결과값 미리 변수로 설정해주어야한다.
-			var params = jQuery("#loginForm").serialize();
+			var params = $('#loginForm').serialize();
 			// 비동기 통신으로 아이디-비번 체크
 			$.ajax({
 				url : 'loginCheck.do', //상대경로
