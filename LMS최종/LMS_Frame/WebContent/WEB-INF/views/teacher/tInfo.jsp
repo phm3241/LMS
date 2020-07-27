@@ -173,6 +173,21 @@
 					</tr>
 				</table>
 				
+				<!-- result값이 존재하지 않거나 0일 경우 -->
+				<!-- 처음 로그인 시 저장되어있는 session 로그인정보 출력 --> 
+				<c:if test="${empty result or result == 0}">
+				<table width=100% border=0>	
+					<tr>
+						<td width=50% class="alignRight">핸드폰</td>
+						<td width=45% class="alignLeft">${info.tel}</td>
+					</tr>
+					<tr>
+						<td width=50% class="alignRight">이메일</td>
+						<td width=45% class="alignLeft">${info.email}</td>
+					</tr>
+				</table>	
+			 	</c:if>
+				
 				<!-- 비밀번호 체크 Form -->
 				<form id="checkPwtForm" action="checkPw.do" method="post">
 				<table width=100% border=0>
@@ -190,21 +205,6 @@
 					</tr>
 				</table>
 				</form>
-
-				<!-- result값이 존재하지 않거나 0일 경우 -->
-				<!-- 처음 로그인 시 저장되어있는 session 로그인정보 출력 --> 
-				<c:if test="${empty result or result == 0}">
-				<table width=100% border=0>	
-					<tr>
-						<td width=50% class="alignRight">핸드폰</td>
-						<td width=45% class="alignLeft">${info.tel}</td>
-					</tr>
-					<tr>
-						<td width=50% class="alignRight">이메일</td>
-						<td width=45% class="alignLeft">${info.email}</td>
-					</tr>
-				</table>	
-			 	</c:if>
 				 
 				 <!-- 비밀번호 체크 결과 chkResult 가 1일 경우 -->
 				 <!-- 수정할 수 있는 Form 테이블이 생성됨 -->

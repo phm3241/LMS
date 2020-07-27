@@ -173,6 +173,11 @@ a {
 .bgColorHeader {
 	background-color: rgb(26, 188, 156);
 }
+
+#deletefont{
+	color: black;
+	font-size: 1em	;
+}
 </style>
 <script></script>
 </head>
@@ -224,8 +229,7 @@ a {
 					<td>${student.tel}</td>
 					<td>${student.email}</td>
 					<td><button id="viewModify" class="" onClick="viewModify()">수정</button></td>
-					<td><a href = "javascript:doDel(${student.sIdx})">삭제</a></td>
-					<!-- <td><button id="doDel" class="" onClick="doDel()">삭제</button></td> -->
+					<td><button id="doDel" class="" onClick="doDel(${student.sIdx})">삭제</button></td>
 				</tr>
 				</c:forEach> 
 			</table>
@@ -235,49 +239,37 @@ a {
 	<div id="insertArea">
 		<div id="insertAreaInner">
 
-			<form>
+			<form action="sAdd.do" method="post">
 
 				학생등록
 				<table width=100% border=0>
 					<tr>
-						<td>교과목명</td>
-						<td><input type="text" id="search"></td>
+						<td>학번</td>
+						<td><input type="text" id="sIdx" name="sIdx"></td>
 					</tr>
 					<tr>
-						<td>교수명</td>
-						<td><input type="text" id="search"></td>
+						<td>패스워드</td>
+						<td><input type="text" id="pw" name="pw"></td>
 					</tr>
 					<tr>
-						<td>과목내용</td>
-						<td><input type="text" id="search"></td>
+						<td>학생명</td>
+						<td><input type="text" id="name" name="name"></td>
 					</tr>
 					<tr>
-						<td>대상학년</td>
-						<td><input type="text" id="search"></td>
+						<td>전공</td>
+						<td><input type="text" id="major" name="major"></td>
 					</tr>
 					<tr>
-						<td>이수구분</td>
-						<td><input type="text" id="search"></td>
+						<td>학년</td>
+						<td><input type="text" id="grade" name="grade"></td>
 					</tr>
 					<tr>
-						<td>학점</td>
-						<td><input type="text" id="search"></td>
+						<td>연락처</td>
+						<td><input type="text" id="tel" name="tel"></td>
 					</tr>
 					<tr>
-						<td>수업시간</td>
-						<td><input type="text" id="search"></td>
-					</tr>
-					<tr>
-						<td>정원</td>
-						<td><input type="text" id="search"></td>
-					</tr>
-					<tr>
-						<td>교재</td>
-						<td><input type="text" id="search"></td>
-					</tr>
-					<tr>
-						<td>강의실</td>
-						<td><input type="text" id="search"></td>
+						<td>이메일</td>
+						<td><input type="text" id="email" name="email"></td>
 					</tr>
 					<tr>
 						<td colspan="2">
@@ -425,11 +417,9 @@ a {
     function doInsert(form) {     
 
 
-
-
-        document.getElementById('insertArea').style.display = 'none';
-        form.submit();
-        
+    	if(confirm('입력한 학생 정보를 등록하시겠습니까?')){
+			location.href = 'sList.do';
+		}
 
     }
     

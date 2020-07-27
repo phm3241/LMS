@@ -9,7 +9,7 @@
 	<div id="logout" display="inline">
 		<button type="button" class="btnLogoutImg" id="btnLogoutImg">
 			<img class="logoutImg" width=100
-				src="<%=request.getContextPath()%>/images/logout.png">
+				src="<%=request.getContextPath()%>/views/images/logout.png">
 		</button>
 	</div>
 	<div>
