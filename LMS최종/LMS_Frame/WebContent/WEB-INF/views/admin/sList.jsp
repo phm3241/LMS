@@ -248,6 +248,10 @@ a {
 						<td><input type="text" id="sIdx" name="sIdx"></td>
 					</tr>
 					<tr>
+						<td>패스워드</td>
+						<td><input type="text" id="pw" name="pw"></td>
+					</tr>
+					<tr>
 						<td>학생명</td>
 						<td><input type="text" id="name" name="name"></td>
 					</tr>
@@ -413,11 +417,9 @@ a {
     function doInsert(form) {     
 
 
-
-
-        document.getElementById('insertArea').style.display = 'none';
-        form.submit();
-        
+    	if(confirm('입력한 학생 정보를 등록하시겠습니까?')){
+			location.href = 'sList.do';
+		}
 
     }
     
