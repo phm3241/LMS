@@ -9,7 +9,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>LMS</title>
-<link href="./css/lms.css" rel="stylesheet">
+<link href="../css/lms.css" rel="stylesheet">
 <style>
 th {
 	text-align: center;
@@ -216,26 +216,6 @@ a {
 	<div id="container">
 	<%@ include file="/WEB-INF/views/include/header.jsp"%>
 	
-<!-- 		<div id="header" class="bgColorHeader">
-			
- 			<table class="titleTable" width=100% border=0 cellspacing=0>
-				<tr>
-					<td rowspan=2 class="alignRight" width=15% valign="bottom"><img
-						class="userImg" width=50 src="./images/userImg.png"></td>
-					<td class="alignLeft">2008123456114</td>
-				</tr>
-				<tr>
-					<td class="alignLeft">컴퓨터공학과 2학년</td>
-				</tr>
-			</table>
-			<table class="titleTable" width=100% border=0 cellspacing=0>
-				<tr>
-					<td><a href="sClassAddForm.html">수강신청</a></td>
-					<td><a href="sMyPage.html">[나의 강의실]</a></td>
-					<td><a href="sInfo.html">내정보</a></td>
-				</tr>
-			</table>
-		</div>  -->
 
 		<div id="contentsAll">
 
@@ -269,91 +249,6 @@ a {
 			</table>
 			<div id="timeTable">
 			</div>
-			<!-- <table id="idSchedule" width=100% border=1 cellspacing="0">
-
-
-				<tr class="bgColorGray">
-					<th width="100"></th>
-					<th>월</th>
-					<th>화</th>
-					<th>수</th>
-					<th>목</th>
-					<th>금</th>
-				</tr>
-				<tr class="">
-					<td>0교시<br>08:00
-					</td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-				<tr class="">
-					<td>1교시<br>08:00
-					</td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-				<tr class="">
-					<td>2교시<br>08:00
-					</td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-				<tr class="">
-					<td>3교시<br>08:00
-					</td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-				<tr class="">
-					<td>4교시<br>08:00
-					</td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-				<tr class="">
-					<td>5교시<br>08:00
-					</td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-				<tr class="">
-					<td>6교시<br>08:00
-					</td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-				<tr class="">
-					<td>7교시<br>08:00
-					</td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-				<tr class="">
-					<td>8교시<br>08:00
-					</td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-			</table> -->
-
 
 
 
@@ -507,12 +402,6 @@ a {
 
 <script>
 
-	window.onload = function(){
-		
-		//0726 윤원
-		getMyCourseListTable();
-		
-	}
 
 
 	//객체 생성
@@ -537,13 +426,16 @@ a {
 	var timeTableArea = document.getElementById('timeTable');
 
 	
-	
+
+		
+	getMyCourseListTable();
+		
 	
 	
 	//0726 윤원
 	function getMyCourseListTable(){
 		makeMyCourseListDATA();
-		makeSelectedCourseTimeTableHTML();
+		
 		
 	}
 	//0726 윤원 - 내 강의리스트 가져옴
@@ -576,6 +468,7 @@ a {
 					});
 					
 					makeMyCourseListHTML();
+					makeSelectedCourseTimeTableHTML();
 					
 				}
 			
@@ -623,16 +516,6 @@ a {
         }
         makeHtml += '<table id="idSchedule" width=100% border=1 cellspacing="0">';
         makeHtml += '<tr class="bgColorGray"><th width="100"></th><th width="100">월</th><th width="100">화</th><th width="100">수</th><th width="100">목</th><th width="100">금</th></tr>';        
-        
-        /* makeHtml += '<tr>';
-        makeHtml += '<td>1교시<br>09:00</td><td>'+arrTimeTable[0]+'</td><td>'+arrTimeTable[4]+'</td><td>'+arrTimeTable[8]+'</td><td>'+arrTimeTable[12]+'</td><td>'+arrTimeTable[16]+'</td>';
-        makeHtml += '</tr><tr>';
-        makeHtml += '<td>2교시<br>11:00</td><td>'+arrTimeTable[1]+'</td><td>'+arrTimeTable[5]+'</td><td>'+arrTimeTable[9]+'</td><td>'+arrTimeTable[13]+'</td><td>'+arrTimeTable[17]+'</td>';
-        makeHtml += '</tr><tr>';
-        makeHtml += '<td>3교시<br>13:00</td><td>'+arrTimeTable[2]+'</td><td>'+arrTimeTable[6]+'</td><td>'+arrTimeTable[10]+'</td><td>'+arrTimeTable[14]+'</td><td>'+arrTimeTable[18]+'</td>';
-        makeHtml += '</tr><tr>';
-        makeHtml += '<td>4교시<br>15:00</td><td>'+arrTimeTable[3]+'</td><td>'+arrTimeTable[7]+'</td><td>'+arrTimeTable[11]+'</td><td>'+arrTimeTable[15]+'</td><td>'+arrTimeTable[19]+'</td>';
-        makeHtml += '</table>'; */
          makeHtml += '<tr>';
         makeHtml += '<td>1교시<br>09:00</td><td>'+arrTimeTable[1]+'</td><td>'+arrTimeTable[5]+'</td><td>'+arrTimeTable[9]+'</td><td>'+arrTimeTable[13]+'</td><td>'+arrTimeTable[17]+'</td>';
         makeHtml += '</tr><tr>';
