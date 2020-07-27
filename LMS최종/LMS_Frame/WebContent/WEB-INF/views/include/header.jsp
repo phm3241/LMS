@@ -7,41 +7,43 @@
 
 <div id="header" class="bgColorHeader">
 	<div id="logout" display="inline">
-		<img class="logoutImg" width=100 src="../images/logout.png">
+		<button type="button" class="btnLogoutImg" id="btnLogoutImg"><img class="logoutImg" width=100 src="../images/logout.png"></button>
 	</div>
-	<table class="titleTable" width=100% border=0 cellspacing=0>
-		<tr>
-			<td rowspan=2 class="alignRight" width=15% valign="bottom">
-				<img class="userImg" width=50 src="../images/userImg.png">
-			</td>
-			<!-- 로그인번호가 관리자이면, -->
-			<c:if test="${loginType eq 'aLogin'}">
-				<td class="alignLeft">${info.id}</td>
-			</c:if>
-			<!-- 로그인번호가 학생. 교수이면, -->
-			<c:if test="${loginType eq 'tLogin'}">
-				<td class="alignLeft">${info.tIdx} ${info.name}</td>
-			</c:if>
-			<!-- 로그인번호가 학생이면, -->
-			<c:if test="${loginType eq 'sLogin'}">
-				<td class="alignLeft"> ${info.sIdx} ${info.name}</td>
-			</c:if>
-		</tr>
-		<tr>
-			<!-- 로그인번호가 관리자이면, -->
-			<c:if test="${loginType eq 'aLogin'}">
-				<td class="alignLeft">관리자</td>
-			</c:if>
-			<!-- 로그인번호가 교수이면, -->
-			<c:if test="${loginType eq 'tLogin'}">
-				<td class="alignLeft">${info.major}${info.job}</td>
-			</c:if>
-			<!-- 로그인번호가 학생이면, -->
-			<c:if test="${loginType eq 'sLogin'}">
-				<td class="alignLeft">${info.major}${info.grade}</td>
-			</c:if>
-		</tr>
-	</table>
+	<div>
+		<table class="titleTable" width=100% border=0 cellspacing=0>
+			<tr>
+				<td rowspan=2 class="alignRight" width=15% valign="bottom">
+					<img class="userImg" width=50 src="../images/userImg.png">
+				</td>
+				<!-- 로그인번호가 관리자이면, -->
+				<c:if test="${loginType eq 'aLogin'}">
+					<td class="alignLeft">${info.id}</td>
+				</c:if>
+				<!-- 로그인번호가 학생. 교수이면, -->
+				<c:if test="${loginType eq 'tLogin'}">
+					<td class="alignLeft">${info.tIdx} ${info.name}</td>
+				</c:if>
+				<!-- 로그인번호가 학생이면, -->
+				<c:if test="${loginType eq 'sLogin'}">
+					<td class="alignLeft"> ${info.sIdx} ${info.name}</td>
+				</c:if>
+			</tr>
+			<tr>
+				<!-- 로그인번호가 관리자이면, -->
+				<c:if test="${loginType eq 'aLogin'}">
+					<td class="alignLeft">관리자</td>
+				</c:if>
+				<!-- 로그인번호가 교수이면, -->
+				<c:if test="${loginType eq 'tLogin'}">
+					<td class="alignLeft">${info.major}${info.job}</td>
+				</c:if>
+				<!-- 로그인번호가 학생이면, -->
+				<c:if test="${loginType eq 'sLogin'}">
+					<td class="alignLeft">${info.major}${info.grade}</td>
+				</c:if>
+			</tr>
+		</table>
+	</div>
 
 
 	<table class="titleTable" width=100% border=0 cellspacing=0>
@@ -66,4 +68,19 @@
 			</c:if>
 		</tr>
 	</table>
-</div>  <!-- header end -->
+</div>  
+
+<script>
+	$('#btnLogoutImg').onclick(function(){
+		return confirm("종료 하시겠습니까?");
+	})
+	
+</script>
+
+
+
+<!-- header end -->
+
+
+
+
