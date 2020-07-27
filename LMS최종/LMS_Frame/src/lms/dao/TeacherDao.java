@@ -124,7 +124,7 @@ public class TeacherDao {
 	}
 
 	// 교수 내정보 삭제 : delete
-	public int deleteCourse(Connection conn, Teacher teacher) throws SQLException {
+	public int deleteTeacher(Connection conn, int tIdx) throws SQLException {
 
 		int result = 0;
 		PreparedStatement pstmt = null;
@@ -132,7 +132,7 @@ public class TeacherDao {
 
 		try {
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, teacher.gettIdx());
+			pstmt.setInt(1, tIdx);
 
 			result = pstmt.executeUpdate();
 
