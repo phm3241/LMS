@@ -250,88 +250,10 @@ a {
 					</td>
 				</tr>
 			</table>
-			<table id="idSchedule" width=100% border=1 cellspacing="0">
-				<tr class="bgColorGray">
-					<th width="100"></th>
-					<th>월</th>
-					<th>화</th>
-					<th>수</th>
-					<th>목</th>
-					<th>금</th>
-				</tr>
-				<tr class="">
-					<td>0교시<br>08:00
-					</td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-				<tr class="">
-					<td>1교시<br>08:00
-					</td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-				<tr class="">
-					<td>2교시<br>08:00
-					</td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-				<tr class="">
-					<td>3교시<br>08:00
-					</td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-				<tr class="">
-					<td>4교시<br>08:00
-					</td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-				<tr class="">
-					<td>5교시<br>08:00
-					</td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-				<tr class="">
-					<td>6교시<br>08:00
-					</td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-				<tr class="">
-					<td>7교시<br>08:00
-					</td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-				<tr class="">
-					<td>8교시<br>08:00
-					</td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-			</table>
+			
+			<div id="timeTable">
+			</div>
+		
 		</div>
 	</div>
 	<div id="infoArea">
@@ -750,6 +672,8 @@ a {
         document.getElementById("myCourseList").style.border.bottom="1px solid rgb(228, 228, 228)";
         
     }
+    
+    //내 강의 시간표 (일정표)
     function makeSelectedCourseTimeTableHTML(){
         var arrTimeTable = [];
         var makeHtml ='';
@@ -757,7 +681,8 @@ a {
             arrTimeTable[i] = '';
         }
         for (var i = 0; i <= SelectedCourseList.length - 1; i++) {
-            arrTimeTable[SelectedCourseList[i].startTime] = SelectedCourseList[i].name;
+	            arrTimeTable[SelectedCourseList[i].startTime] = SelectedCourseList[i].name;
+        
         }
         makeHtml += '<table id="idSchedule" width=100% border=1 cellspacing="0">';
         makeHtml += '<tr class="bgColorGray"><th width="100"></th><th width="100">월</th><th width="100">화</th><th width="100">수</th><th width="100">목</th><th width="100">금</th></tr>';        

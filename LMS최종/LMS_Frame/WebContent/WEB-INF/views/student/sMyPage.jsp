@@ -251,56 +251,7 @@ a {
 			</table>
 
 			<div id="myCourseList">
-
-			<!-- <table id="idClass" width=100% border=0 cellspacing="0">
-				<tr class="bgColorGray">
-					<th>강의<br>번호
-					</th>
-					<th>강의명</th>
-					<th>교수명</th>
-					<th>학년</th>
-					<th>이수<br>구분
-					</th>
-					<th>수업시간</th>
-					<th>정원</th>
-					<th>강의정보</th>
-					<th>삭제</th>
-				</tr>
-				<tr class="">
-					<td class="">A01</td>
-					<td>컴퓨터기초</td>
-					<td>송가람</td>
-					<td>1</td>
-					<td>교양</td>
-					<td>수(3,4)</td>
-					<td>20/25</td>
-					<td><button id="viewInfo" class="" onClick="viewInfo()">강의정보</button></td>
-					<td><button id="viewDel" class="" onClick="viewDel()">삭제</button></td>
-				</tr>
-				<tr class="">
-					<td class="">A01</td>
-					<td>컴퓨터기초</td>
-					<td>송가람</td>
-					<td>1</td>
-					<td>교양</td>
-					<td>수(3,4)</td>
-					<td>20/25</td>
-					<td><button id="viewInfo" class="" onClick="viewInfo()">강의정보</button></td>
-					<td><button id="viewDel" class="" onClick="viewDel()">삭제</button></td>
-				</tr>
-				<tr class="">
-					<td class="">A01</td>
-					<td>컴퓨터기초</td>
-					<td>송가람</td>
-					<td>1</td>
-					<td>교양</td>
-					<td>수(3,4)</td>
-					<td>20/25</td>
-					<td><button id="viewInfo" class="" onClick="viewInfo()">강의정보</button></td>
-					<td><button id="viewDel" class="" onClick="viewDel()">삭제</button></td>
-				</tr>
-			</table>
- -->
+			
 			</div>
 			
 			<br>
@@ -316,8 +267,9 @@ a {
 					</td>
 				</tr>
 			</table>
-
-			<table id="idSchedule" width=100% border=1 cellspacing="0">
+			<div id="timeTable">
+			</div>
+			<!-- <table id="idSchedule" width=100% border=1 cellspacing="0">
 
 
 				<tr class="bgColorGray">
@@ -400,7 +352,7 @@ a {
 					<td></td>
 					<td></td>
 					<td></td>
-			</table>
+			</table> -->
 
 
 
@@ -555,6 +507,14 @@ a {
 
 <script>
 
+	window.onload = function(){
+		
+		//0726 윤원
+		getMyCourseListTable();
+		
+	}
+
+
 	//객체 생성
 	function Course(cIdx,name,teacher,content,startTime,totalPer,applyPer,tIdx) {
 	       
@@ -576,16 +536,17 @@ a {
 	var SelectedCourseListArea = document.getElementById('myCourseList');
 	var timeTableArea = document.getElementById('timeTable');
 
-	//0726 윤원
-	getMyCourseListTable();
+	
+	
+	
 	
 	//0726 윤원
 	function getMyCourseListTable(){
 		makeMyCourseListDATA();
-		makeMyCourseListHTML();
+		makeSelectedCourseTimeTableHTML();
 		
 	}
-	//0726 윤원
+	//0726 윤원 - 내 강의리스트 가져옴
 	function makeMyCourseListDATA(){
 		
 		var sIdx=${info.sIdx};
@@ -611,7 +572,6 @@ a {
 	     				var tIdx = value.tIdx;
 	     				
 	    				SelectedCourseList.push(new Course(cIdx, cName, cTeacher, content, cStartTime, cTotalPer, cApplyPer, tIdx));
-
 						
 					});
 					
@@ -623,7 +583,7 @@ a {
 		
 	}
 	
-	//0726 윤원
+	//0726 윤원 - 내 강의리스트 HTML
 	function makeMyCourseListHTML(){
 		
 		 var makeHtml ='';
@@ -649,6 +609,45 @@ a {
 	}
 	
 	
+	 //내 강의 시간표 (일정표)
+    function makeSelectedCourseTimeTableHTML(){
+		 
+        var arrTimeTable = [];
+        var makeHtml ='';
+        for (var i = 0; i <= 21; i++) {
+            arrTimeTable[i] = '';
+        }
+        for (var i = 0; i <= SelectedCourseList.length - 1; i++) {
+	            arrTimeTable[SelectedCourseList[i].startTime] = SelectedCourseList[i].name;
+        
+        }
+        makeHtml += '<table id="idSchedule" width=100% border=1 cellspacing="0">';
+        makeHtml += '<tr class="bgColorGray"><th width="100"></th><th width="100">월</th><th width="100">화</th><th width="100">수</th><th width="100">목</th><th width="100">금</th></tr>';        
+        
+        /* makeHtml += '<tr>';
+        makeHtml += '<td>1교시<br>09:00</td><td>'+arrTimeTable[0]+'</td><td>'+arrTimeTable[4]+'</td><td>'+arrTimeTable[8]+'</td><td>'+arrTimeTable[12]+'</td><td>'+arrTimeTable[16]+'</td>';
+        makeHtml += '</tr><tr>';
+        makeHtml += '<td>2교시<br>11:00</td><td>'+arrTimeTable[1]+'</td><td>'+arrTimeTable[5]+'</td><td>'+arrTimeTable[9]+'</td><td>'+arrTimeTable[13]+'</td><td>'+arrTimeTable[17]+'</td>';
+        makeHtml += '</tr><tr>';
+        makeHtml += '<td>3교시<br>13:00</td><td>'+arrTimeTable[2]+'</td><td>'+arrTimeTable[6]+'</td><td>'+arrTimeTable[10]+'</td><td>'+arrTimeTable[14]+'</td><td>'+arrTimeTable[18]+'</td>';
+        makeHtml += '</tr><tr>';
+        makeHtml += '<td>4교시<br>15:00</td><td>'+arrTimeTable[3]+'</td><td>'+arrTimeTable[7]+'</td><td>'+arrTimeTable[11]+'</td><td>'+arrTimeTable[15]+'</td><td>'+arrTimeTable[19]+'</td>';
+        makeHtml += '</table>'; */
+         makeHtml += '<tr>';
+        makeHtml += '<td>1교시<br>09:00</td><td>'+arrTimeTable[1]+'</td><td>'+arrTimeTable[5]+'</td><td>'+arrTimeTable[9]+'</td><td>'+arrTimeTable[13]+'</td><td>'+arrTimeTable[17]+'</td>';
+        makeHtml += '</tr><tr>';
+        makeHtml += '<td>2교시<br>11:00</td><td>'+arrTimeTable[2]+'</td><td>'+arrTimeTable[6]+'</td><td>'+arrTimeTable[10]+'</td><td>'+arrTimeTable[14]+'</td><td>'+arrTimeTable[18]+'</td>';
+        makeHtml += '</tr><tr>';
+        makeHtml += '<td>3교시<br>13:00</td><td>'+arrTimeTable[3]+'</td><td>'+arrTimeTable[7]+'</td><td>'+arrTimeTable[11]+'</td><td>'+arrTimeTable[15]+'</td><td>'+arrTimeTable[19]+'</td>';
+        makeHtml += '</tr><tr>';
+        makeHtml += '<td>4교시<br>15:00</td><td>'+arrTimeTable[4]+'</td><td>'+arrTimeTable[8]+'</td><td>'+arrTimeTable[12]+'</td><td>'+arrTimeTable[16]+'</td><td>'+arrTimeTable[20]+'</td>';
+        makeHtml += '</table>';
+        
+        timeTableArea.innerHTML = makeHtml;
+         
+    }
+    
+	
 
 	function doclearList() {
 		alert('목록초기화 실행!!');
@@ -669,15 +668,57 @@ a {
 
 	}
 
-	function viewDel() {
-		document.getElementById('delArea').style.display = 'block';
+	function viewDel(i) {
+		
+		 document.getElementById('delArea').style.display = 'block';
+	        
+	        var delAreaInner = document.getElementById('delAreaInner');                                                    
+	        var makeHtml = '';
+	        makeHtml += '<h1>[ 강의정보 ]</h1>';
+	        makeHtml += '<br>강의번호 : '+SelectedCourseList[i].cIdx;
+	        makeHtml += '<br>강의명 : '+SelectedCourseList[i].name;
+	        makeHtml += '<br>교수 : '+SelectedCourseList[i].teacher;
+	        makeHtml += '<br>상세소개 : '+SelectedCourseList[i].content;
+	        makeHtml += '<br>수업시간 : '+SelectedCourseList[i].startTime;
+	        makeHtml += '<br>정원 : '+SelectedCourseList[i].applyPer+' / '+SelectedCourseList[i].totalPer;
+	        makeHtml += '<br><br><button onClick="closeDel()">취소</button>';
+	        makeHtml += '<button id="del" class="" onClick="doDel('+i+')">삭제</button>';
+	        delAreaInner.innerHTML = makeHtml;
 
 	}
 
-	function doDel(form) {
-
-		document.getElementById('delArea').style.display = 'none';
-		form.submit();
+	function doDel(i) {
+		
+		console.log(SelectedCourseList[i].cIdx);
+		
+		var cIdx= SelectedCourseList[i].cIdx;
+    	var sIdx=${info.sIdx};
+    	//저장하는 ajax - 완료됐으면 Y
+    	$.ajax({
+    		url : 'sAddFormCourseDelCheck.do',
+    		data : {
+    				sIdx:sIdx,
+    				cIdx:cIdx
+    				},
+    		method: 'get',
+    		success : 
+    			function(data){
+    				if(data=="Y"){
+    					alert("정상적으로 삭제가 되었습니다.");
+    				}else{
+    					alert("삭제 실패!");
+    				}
+				//SelectedCourseList.push(CourseList[i]);
+		       // makeSelectedCourseListTable();
+    			}
+    				
+    		});
+    	
+        document.getElementById('delArea').style.display = 'none';
+        SelectedCourseList.splice(i,1);
+        makeMyCourseListHTML();
+        makeSelectedCourseTimeTableHTML();//ok
+        // form.submit();
 
 	}
 

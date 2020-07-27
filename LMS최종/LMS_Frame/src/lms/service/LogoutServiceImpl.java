@@ -13,7 +13,7 @@ public class LogoutServiceImpl implements Service {
 		HttpSession session = request.getSession(false);
 		session.invalidate();
 		
-		return "/WEB-INF/views/logoutForm.jsp";
+		return "/WEB-INF/views/index.jsp";
 	}
 
 }
