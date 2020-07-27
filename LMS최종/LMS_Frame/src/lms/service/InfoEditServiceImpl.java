@@ -67,10 +67,19 @@ public class InfoEditServiceImpl implements Service {
 				path = "/WEB-INF/views/student/sInfo.jsp";
 			}
 			
-		if(type.equals("tLogin")) {
+		if(type.equals("tLogin") && (pw1.contentEquals(pw2))) {
 				teacher = (Teacher) session.getAttribute("info");
 				tIdx = teacher.gettIdx();
-				tDao.editTeacher(conn, tIdx, tel, email);
+				result = tDao.editTeacher(conn, tIdx, tel, email);
+				
+				System.out.println("result : " + result);
+				
+				request.setAttribute("chgTel", tel);
+				request.setAttribute("chgEmail", email);
+				request.setAttribute("result", result);
+				
+				path = "/WEB-INF/views/teacher/tInfo.jsp";
+			} else {
 				path = "/WEB-INF/views/teacher/tInfo.jsp";
 			}
 		} catch (SQLException e) {
