@@ -1,10 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<% String pw = session.getAttribute("sessionPw").toString(); %>
 <!DOCTYPE html>
 <html lang="ko">
-
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -107,7 +105,11 @@ a {
 	background-color: rgb(26, 188, 156);
 }
 </style>
-<script></script>
+<script>
+	function HidePw() {
+		$('#currentPw').css('display', 'none');
+	}
+</script>
 </head>
 
 <body>
@@ -154,12 +156,13 @@ a {
 						<td class="alignRight">이름</td>
 						<td class="alignLeft">${info.name}</td>
 					</tr>
-					<tr>
-						<td class="alignLeft"><input type="hidden" id="pw1" value="${info.pw}"></td>
+					<tr id="currentPw" onload="HidePw()">
+						<td class="alignLeft"><input type="password" id="pw1" value="${info.pw}"></td>
 					</tr>
 					<tr>
 						<td class="alignRight">비밀번호 확인</td>
-						<td class="alignLeft"><input type="password" id="pw2" name="pw2"><button id="chkPw" name="pw2" onClick="checkPw()">비밀번호 확인</button></td>
+						<td class="alignLeft"><input type="password" id="pw2" name="pw2">
+						<button id="chkPw" name="pw2" onClick="checkPw()">비밀번호 확인</button></td>
 					</tr>
 				<%-- <c:if test="${info.pw eq }"> 비밀번호 확인 실패 시--%> 
 					<tr>
@@ -202,22 +205,7 @@ a {
 
 <script>
 	
-	$(document).ready(function(){
-	
-		var sessionPw = "<%= session.getAttribute("pw") %>"
-		
-		if 
-		
-		
-		function doModify(form) {
 
-			form.submit();
-
-		}
-
-		
-		
-	});
 		
 	
 </script>

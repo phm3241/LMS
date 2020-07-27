@@ -23,6 +23,7 @@ public class InfoEditServiceImpl implements Service {
 	
 	@Override
 	public String getViewPage(HttpServletRequest request, HttpServletResponse response) {
+		
 		// session에서 로그인 타입과 객체 불러오기
 		HttpSession session = request.getSession(false);
 		String type = (String) session.getAttribute("loginType");
@@ -31,12 +32,17 @@ public class InfoEditServiceImpl implements Service {
 		// form에서 입력한 전화번호와 이메일 가져오기
 		String tel = request.getParameter("tel");
 		String email = request.getParameter("email");
+		String pw = request.getParameter("pw1");
+		String pw2= request.getParameter("pw2");
 		
 		System.out.println("수정할 전화번호 : " + tel+ " / 수정할 이메일 주소 : " + email);
+		System.out.println("비밀번호 : " + pw +" / 확인 비밀번호 : " + pw2);
 		
 		// 변수 초기화
+		
 		String path = null;
 		Connection conn = null;
+		int result = 0;
 		int sIdx = 0;
 		int tIdx = 0;
 		
@@ -48,7 +54,9 @@ public class InfoEditServiceImpl implements Service {
 			if(type.equals("sLogin")) {
 				student = (Student) session.getAttribute("info");
 				sIdx = student.getsIdx();
-				sDao.editStudent(conn, sIdx, tel, email);
+				result = sDao.editStudent(conn, sIdx, tel, email);
+				
+				request.setAttribute("result", result);
 				
 				path = "/WEB-INF/views/student/sInfo.jsp";
 			} else if(type.equals("tLogin")) {
