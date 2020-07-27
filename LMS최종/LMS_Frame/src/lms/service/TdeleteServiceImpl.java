@@ -7,29 +7,27 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import dbcp.ConnectionProvider;
-import lms.dao.StudentDao;
-import lms.model.Student;
+import lms.dao.TeacherDao;
 
-public class SdeleteServiceImpl implements Service {
+public class TdeleteServiceImpl implements Service {
 
-	// Service 클래스 이용에 대한 예제 클래스입니다.
-	StudentDao dao;
-	
+	TeacherDao dao;
+
 	@Override
 	public String getViewPage(HttpServletRequest request, HttpServletResponse response) {
+
+		Connection conn = null;
 		
 		String msg = "";
 		
-		Connection conn = null;
 		
 		try {
-
-			int sIdx = Integer.parseInt(request.getParameter("sIdx"));
+			int tIdx = Integer.parseInt(request.getParameter("tIdx"));
 			
 			conn = ConnectionProvider.getConnection();
-			dao = StudentDao.getInstance();
+			dao = TeacherDao.getInstance();
 			
-			int resultCnt = dao.deleteStudent(conn, sIdx);
+			int resultCnt = dao.deleteTeacher(conn, tIdx);
 
 			switch(resultCnt) {
 			case 0:
@@ -37,7 +35,6 @@ public class SdeleteServiceImpl implements Service {
 			case 1:
 				msg="정상적으로 삭제되었습니다.";
 			}
-			
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -50,9 +47,10 @@ public class SdeleteServiceImpl implements Service {
 				}
 			}
 		}
+
 		request.setAttribute("msg", msg);
 
-		return "/WEB-INF/views/admin/sList.jsp";
+		return "/WEB-INF/views/admin/tList.jsp";
 	}
 
 }

@@ -1,23 +1,11 @@
 package lms.service;
 
-import java.sql.Connection;
-import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-
-import dbcp.ConnectionProvider;
-import lms.dao.CourseDao;
-import lms.model.Course;
-import lms.model.Student;
 
 public class SclassAddFormServiceImpl implements Service {
 
 	// 자신이 사용할 Dao/Model/Service resurve 파일 번호를 항상 공유해주세용!
-	CourseDao cDao;
 	
 	@Override
 	public String getViewPage(HttpServletRequest request, HttpServletResponse response) {

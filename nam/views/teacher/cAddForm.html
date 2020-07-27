@@ -1,6 +1,3 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="ko">
 
@@ -8,9 +5,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LMS</title>
-    <link href="${pageContext.request.contextPath}/css/lms.css" rel="stylesheet">
+    <link href="./css/lms.css" rel="stylesheet">
     <style>     
 
+        table {
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+
+        #tableBorder{
+            /* padding: 10px 10px 10px 10px;           */
+            border: 5px solid rgb(41, 128, 185);
+        }
 
         th {
             text-align: center;
@@ -126,6 +133,33 @@
             background-color: rgb(41, 128, 185);
         }
         
+        .btnModifyT {
+                       
+            width: 150px;
+            height: 45px;
+            text-align: center;
+            font-size :20px;
+            color : white;
+            font-weight : 900;
+            background-color: rgb(41, 128, 185);
+            border-radius: 10px;
+
+
+        }
+        .btnModifyT:hover {
+            color: black;
+            background-color: white;
+            border-color:  gray;         
+        }
+        .fontTInfo {
+
+            font-size :20px;
+            color : black;
+            font-weight : 900;            
+            
+
+        }
+
 
 
 
@@ -137,8 +171,7 @@
 <body>
 
 <div id="container">
-<%@ include file="/WEB-INF/views/include/header.jsp"%>
-<!--         <div id="header" class="bgColorHeader">
+        <div id="header" class="bgColorHeader">
             
             <table class="titleTable" width=100% border=0 cellspacing=0>
                 <tr><td rowspan=2 class="alignRight" width=15% valign="bottom"><img class="userImg" width=50 src="./images/userImg.png"></td>
@@ -150,38 +183,44 @@
                     <td><a href="tMyPage.html">나의 강의실</a></td>
                     <td><a href="tInfo.html">내정보</a></td></tr>                
             </table> 
-        </div> -->
+        </div>
 	    
         <div id="contentsAll">
-    	
-            <form id="cAddForm" action="cAdd.do" method="POST">
-            
-                <table width=100% border=0>
-                    <tr><td width=50% class="alignRight">교과목명</td>
-                        <td width=45% class="alignLeft"><input type="text" id="name" name="name"></td></tr>
+    
+            <form>
+
+                <table id="tableBorder" border=1 width=100% cellspacing=0><tr><td>          
+
+      
+                <table border=0 class="fontTInfo">
+                    <tr><td width=45% class="alignRight">교과목명</td>
+                        <td class="alignLeft"><input type="text" id="aa"></td></tr>
                     <tr><td class="alignRight">교수명</td>
-                        <td class="alignLeft"><input type="text" id="teacher" name="teacher"></td></tr>                
+                        <td class="alignLeft"><input type="text" id="search"></td></tr>                
                     <tr><td class="alignRight">과목내용</td>
-                        <td class="alignLeft"><input type="text" id="content" name="content"></td></tr>
-                    <tr><td class="alignRight">요일</td>
-                        <td class="alignLeft"><input type="text" id="day" name="day"></td></tr>
-                    <tr><td class="alignRight">시작시간</td>
-                        <td class="alignLeft"><input type="number" id="startTime" name="startTime"></td></tr>
-                    <tr><td class="alignRight">종료시간</td>
-                        <td class="alignLeft"><input type="number" id="endTime" name="endTime"></td></tr>
+                        <td class="alignLeft"><input type="text" id="search"></td></tr>
+                    <tr><td class="alignRight">대상학년</td>
+                        <td class="alignLeft"><input type="text" id="search"></td></tr>
+                    <tr><td class="alignRight">이수구분</td>
+                        <td class="alignLeft"><input type="text" id="search"></td></tr>
+                    <tr><td class="alignRight">학점</td>
+                        <td class="alignLeft"><input type="text" id="search"></td></tr>
+                    <tr><td class="alignRight">수업시간</td>
+                        <td class="alignLeft"><input type="text" id="search"></td></tr>
                     <tr><td class="alignRight">정원</td>
-                        <td class="alignLeft"><input type="number" id="totalPer" name="totalPer"></td></tr>
-                    <tr><td class="alignRight">현재인원</td>
-                        <td class="alignLeft"><input type="number" id="applyPer" name="applyPer"></td></tr>
-                    <tr><td class="alignRight">교수번호</td>
-                        <td class="alignLeft"><input type="number" id="tIdx" name="tIdx"></td></tr>
-                    <!-- <tr><td class="alignRight">강의실</td>
-                        <td class="alignLeft"><input type="text" id="search"></td></tr> -->
+                        <td class="alignLeft"><input type="text" id="search"></td></tr>
+                    <tr><td class="alignRight">교재</td>
+                        <td class="alignLeft"><input type="text" id="search"></td></tr>
+                    <tr><td class="alignRight">강의실</td>
+                        <td class="alignLeft"><input type="text" id="search"></td></tr>
                     <tr><td colspan="2">
-                        <button class="" onClick="closeInsert()">취소</button>
-                        <button type="submit" id="insert" class="" onClick="doInsert(this.form)">등록</button>
+                        <br>
+                        <button class="btnModifyT" onClick="closeInsert()">취소</button>
+                        <button type="submit" id="insert" class="btnModifyT" onClick="doInsert(this.form)">등록</button>
                         </td></tr>
                 </table>
+
+                </td></tr></table>
             </form>
         
 
@@ -194,10 +233,11 @@
 </body>
 
 <script>
+    function doInsert(form) {     
 
-    function doInsert(form) {
-
-        form.submit();
+       
+        
+        // form.submit();
         
 
     }

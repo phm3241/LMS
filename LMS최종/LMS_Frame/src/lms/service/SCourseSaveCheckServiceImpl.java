@@ -2,16 +2,16 @@ package lms.service;
 
 import java.sql.Connection;
 import java.sql.SQLException;
-import java.util.List;
+//import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
+//import javax.servlet.http.HttpSession;
 
 import dbcp.ConnectionProvider;
 import lms.dao.CourseDao;
 import lms.model.Course;
-import lms.model.CourseListView;
+//import lms.model.CourseListView;
 import lms.model.MyCourse;
 //import lms.model.SMyCourseListView;
 import lms.model.Student;
@@ -38,11 +38,11 @@ public class SCourseSaveCheckServiceImpl implements Service {
 		System.out.println("cidx : "+cIdx);
 		
 		
-		CourseListView cListView=null;
+		//CourseListView cListView=null;
 		Connection conn= null;
 		int resultCnt = 0;
 		String result = "N";
-		List<Course> courseList = null;
+		//List<Course> courseList = null;
 		
 		myCourse = new MyCourse(sIdx, cIdx);
 		
