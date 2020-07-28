@@ -24,6 +24,9 @@ public class InfoServiceImpl implements Service {
 
 		if(type.equals("sLogin")) {			
 			path = "/WEB-INF/views/student/sInfo.jsp";
+			
+			
+			
 		} else if(type.equals("tLogin")){
 			path = "/WEB-INF/views/teacher/tInfo.jsp";
 		}

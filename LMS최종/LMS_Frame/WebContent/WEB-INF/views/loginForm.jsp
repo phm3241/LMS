@@ -156,9 +156,9 @@
 						<tr><td colspan="2"><h1 class="subtitle">로그인</h1></td></tr>
 						<tr>
 							<td colspan="2" class="fontInnerTable">
-								<input type="radio" name="loginType" id="loginType" value="sLogin" checked="checked"> 학생
-								<input type="radio" name="loginType" id="loginType" value="tLogin"> 교수
-								<input type="radio" name="loginType" id="loginType" value="aLogin"> 관리자
+								<input type="radio" name="loginType" id="loginType1" value="sLogin" checked="checked"> 학생
+								<input type="radio" name="loginType" id="loginType2" value="tLogin"> 교수
+								<input type="radio" name="loginType" id="loginType3" value="aLogin"> 관리자
 							</td>
 						</tr>
 						<tr>
@@ -167,7 +167,7 @@
 						</tr>
 						<tr>
 							<td class="alignRight"><img class="loginImg" height="35px" src="${pageContext.request.contextPath}/images/loginId.png"></td>
-							<td class="alignLeft"><input type="password" name="pw"  id="pw" class="input" >
+							<td class="alignLeft"><input type="password" name="pw"  id="pw" class="input">
 							<span id="loginCheck"></span>
 							</td>
 							
