@@ -17,14 +17,10 @@ import javax.servlet.http.HttpServletResponse;
 
 import lms.service.Service;
 
-
-
 public class FrontController extends HttpServlet {
 	
 	private Map<String, Service> commands = new HashMap<String, Service>();
 	
-	
-
     @Override
    // 프로퍼티 파일에서 키값과 클래스 정보를 추출하여 그것을 Map에 저장합니다.
 	public void init(ServletConfig config) throws ServletException {
