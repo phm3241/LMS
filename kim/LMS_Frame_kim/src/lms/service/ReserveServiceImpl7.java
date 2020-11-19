@@ -5,7 +5,7 @@ import javax.servlet.http.HttpServletResponse;
 
 public class ReserveServiceImpl7 implements Service {
 
-	// 자신이 사용할 Dao/Model/Service resurve 파일 번호를 항상 공유해주세용!
+	// 자신이 사용할 Dao/Model/Service reserve 파일 번호를 항상 공유해주세용!
 	
 	
 	@Override

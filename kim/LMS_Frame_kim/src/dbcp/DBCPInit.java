@@ -18,7 +18,7 @@ public class DBCPInit extends HttpServlet {
 	@Override
 	public void init() throws ServletException {
 		// TODO Auto-generated method stub
-		loadJdbcDriver(); // 데이터베이스 드라이버 호드
+		loadJdbcDriver(); // 데이터베이스 드라이버 로드
 		initConnectionPool(); // Pool 드라이버 로드 (설정)
 	}
 	
@@ -56,7 +56,7 @@ public class DBCPInit extends HttpServlet {
 			String username = ""; // 설정한 mysql 유저 네임
 			String pw = ""; // 설정한 mysql 유저 비밀번호
 			
-			// 커넥션 풀이 새로운 커넥셔ㅑㄴ을 생성할 때 사용할 커넥션팩토리 객체 생성
+			// 커넥션 풀이 새로운 커넥션을 생성할 때 사용할 커넥션팩토리 객체 생성
 			ConnectionFactory connFactory = new DriverManagerConnectionFactory(jdbcDriver, username, pw);
 			
 			// PoolableConnection 을 생성하는 팩토리 생성

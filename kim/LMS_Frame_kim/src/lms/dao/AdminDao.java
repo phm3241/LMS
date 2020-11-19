@@ -10,7 +10,7 @@ import lms.model.Admin;
 public class AdminDao {
 	
 	// 싱글톤 처리 완료
-	// 자신이 사용할 Dao/Model/Service resurve 파일 번호를 항상 공유해주세용!
+	// 자신이 사용할 Dao/Model/Service reserve 파일 번호를 항상 공유해주세용!
 	private AdminDao () {
 		
 	}

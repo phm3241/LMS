@@ -14,7 +14,7 @@ import lms.model.Student;
 public class StudentDao {
 	
 	// 싱글톤 처리 완료
-	// 자신이 사용할 Dao/Model/Service resurve 파일 번호를 항상 공유해주세용!
+	// 자신이 사용할 Dao/Model/Service reserve 파일 번호를 항상 공유해주세용!
 	// 학생 DAO - 담당 : 김승연
 	// 			작업 일시 : 2020. 07. 21
 	private StudentDao () {
